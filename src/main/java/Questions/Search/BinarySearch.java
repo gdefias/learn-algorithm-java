@@ -34,7 +34,6 @@ public class BinarySearch {
             int mid = start+(end-start) / 2;
             //int mid = start+((end-start)>>1);
             //int mid = (start+end)/2;
-
             if (target == nums[mid]) {
                 return mid;
             } else if (target < nums[mid]) {

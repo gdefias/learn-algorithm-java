@@ -42,7 +42,7 @@ public class BinarySearchLast {
         return end;
     }
 
-    //方法1
+    //方法2
     public static int binarySearch1(int[] A, int target) {
         if(A==null || A.length ==0 || target < A[0] || target > A[A.length-1]) {
             return -1;

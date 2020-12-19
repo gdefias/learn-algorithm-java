@@ -1,4 +1,4 @@
-package Test;
+package asd;
 
 public class Msort {
     public static void main(String[] args) {

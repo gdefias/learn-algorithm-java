@@ -30,7 +30,7 @@ public class KthLargest {
 
     public static void main(String[] args) {
         TreeNode root = Util.makeTree4();
-        System.out.println(kthLargest(root, 2));
+        System.out.println(kthLargest2(root, 2));
     }
 
 
@@ -58,5 +58,24 @@ public class KthLargest {
 
         //递归左子树
         recur(root.left, k);
+    }
+
+    //方法2：二分搜索
+    public static int kthLargest2(TreeNode root, int k) {
+        int rc = getNum(root.right);
+        if(rc == k-1) {
+            return root.val;
+        } else if(rc > k-1) {
+            return kthLargest2(root.right, k);
+        } else {
+            return kthLargest2(root.left, k-rc-1);
+        }
+    }
+
+    public static int getNum(TreeNode root) {
+        if(root==null) {
+            return 0;
+        }
+        return getNum(root.left) + getNum(root.right) + 1;
     }
 }

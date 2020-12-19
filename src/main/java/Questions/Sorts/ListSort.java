@@ -18,7 +18,6 @@ public class ListSort {
         insertionSortList(root);  //链表插入排序
 
         printList(root);
-
     }
 
     //创建一个测试单链表

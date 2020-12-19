@@ -1,5 +1,4 @@
 package Questions.Queue;
-import Lib.StdOut;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 /**
@@ -7,7 +6,7 @@ import java.util.NoSuchElementException;
  * Description:  优先队列    ---小顶堆实现  二叉堆
  *
  */
-public class PriorityQueue3<Key extends Comparable<Key>> implements Iterable<Integer> {
+public class MyPriorityQueue3<Key extends Comparable<Key>> implements Iterable<Integer> {
     private int maxN;        // PQ最大元素数量
     private int n;           // 当前PQ中的元素数量
     private int[] pq;        // binary heap using 1-based indexing
@@ -17,7 +16,7 @@ public class PriorityQueue3<Key extends Comparable<Key>> implements Iterable<Int
     public static void main(String[] args) {
         String[] strings = { "it", "was", "the", "best", "of", "times", "it", "was", "the", "worst" };
 
-        PriorityQueue3<String> pq = new PriorityQueue3<String>(strings.length);
+        MyPriorityQueue3<String> pq = new MyPriorityQueue3<String>(strings.length);
         for (int i = 0; i < strings.length; i++) {
             pq.insert(i, strings[i]);
         }
@@ -42,7 +41,7 @@ public class PriorityQueue3<Key extends Comparable<Key>> implements Iterable<Int
 
     }
 
-    public PriorityQueue3(int maxN) {
+    public MyPriorityQueue3(int maxN) {
         if (maxN < 0)
             throw new IllegalArgumentException();
         this.maxN = maxN;
@@ -220,12 +219,12 @@ public class PriorityQueue3<Key extends Comparable<Key>> implements Iterable<Int
 
     private class HeapIterator implements Iterator<Integer> {
         // create a new pq
-        private PriorityQueue3<Key> copy;
+        private MyPriorityQueue3<Key> copy;
 
         // add all elements to copy of heap
         // takes linear time since already in heap order so no keys move
         public HeapIterator() {
-            copy = new PriorityQueue3<Key>(pq.length - 1);
+            copy = new MyPriorityQueue3<Key>(pq.length - 1);
             for (int i = 1; i <= n; i++)
                 copy.insert(pq[i], keys[pq[i]]);
         }

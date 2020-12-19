@@ -2,7 +2,7 @@ package Questions.Graph.MST;
 
 import Questions.Graph.Edge;
 import Questions.Graph.EdgeWeightedGraph;
-import Questions.Queue.PriorityQueue2;
+import Questions.Queue.MyPriorityQueue2;
 import Questions.Queue.MyQueue2;
 import Questions.Set.UF_QuickUnion;
 import Lib.In;
@@ -19,7 +19,7 @@ public class LazyPrimMST {
     private double weight;       // 最小生成树的权重
     private MyQueue2<Edge> mst;     // 最小生成树的边
     private boolean[] marked;    // 最小生成树的顶点
-    private PriorityQueue2<Edge> pq;      // 横切边（包括失败的边）
+    private MyPriorityQueue2<Edge> pq;      // 横切边（包括失败的边）
 
 
     public static void main(String[] args) {
@@ -35,7 +35,7 @@ public class LazyPrimMST {
 
     public LazyPrimMST(EdgeWeightedGraph G) {
         mst = new MyQueue2<Edge>();
-        pq = new PriorityQueue2<Edge>();
+        pq = new MyPriorityQueue2<Edge>();
         marked = new boolean[G.V()];
         for (int v = 0; v < G.V(); v++)     // run Prim from all vertices to
             if (!marked[v]) prim(G, v);     // get a minimum spanning forest

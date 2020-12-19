@@ -65,7 +65,7 @@ public class KthLargest {
 
     public KthLargest(int k, int[] a) {
         this.limit = k;
-        q = new PriorityQueue<>(k);
+        q = new PriorityQueue<Integer>(k);
         for (int n : a) {
             add(n);
         }

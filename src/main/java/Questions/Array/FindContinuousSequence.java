@@ -1,5 +1,4 @@
 package Questions.Array;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +24,8 @@ public class FindContinuousSequence {
         int[][] result = findContinuousSequence(15);
     }
 
+
+    //双指针
     public static int[][] findContinuousSequence(int target) {
         List<int[]> result = new ArrayList<>();
 

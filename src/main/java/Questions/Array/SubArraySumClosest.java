@@ -1,8 +1,8 @@
 package Questions.Array;
-
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
-
+import java.util.stream.Collectors;
 /**
  * Created by Defias on 2017/10/7.
 
@@ -13,6 +13,13 @@ import java.util.Comparator;
  */
 
 public class SubArraySumClosest {
+
+    public static void main(String[] args) {
+        int[] A = new int[] {1,2,3,-1,-2, 1, 2, -4,-5,1,5,2,-9};
+
+        int[] res = subarraySumClosest(A);
+        System.out.println(Arrays.stream(res).boxed().collect(Collectors.toList()));
+    }
 
     static class Pair {
         int sum;
@@ -46,12 +53,16 @@ public class SubArraySumClosest {
                 return a.sum - b.sum;
             }
         });
+
+        for(int k=0; k<sums.length; k++) {
+            System.out.println("sum:" + sums[k].sum + ", index:" + sums[k].index);
+        }
+
         int ans = Integer.MAX_VALUE;
         for (int i = 1; i <= len; i++) {
-
             if (ans > sums[i].sum - sums[i-1].sum) {
                 ans = sums[i].sum - sums[i-1].sum;
-                int[] temp = new int[]{sums[i].index - 1, sums[i - 1].index - 1};
+                int[] temp = new int[]{sums[i].index - 1, sums[i-1].index - 1};
                 Arrays.sort(temp);
                 res[0] = temp[0] + 1;
                 res[1] = temp[1];

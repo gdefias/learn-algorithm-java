@@ -1,5 +1,5 @@
 package Questions.String.Compress;
-import Questions.Queue.PriorityQueue2;
+import Questions.Queue.MyPriorityQueue2;
 /**
  * Created by Defias on 2020/06.
  * Description:  霍夫曼编码
@@ -102,7 +102,7 @@ public class Huffman {
     private static Node buildTrie(int[] freq) {
 
         // initialze priority queue with singleton trees
-        PriorityQueue2<Node> pq = new PriorityQueue2<Node>();
+        MyPriorityQueue2<Node> pq = new MyPriorityQueue2<Node>();
         for (char i = 0; i < R; i++)
             if (freq[i] > 0)
                 pq.insert(new Node(i, freq[i], null, null));

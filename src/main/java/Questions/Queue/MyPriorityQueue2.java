@@ -6,13 +6,13 @@ import java.util.NoSuchElementException;
  * Created by Defias on 2020/06.
  * Description:  优先队列     ----小顶堆实现（支持泛型）
  */
-public class PriorityQueue2<Key> implements Iterable<Key> {
+public class MyPriorityQueue2<Key> implements Iterable<Key> {
     private Key[] pq;
     private int n;
     private Comparator<Key> comparator;
 
     public static void main(String[] args) {
-        PriorityQueue2<String> pq = new PriorityQueue2<String>();
+        MyPriorityQueue2<String> pq = new MyPriorityQueue2<String>();
 
         pq.insert("231");
         pq.insert("123");
@@ -22,26 +22,26 @@ public class PriorityQueue2<Key> implements Iterable<Key> {
     }
 
     //各种构造器
-    public PriorityQueue2(int initCapacity) {
+    public MyPriorityQueue2(int initCapacity) {
         pq = (Key[])new Object[initCapacity + 1];
         n = 0;
     }
 
-    public PriorityQueue2() {
+    public MyPriorityQueue2() {
         this(1);
     }
 
-    public PriorityQueue2(int initCapacity, Comparator<Key> comparator) {
+    public MyPriorityQueue2(int initCapacity, Comparator<Key> comparator) {
         this.comparator = comparator;
         pq = (Key[]) new Object[initCapacity + 1];
         n = 0;
     }
 
-    public PriorityQueue2(Comparator<Key> comparator) {
+    public MyPriorityQueue2(Comparator<Key> comparator) {
         this(1, comparator);
     }
 
-    public PriorityQueue2(Key[] keys) {
+    public MyPriorityQueue2(Key[] keys) {
         n = keys.length;
         pq = (Key[]) new Object[keys.length + 1];
         for (int i = 0; i < n; i++)
@@ -176,13 +176,13 @@ public class PriorityQueue2<Key> implements Iterable<Key> {
 
     //迭代器实现
     private class HeapIterator implements Iterator<Key> {
-        private PriorityQueue2<Key> copy;
+        private MyPriorityQueue2<Key> copy;
 
         public HeapIterator() {
             if (comparator == null)
-                copy = new PriorityQueue2<Key>(size());
+                copy = new MyPriorityQueue2<Key>(size());
             else
-                copy = new PriorityQueue2<Key>(size(), comparator);
+                copy = new MyPriorityQueue2<Key>(size(), comparator);
             for (int i = 1; i <= n; i++)
                 copy.insert(pq[i]);
         }

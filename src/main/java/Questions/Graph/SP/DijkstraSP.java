@@ -1,6 +1,6 @@
 package Questions.Graph.SP;
 
-import Questions.Queue.PriorityQueue3;
+import Questions.Queue.MyPriorityQueue3;
 import Lib.In;
 import Lib.StdOut;
 import java.util.Stack;
@@ -16,7 +16,7 @@ import java.util.Stack;
 public class DijkstraSP {
     private double[] distTo;          // distTo[v] = distance  of shortest s->v path
     private DirectedEdge[] edgeTo;    // edgeTo[v] = last edge on shortest s->v path
-    private PriorityQueue3<Double> pq;    // priority queue of vertices
+    private MyPriorityQueue3<Double> pq;    // priority queue of vertices
 
 
     public static void main(String[] args) {
@@ -57,7 +57,7 @@ public class DijkstraSP {
         distTo[s] = 0.0;
 
         // relax vertices in order of distance from s
-        pq = new PriorityQueue3<Double>(G.V());
+        pq = new MyPriorityQueue3<Double>(G.V());
         pq.insert(s, distTo[s]);
         while (!pq.isEmpty()) {
             int v = pq.delMin();

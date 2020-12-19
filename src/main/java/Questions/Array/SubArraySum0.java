@@ -1,7 +1,7 @@
 package Questions.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-
 /**
  * Created by Defias on 2017/10/7.
 

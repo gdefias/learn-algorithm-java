@@ -35,7 +35,7 @@ public final class StdOut {
     public static void main(String[] args) {
 
         // write to stdout
-        StdOut.println("Test");
+        StdOut.println("asd");
         StdOut.println(17);
         StdOut.println(true);
 

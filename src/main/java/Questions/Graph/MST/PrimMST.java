@@ -2,7 +2,7 @@ package Questions.Graph.MST;
 
 import Questions.Graph.Edge;
 import Questions.Graph.EdgeWeightedGraph;
-import Questions.Queue.PriorityQueue3;
+import Questions.Queue.MyPriorityQueue3;
 import Questions.Queue.MyQueue2;
 import Questions.Set.UF_QuickUnion;
 import Lib.In;
@@ -20,7 +20,7 @@ public class PrimMST {
     private Edge[] edgeTo;        // edgeTo[v] = shortest edge from tree vertex to non-tree vertex
     private double[] distTo;      // distTo[v] = weight of shortest such edge
     private boolean[] marked;     // marked[v] = true if v on tree, false otherwise
-    private PriorityQueue3<Double> pq;
+    private MyPriorityQueue3<Double> pq;
 
 
 
@@ -42,7 +42,7 @@ public class PrimMST {
         edgeTo = new Edge[G.V()];
         distTo = new double[G.V()];
         marked = new boolean[G.V()];
-        pq = new PriorityQueue3<Double>(G.V());
+        pq = new MyPriorityQueue3<Double>(G.V());
         for (int v = 0; v < G.V(); v++)
             distTo[v] = Double.POSITIVE_INFINITY;
 

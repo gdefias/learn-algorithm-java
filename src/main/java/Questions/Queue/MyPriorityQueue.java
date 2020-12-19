@@ -7,14 +7,14 @@ import static Lib.Base.*;
  * Description:  优先队列    ----大顶堆实现
  *
  */
-public class PriorityQueue {
+public class MyPriorityQueue {
     private int[] pq;  //堆
     private int n;  //元素个数
 
     public static void main(String[] args) {
 
         int[] keys = {12, 23, 345, 1122, 0, 23, 1, 1, 100, 101};
-        PriorityQueue maxpq = new PriorityQueue(keys);
+        MyPriorityQueue maxpq = new MyPriorityQueue(keys);
 
         System.out.println(maxpq.max());
 
@@ -36,16 +36,16 @@ public class PriorityQueue {
     }
 
 
-    public PriorityQueue(int initCapacity) {
+    public MyPriorityQueue(int initCapacity) {
         pq = new int[initCapacity];
         n = 0;
     }
 
-    public PriorityQueue() {
+    public MyPriorityQueue() {
         this(10);
     }
 
-    public PriorityQueue(int[] keys) {
+    public MyPriorityQueue(int[] keys) {
         pq = new int[keys.length];
         n = keys.length;
         for(int i=0; i<keys.length; ++i) {

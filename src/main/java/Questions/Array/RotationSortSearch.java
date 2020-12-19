@@ -24,4 +24,47 @@ package Questions.Array;
 
 
 public class RotationSortSearch {
+
+    public static void main(String[] args) {
+        int[] num = new int[] {1,1,1,1,1,2,1,1,1};
+        System.out.println(search(num, 2));
+    }
+
+
+    //[1,1,1,1,1,2,1,1,1]
+    public static int search(int[] A, int target) {
+        if(A==null || A.length==0 || (A.length==1 && A[0]!=target)) {
+            return -1;
+        }
+
+        int left = 0;
+        int right = A.length-1;
+
+        while(left<right) {
+            int mid = left+(right-left)/2;
+            if(A[mid]>A[left]) {
+                if(A[mid]>=target && target>=A[left]) {
+                    right = mid;
+                } else {
+                    left = mid+1;
+                }
+
+            } else if(A[mid]<A[left]) {
+                if(A[mid]<target && target<A[left]) {
+                    left = mid+1;
+                } else {
+                    right = mid;
+                }
+
+            } else {
+                if(A[mid] != target) {
+                    left++;
+                } else {
+                    right = mid;
+                }
+            }
+        }
+
+        return A[left]==target?left:-1;
+    }
 }

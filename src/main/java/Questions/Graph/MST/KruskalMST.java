@@ -2,7 +2,7 @@ package Questions.Graph.MST;
 
 import Questions.Graph.Edge;
 import Questions.Graph.EdgeWeightedGraph;
-import Questions.Queue.PriorityQueue2;
+import Questions.Queue.MyPriorityQueue2;
 import Questions.Queue.MyQueue2;
 import Questions.Set.UF_QuickUnion;
 import Lib.In;
@@ -34,7 +34,7 @@ public class KruskalMST {
 
     public KruskalMST(EdgeWeightedGraph G) {
         // more efficient to build heap by passing array of edges
-        PriorityQueue2<Edge> pq = new PriorityQueue2<Edge>();
+        MyPriorityQueue2<Edge> pq = new MyPriorityQueue2<Edge>();
         for (Edge e : G.edges()) {
             pq.insert(e);
         }

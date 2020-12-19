@@ -73,7 +73,7 @@ public class VerifyPostorder {
         return helper(A, i, mid-1) && helper(A, mid, j-1);
     }
 
-    //方法2：非递归 栈  从后往前看  [1,6,3,2,5]  [1,3,2,6,5]
+    //方法2：非递归 栈  从后往前看  [1,6,3,2,5]  [1,3,2,6,8,7,5]
     public static boolean verifyPostorder2(int[] postorder) {
         Stack<Integer> stack = new Stack<>();
         int parent = Integer.MAX_VALUE;
@@ -95,6 +95,7 @@ public class VerifyPostorder {
             stack.add(postorder[i]);
         }
         return true;
+
     }
 
 }
