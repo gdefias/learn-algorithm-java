@@ -1,4 +1,5 @@
 package Questions.Tree;
+import Lib.Base;
 import Lib.Util;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -116,14 +117,39 @@ public class MaxDepth {
                 }
             }
 
-	        level++;
+	        level++;  //每访问一层加1
         }
 
 	    return level;
 
     }
-}
 
+    //方法5： BFS、层序遍历  写法2
+    public static int TreeHightGetter3(Base.TreeNode root) {
+        if(root == null)
+            return 0;
+        List<Base.TreeNode> queue = new LinkedList<Base.TreeNode>() {{
+            add(root);
+        }};
+        int res = 0;
+
+        while(!queue.isEmpty()) {
+            res++;  //每访问一层深度加1
+
+            List<Base.TreeNode> qtmp = new LinkedList<>();  //存放下一层的所有结点
+            for(Base.TreeNode node : queue) { //倒出当前层的所有结点
+                if(node.left != null)
+                    qtmp.add(node.left);
+                if(node.right != null)
+                    qtmp.add(node.right);
+            }
+
+            queue = qtmp;  //对下一层进行循环迭代
+
+        }
+        return res;
+    }
+}
 
 
 

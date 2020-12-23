@@ -1,7 +1,6 @@
 package Questions.Tree;
 import java.util.LinkedList;
 import java.util.Queue;
-
 import static Lib.Base.*;
 import static Lib.Util.*;
 
@@ -18,7 +17,6 @@ public class LeafSum {
     public static void main(String[] args) {
         TreeNode root = makeTree();
         int result = leafSum2(root);
-
         System.out.println(result);
     }
 
