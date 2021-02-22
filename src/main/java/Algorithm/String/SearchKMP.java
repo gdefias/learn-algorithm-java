@@ -8,23 +8,20 @@ package Questions.String;
 public class SearchKMP {
 
     public static void main(String[] args){
-        //String s = "CDFGFABABAFABABAAAQWEDC";
-        //String t = "ABABAA";
-        //int[] next = kmpNext(t);
-        //int res = kmp(s, t, next);
-        //if (res!=-1){
-        //    System.out.println("起始位置为："+res);
-        //}
-        //else System.out.println("主串中不包含字符串："+t);
+        String s = "CDFGFABABAFABABAAAQWEDC";
+        String t = "ABABAA";
+        int res = searchKMP(s, t);
+        System.out.println("res： "+res);
+
         //printNext("ABCDABD");
         //printNext("ABABAA");
-        //printNext("ABAABCAC");
-
-        printNext("AABAADABBC");
+        printNext("ABAABCAC");
+        printNext("AAAA");
+        //printNext("AABAADABBC");
     }
 
     //打印next[]数组
-    public static void printNext(String s){
+    public static void printNext(String s) {
         System.out.println("********************");
         int[] nextI = kmpNext(s);
         System.out.print("模式串：'"+s+"'的next[]数组为：[");
@@ -36,13 +33,20 @@ public class SearchKMP {
     }
 
 
+    public static int searchKMP(String s, String t) {
+        int[] next = kmpNext(t);
+        return kmp(s, t, next);
+    }
+
+
 
     public static int[] kmpNext(String str){
         int[] next = new int[str.length()];
         next[0] = 0;
-        for(int j = 1,k = 0; j < str.length(); j++){
+        int k = 0;
+        for(int j = 1; j < str.length(); j++){
             while(k > 0 && str.charAt(k) != str.charAt(j)){
-                k = next[k - 1];
+                k = next[k-1];
             }
             if(str.charAt(j) == str.charAt(k)){
                 k++;
@@ -53,7 +57,8 @@ public class SearchKMP {
     }
 
     public static int kmp(String s, String t, int[] next){//s主串  t模式串
-        for(int i = 0, j = 0; i < s.length(); i++){
+        int j = 0;
+        for(int i = 0; i < s.length(); i++){
 
             while(j > 0 && s.charAt(i) != t.charAt(j)){
                 j = next[j - 1];    //下一个匹配位为next数组的第j-1位
@@ -72,3 +77,4 @@ public class SearchKMP {
 
 
 }
+

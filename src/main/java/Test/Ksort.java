@@ -1,4 +1,4 @@
-package asd;
+package Test;
 
 /**
  * Created with IntelliJ IDEA.

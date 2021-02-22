@@ -12,7 +12,7 @@ public class Trie {
     //结点
     public static class TrieNode {
         public boolean is_end;   //记录当前结点是不是一个单词的结束字母
-        public TrieNode[] child;  //记录孩子结点
+        public TrieNode[] child;  //value记录孩子结点     索引位置key标示了当前字母是多少
 
         public TrieNode() {
             child = new TrieNode[R];  //子结点数组长度26，0：‘a’，1：‘b’.....

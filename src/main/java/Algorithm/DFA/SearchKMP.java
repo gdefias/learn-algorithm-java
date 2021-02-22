@@ -1,6 +1,5 @@
 package Questions.DFA;
 import Lib.StdOut;
-
 /**
  * Created with IntelliJ IDEA.
  * Description:

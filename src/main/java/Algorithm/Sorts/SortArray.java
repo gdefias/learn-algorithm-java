@@ -14,7 +14,7 @@ public class SortArray {
         //bubbleSort(A);
         //QuickSort(A);
         //mergeSort(A);
-        SortObject.printArray(A);
+        Questions.Sorts.SortObject.printArray(A);
     }
 
     //选择排序

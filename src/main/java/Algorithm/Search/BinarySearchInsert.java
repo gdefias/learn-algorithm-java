@@ -14,9 +14,9 @@ package Questions.Search;
 public class BinarySearchInsert {
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1, 3, 5, 20, 22, 23, 234};
+        int[] nums = new int[]{2, 3, 5, 20, 22, 23, 234};
         //System.out.println(binarySearchInsert(nums, 2));
-        System.out.println(binarySearchInsert1(nums, 235));
+        System.out.println(binarySearchInsert(nums, 235));
     }
 
     //方法1：与普通二分查找唯一的区别就是返回值

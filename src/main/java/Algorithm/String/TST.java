@@ -6,8 +6,6 @@ import Lib.StdOut;
  * Created by Defias on 2020/06.
  * Description:  单词查找树符号表 - 三向单词查找树
  */
-
-
 public class TST<Value> {
     private int n;              // size
     private Node<Value> root;   // root of TST

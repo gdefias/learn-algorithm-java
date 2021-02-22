@@ -1,5 +1,7 @@
 package Questions.Cache;
-
+import Questions.LinkList.DLinkedList;
+import static Questions.LinkList.DLinkedList.DListNode;
+import java.util.HashMap;
 /**
  * Created by Defias on 2020/06.
  * Description: LRU 缓存机制  LRU Cache
@@ -39,10 +41,6 @@ package Questions.Cache;
  实现：
  双向链表 + 哈希表
  */
-
-import Questions.LinkList.DLinkedList;
-import static Questions.LinkList.DLinkedList.DListNode;
-import java.util.HashMap;
 
 public class LRUCache {
     private int capacity;   //缓存容量限额

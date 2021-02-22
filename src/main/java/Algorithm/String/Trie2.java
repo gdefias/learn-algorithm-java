@@ -4,7 +4,6 @@ package Questions.String;
  *
  * 字典树 - 实现2 - 结点的字符显示的定义在结点中
  */
-
 public class Trie2 {
     private static int R = 26;
 

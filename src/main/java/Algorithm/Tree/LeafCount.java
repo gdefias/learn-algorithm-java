@@ -6,7 +6,7 @@ import static Questions.Tree.BinaryTree.mockTree;
  * @date: 2020/12/23
  * @description: 计算给定二叉树中叶节点的数量
  */
-public class LeafCounts {
+public class LeafCount {
     public static int count = 0;
     public static int maxDepth = 0;
 
@@ -33,6 +33,5 @@ public class LeafCounts {
             gtLeafCount(root.right);
         }
         return count;
-
     }
 }

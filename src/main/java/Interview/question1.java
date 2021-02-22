@@ -1,7 +1,5 @@
-package Test;
-import sun.jvm.hotspot.memory.CompactibleFreeListSpace;
+package Interview;
 import java.util.Arrays;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 /**
  * @author: Defias

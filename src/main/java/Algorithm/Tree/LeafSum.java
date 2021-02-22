@@ -3,12 +3,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 import static Lib.Base.*;
 import static Lib.Util.*;
-
 /**
  * Created by Defias on 2017/10/8.
 
  二叉树叶子结点之和
-
  */
 
 public class LeafSum {

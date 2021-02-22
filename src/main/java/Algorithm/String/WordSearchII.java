@@ -1,4 +1,5 @@
 package Questions.String;
+import java.util.*;
 /**
  * Created by Defias on 2017/10/14.
 
@@ -21,7 +22,7 @@ package Questions.String;
  words 中的所有字符串互不相同
 
  */
-import java.util.*;
+
 
 public class WordSearchII {
     static Set<String> res = new HashSet<String>();
