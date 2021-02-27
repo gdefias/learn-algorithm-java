@@ -1,4 +1,4 @@
-package Questions.Cache;
+package Algorithm.Cache;
 
 
 import java.util.LinkedHashMap;

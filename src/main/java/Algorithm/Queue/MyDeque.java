@@ -1,4 +1,4 @@
-package Questions.Queue;
+package Algorithm.Queue;
 import java.util.*;
 /**
  * Created by Defias on 2020/07.

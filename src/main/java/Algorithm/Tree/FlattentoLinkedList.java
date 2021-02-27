@@ -1,4 +1,4 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import java.util.Stack;
 
 import static Lib.Base.*;

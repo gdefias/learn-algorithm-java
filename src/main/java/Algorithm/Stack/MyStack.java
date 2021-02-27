@@ -1,4 +1,4 @@
-package Questions.Stack;
+package Algorithm.Stack;
 import java.util.NoSuchElementException;
 import static Lib.Base.ListNode;
 
@@ -11,7 +11,7 @@ import static Lib.Base.ListNode;
    链式实现
  */
 public class MyStack {
-    private ListNode head;    //栈顶
+    private ListNode head = null;    //栈顶
 
     public static void main(String[] args) {
         test1();
@@ -27,10 +27,6 @@ public class MyStack {
 
         stack.empty();
         System.out.println(stack.isEmpty());
-        System.out.println("-------------");
-
-        String s = "((()))()()";
-        System.out.println(IsValid.isValid(s));
     }
 
 
@@ -80,7 +76,7 @@ public class MyStack {
         stack.push(23);
         stack.push(32);
         stack.push(9);
-        stack.push(')');
+        //stack.push(')');
         return stack;
     }
 

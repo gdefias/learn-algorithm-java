@@ -1,4 +1,4 @@
-package Questions.DP;
+package Algorithm.DP;
 /**
  * Created with IntelliJ IDEA.
  * Description: 丑数

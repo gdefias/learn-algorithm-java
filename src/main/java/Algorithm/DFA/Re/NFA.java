@@ -1,7 +1,7 @@
-package Questions.DFA.Re;
-import Questions.Graph.DiGraph.Digraph;
-import Questions.Graph.DiGraph.DirectedDFS;
-import Questions.Set.Bag;
+package Algorithm.DFA.Re;
+import Algorithm.Graph.DiGraph.Digraph;
+import Algorithm.Graph.DiGraph.DirectedDFS;
+import Algorithm.Set.Bag;
 import Lib.StdOut;
 import java.util.Stack;
 /**

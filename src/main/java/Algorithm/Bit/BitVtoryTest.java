@@ -1,4 +1,4 @@
-package Questions.Bit;
+package Algorithm.Bit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package Questions.dfsAndbfs;
+package Algorithm.dfsAndbfs;
 
 /**
  * Created with IntelliJ IDEA.

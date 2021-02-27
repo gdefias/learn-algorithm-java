@@ -1,4 +1,4 @@
-package Questions.Math;
+package Algorithm.Math;
 
 /**
  * Created by Jeff on 2016/5/1.

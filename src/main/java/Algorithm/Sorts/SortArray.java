@@ -1,4 +1,4 @@
-package Questions.Sorts;
+package Algorithm.Sorts;
 
 /**
  * Created by Defias on 2017/9/16.
@@ -14,7 +14,7 @@ public class SortArray {
         //bubbleSort(A);
         //QuickSort(A);
         //mergeSort(A);
-        Questions.Sorts.SortObject.printArray(A);
+        Algorithm.Sorts.SortObject.printArray(A);
     }
 
     //选择排序

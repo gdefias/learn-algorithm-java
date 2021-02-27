@@ -1,4 +1,4 @@
-package Questions.LinkList;
+package Algorithm.LinkList;
 
 /**
  *

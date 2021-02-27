@@ -1,6 +1,6 @@
-package Questions.Queue;
+package Algorithm.Queue;
 import java.util.NoSuchElementException;
-import static Questions.Sorts.HeapSort.*;
+import static Algorithm.Sorts.HeapSort.*;
 import static Lib.Base.*;
 /**
  * Created by Defias on 2020/06.

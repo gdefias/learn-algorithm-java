@@ -1,4 +1,4 @@
-package Questions.Tree.Treap;
+package Algorithm.Tree.Treap;
 import static Lib.Base.TreapNode;
 /**
  * Created by Defias on 2020/06.

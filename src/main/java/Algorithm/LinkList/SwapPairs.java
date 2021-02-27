@@ -1,4 +1,4 @@
-package Questions.LinkList;
+package Algorithm.LinkList;
 import Lib.Base.*;
 /**
  * Created by Defias on 2017/10/7.

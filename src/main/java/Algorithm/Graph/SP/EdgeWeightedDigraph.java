@@ -1,6 +1,6 @@
-package Questions.Graph.SP;
+package Algorithm.Graph.SP;
 
-import Questions.Set.Bag;
+import Algorithm.Set.Bag;
 import Lib.In;
 import Lib.StdRandom;
 

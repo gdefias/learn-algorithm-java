@@ -1,4 +1,4 @@
-package Questions.Recursion;
+package Algorithm.Recursion;
 import java.io.File;
 import java.util.Scanner;
 /**

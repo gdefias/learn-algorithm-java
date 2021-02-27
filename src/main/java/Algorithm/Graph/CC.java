@@ -1,6 +1,6 @@
-package Questions.Graph;
+package Algorithm.Graph;
 
-import Questions.Queue.MyQueue2;
+import Algorithm.Queue.MyQueue2;
 import Lib.StdOut;
 
 /**

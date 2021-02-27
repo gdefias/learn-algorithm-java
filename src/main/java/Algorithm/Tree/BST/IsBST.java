@@ -1,4 +1,4 @@
-package Questions.Tree.BST;
+package Algorithm.Tree.BST;
 import Lib.Util;
 
 import java.util.LinkedList;

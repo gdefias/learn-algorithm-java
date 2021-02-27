@@ -1,4 +1,4 @@
-package Questions.String.Compress;
+package Algorithm.String.Compress;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 

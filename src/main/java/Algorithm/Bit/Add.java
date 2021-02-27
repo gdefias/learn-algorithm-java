@@ -1,4 +1,4 @@
-package Questions.Bit;
+package Algorithm.Bit;
 /**
  * Created with IntelliJ IDEA.
  * Description: 不用加减乘除做加法

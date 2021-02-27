@@ -1,4 +1,4 @@
-package Questions.String;
+package Algorithm.String;
 import Lib.StdOut;
 import java.math.BigInteger;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package Questions.Queue;
+package Algorithm.Queue;
 import java.util.PriorityQueue;
 
 /**

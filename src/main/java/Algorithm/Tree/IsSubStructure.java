@@ -1,4 +1,4 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import static Lib.Base.*;
 import Lib.Util;
 import java.util.LinkedList;
@@ -37,10 +37,10 @@ public class IsSubStructure {
             return true;  //B子树的结点都比较完了，确定是A的子结构，所以返回true
         }
 
-        if(A==null || A.val!=B.val) {
-            return false;
+        if(A!=null && A.val==B.val) {
+            return isRootSubtree(A.left, B.left) && isRootSubtree(A.right, B.right);
         }
-        return isRootSubtree(A.left, B.left) && isRootSubtree(A.right, B.right);
+        return false;
     }
 
 

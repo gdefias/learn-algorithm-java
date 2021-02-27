@@ -1,4 +1,4 @@
-package Questions.DP;
+package Algorithm.DP;
 
 /**
  * Created by Defias on 2020/06.

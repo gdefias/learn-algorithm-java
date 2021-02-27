@@ -1,6 +1,6 @@
-package Questions.Cache;
-import Questions.LinkList.DLinkedList;
-import static Questions.LinkList.DLinkedList.DListNode;
+package Algorithm.Cache;
+import Algorithm.LinkList.DLinkedList;
+import static Algorithm.LinkList.DLinkedList.DListNode;
 import java.util.HashMap;
 /**
  * Created by Defias on 2020/06.

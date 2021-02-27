@@ -1,4 +1,4 @@
-package Questions.Sorts;
+package Algorithm.Sorts;
 
 import static  Lib.Base.*;
 /**

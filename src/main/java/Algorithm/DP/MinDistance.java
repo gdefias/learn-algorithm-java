@@ -1,4 +1,4 @@
-package Questions.DP;
+package Algorithm.DP;
 /**
  * Created by Defias on 2020/07.
  * Description: 编辑距离

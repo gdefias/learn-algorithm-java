@@ -1,10 +1,10 @@
-package Questions.Graph.MST;
+package Algorithm.Graph.MST;
 
-import Questions.Graph.Edge;
-import Questions.Graph.EdgeWeightedGraph;
-import Questions.Queue.MyPriorityQueue3;
-import Questions.Queue.MyQueue2;
-import Questions.Set.UF_QuickUnion;
+import Algorithm.Graph.Edge;
+import Algorithm.Graph.EdgeWeightedGraph;
+import Algorithm.Queue.MyPriorityQueue3;
+import Algorithm.Queue.MyQueue2;
+import Algorithm.Set.UF_QuickUnion;
 import Lib.In;
 import Lib.StdOut;
 

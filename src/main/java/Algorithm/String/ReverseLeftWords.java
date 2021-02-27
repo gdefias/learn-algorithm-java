@@ -1,4 +1,4 @@
-package Questions.String;
+package Algorithm.String;
 
 /**
  * Created with IntelliJ IDEA.

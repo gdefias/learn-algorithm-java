@@ -1,6 +1,6 @@
-package Questions.Graph.SP;
+package Algorithm.Graph.SP;
 
-import Questions.Queue.MyPriorityQueue3;
+import Algorithm.Queue.MyPriorityQueue3;
 import Lib.In;
 import Lib.StdOut;
 import java.util.Stack;

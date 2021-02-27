@@ -1,4 +1,4 @@
-package Questions.String;
+package Algorithm.String;
 import java.util.*;
 /**
  * Created by Defias on 2017/10/14.

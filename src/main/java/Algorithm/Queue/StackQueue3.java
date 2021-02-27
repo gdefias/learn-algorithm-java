@@ -1,4 +1,4 @@
-package Questions.Queue;
+package Algorithm.Queue;
 import java.util.Stack;
 /**
  * Created by Defias on 2017/10/7.

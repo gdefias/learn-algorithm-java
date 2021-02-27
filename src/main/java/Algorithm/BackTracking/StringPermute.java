@@ -1,4 +1,4 @@
-package Questions.BackTracking;
+package Algorithm.BackTracking;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;

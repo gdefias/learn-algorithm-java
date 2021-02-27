@@ -1,4 +1,4 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import Lib.Base.*;
 import Lib.Util;
 import org.w3c.dom.NodeList;
@@ -40,7 +40,7 @@ public class TraversalPostOrder {
         res.add(root.val);
     }
 
-    //方法2：迭代
+    //方法2：迭代  非递归
     public static List<Integer> postorderTraversal2(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>();
         recur2(root, res);
@@ -54,7 +54,7 @@ public class TraversalPostOrder {
 
         LinkedList<TreeNode> stack = new LinkedList<>();
         TreeNode node = root;
-        TreeNode visited = null;  //标示节点的右子节点已经访问过了
+        TreeNode visited = null;  //标示节点的右子节点是否已经访问过了
 
         while(node!=null || !stack.isEmpty()) {
             while(node!=null) {

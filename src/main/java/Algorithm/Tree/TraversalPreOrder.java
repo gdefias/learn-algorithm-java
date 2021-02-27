@@ -1,4 +1,4 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import Lib.Util;
 import java.util.ArrayList;
 import java.util.Stack;

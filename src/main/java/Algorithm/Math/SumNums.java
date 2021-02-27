@@ -1,4 +1,4 @@
-package Questions.Math;
+package Algorithm.Math;
 
 /**
  * Created with IntelliJ IDEA.

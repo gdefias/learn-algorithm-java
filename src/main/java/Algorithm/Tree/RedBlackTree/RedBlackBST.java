@@ -1,8 +1,8 @@
-package Questions.Tree.RedBlackTree;
+package Algorithm.Tree.RedBlackTree;
 
 import Lib.StdIn;
 import Lib.StdOut;
-import Questions.Queue.MyQueue2;
+import Algorithm.Queue.MyQueue2;
 import java.util.NoSuchElementException;
 
 /**

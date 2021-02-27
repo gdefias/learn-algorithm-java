@@ -1,4 +1,4 @@
-package Questions.Others;
+package Algorithm.Others;
 
 /**
  * Created by Jeff on 2016/6/5.

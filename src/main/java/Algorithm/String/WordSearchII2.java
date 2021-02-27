@@ -1,8 +1,8 @@
-package Questions.String;
+package Algorithm.String;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import Questions.String.Trie4.TrieNode;
+import Algorithm.String.Trie4.TrieNode;
 /**
  * @author: Defias
  * @date: 2020/12/8

@@ -1,4 +1,4 @@
-package Questions.BackTracking;
+package Algorithm.BackTracking;
 
 import  static Lib.Base.*;
 /**

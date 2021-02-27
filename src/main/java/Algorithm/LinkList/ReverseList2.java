@@ -1,4 +1,4 @@
-package Questions.LinkList;
+package Algorithm.LinkList;
 
 import Lib.Base.ListNode;
 import Lib.Util;
@@ -53,7 +53,7 @@ public class ReverseList2 {
             p = p.next;
             q = q.next;
         }
-        //循环结束后：p指向待反转的第一个节点的前一个节点；q指向待反转的第一个节点
+        //循环结束后：q指向待反转的第一个节点的前一个节点；p指向待反转的第一个节点
 
         //q保持不动
         for(int i=m; i<n; i++) {

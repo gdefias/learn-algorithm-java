@@ -1,7 +1,7 @@
-package Questions.Tree.AVLTree;
+package Algorithm.Tree.AVLTree;
 import Lib.StdIn;
 import Lib.StdOut;
-import Questions.Queue.MyQueue2;
+import Algorithm.Queue.MyQueue2;
 import java.util.NoSuchElementException;
 /**
  * Created by Defias on 2020/06.

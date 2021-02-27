@@ -1,4 +1,4 @@
-package Questions.Others;
+package Algorithm.Others;
 
 /**
  * Created with IntelliJ IDEA.

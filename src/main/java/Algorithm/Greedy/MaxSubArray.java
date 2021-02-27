@@ -1,4 +1,4 @@
-package Questions.Greedy;
+package Algorithm.Greedy;
 
 /**
  * Created by Defias on 2020/06.

@@ -1,4 +1,4 @@
-package Questions.Bit;
+package Algorithm.Bit;
 
 import static Lib.Print.print;
 /**
@@ -17,11 +17,11 @@ import static Lib.Print.print;
  *
  *  x & (n-1)          即：x%n x除以n的模 ???
  *  x & (~0 << n)      将x的最右边的n位清零, ~0就是一串1
- *  (x >> n) & 1       获取x的第n位值（0或者1）
+ *  (x >> n) & 1       获取x的第n位值（0或者1）  位数：右边从0开始
  *  x & (1 << (n-1))   获取x的第n位的幂值
  *  x | (1 << n)       仅将第n位 置为1
  *  x &（~(1 << n)）    仅将第n位 置为0
- *  x &（(1 << n)-1）   将x最高位至第n位（含）清零
+ *  x &（(1 << n)-1）   将x最高位至第n位（含）清零  位数：右边从0开始
  *  x & （~（(1<<（n+1)）-1））   将第n位至第0位（含）清零
  *
  *  x & (1 << (k-1))  检测x倒数第k位是否为1
@@ -35,8 +35,8 @@ public class JavaBit2 {
 
     public static void main(String[] args) {
 
-        //test1();
-        test2();
+        test1();
+        //test2();
     }
 
     public static void test0() {
@@ -58,8 +58,20 @@ public class JavaBit2 {
 
 
     public static void test1() {
-        int i = -1;
+        int i = ~0;
         print(Integer.toBinaryString(i));
+        i = -1;
+        print(Integer.toBinaryString(i));
+
+        //x &（(1 << n)-1）
+        i = 127 & ((1 << 3)-1)  ;
+        print(Integer.toBinaryString(i));
+
+        //~x & (x+1)
+        i = ~15 & (15+1)  ;
+        print(Integer.toBinaryString(i));
+
+
         i >>>= 10;
         print(Integer.toBinaryString(i));
         long l = -1;

@@ -1,4 +1,4 @@
-package Questions.Others;
+package Algorithm.Others;
 /*
 * 给出n或边长（n=k*k）输出回型矩阵
 * 输出：

@@ -1,6 +1,6 @@
-package Questions.Tree.Treap;
+package Algorithm.Tree.Treap;
 import Lib.Base.TreeNode;
-import Questions.Tree.BinaryTree;
+import Algorithm.Tree.TraversalBinaryTree;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -15,13 +15,13 @@ import java.util.Queue;
 public class TreeSerialize {
     public static void main(String[] args) {
         TreeSerialize O = new TreeSerialize();
-        TreeNode root = BinaryTree.mockTree();
+        TreeNode root = TraversalBinaryTree.mockTree();
 
         String res = O.serialize(root);
         System.out.println(res);
 
         TreeNode node = O.deserialize(res);
-        BinaryTree.printTreeLevelOrder(node);
+        TraversalBinaryTree.printTreeLevelOrder(node);
     }
 
     //层序遍历

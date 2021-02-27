@@ -1,4 +1,4 @@
-package Questions.Set;
+package Algorithm.Set;
 
 import static Lib.Base.printArray;
 

@@ -1,4 +1,4 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import Lib.Util;
 
 import static Lib.Base.*;
@@ -33,7 +33,7 @@ public class PathSum {
 
     public static void main(String[] args) {
         TreeNode A = Util.makeTree();
-        System.out.println(pathSum4(A, 21));
+        System.out.println(pathSum2(A, 21));
     }
 
     //方法1： 先序遍历  回溯  DFS  累加
@@ -88,12 +88,10 @@ public class PathSum {
             if(root.val==sum) {
                 result.add(new LinkedList<>(path));
             }
-            path.removeLast();  //回溯
-            return;
+        } else {
+            backtrace2(root.left, sum - root.val, path, result);
+            backtrace2(root.right, sum - root.val, path, result);
         }
-
-        backtrace2(root.left, sum-root.val, path,  result);
-        backtrace2(root.right, sum-root.val, path,  result);
 
         path.removeLast();  //回溯
     }

@@ -1,4 +1,4 @@
-package Questions.DP;
+package Algorithm.DP;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

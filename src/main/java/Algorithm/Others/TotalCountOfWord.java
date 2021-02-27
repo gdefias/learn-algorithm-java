@@ -1,4 +1,4 @@
-package Questions.Others;
+package Algorithm.Others;
 
 /**
  * Created by Defias on 2017/2/28.

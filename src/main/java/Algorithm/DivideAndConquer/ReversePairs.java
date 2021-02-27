@@ -1,4 +1,4 @@
-package Questions.DivideAndConquer;
+package Algorithm.DivideAndConquer;
 
 /**
  * Created by Defias on 2020/07.

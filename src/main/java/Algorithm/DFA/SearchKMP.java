@@ -1,4 +1,4 @@
-package Questions.DFA;
+package Algorithm.DFA;
 import Lib.StdOut;
 /**
  * Created with IntelliJ IDEA.

@@ -1,4 +1,4 @@
-package Questions.LinkList;
+package Algorithm.LinkList;
 import Lib.Base.*;
 /**
  * Created by Defias on 2017/10/7.
@@ -41,7 +41,7 @@ public class PartitionList {
         }
 
         right.next = null;
-        left.next = rightdummy.next;
+        left.next = rightdummy.next; //接上
 
         return leftdummy.next;
     }

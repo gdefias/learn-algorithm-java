@@ -1,4 +1,4 @@
-package Questions.Sorts;
+package Algorithm.Sorts;
 
 /**
  * Created by Jeff on 2016/5/1.

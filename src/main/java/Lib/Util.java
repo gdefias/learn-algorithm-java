@@ -169,8 +169,8 @@ public class Util {
     * */
     public static TreeNode makeTree2() {
         TreeNode node1 = new TreeNode(6);
-        TreeNode node2 = new TreeNode(7);
-        TreeNode node3 = new TreeNode(4);
+        TreeNode node2 = new TreeNode(4);
+        TreeNode node3 = new TreeNode(7);
         node1.left = node2;
         node1.right = node3;
         return node1;

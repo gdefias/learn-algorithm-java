@@ -1,4 +1,4 @@
-package Questions.BackTracking;
+package Algorithm.BackTracking;
 import java.util.*;
 import java.util.stream.Collectors;
 

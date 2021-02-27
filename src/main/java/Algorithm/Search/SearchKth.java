@@ -1,8 +1,8 @@
-package Questions.Search;
-import Questions.Sorts.HeapSort;
+package Algorithm.Search;
+import Algorithm.Sorts.HeapSort;
 
 import static Lib.Base.printArray;
-import Questions.Sorts.QuickSort;
+import Algorithm.Sorts.QuickSort;
 /**
  * Created by Defias on 2020/06.
  * Description: 数组中的第K个最大元素

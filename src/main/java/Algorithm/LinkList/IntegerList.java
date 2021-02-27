@@ -1,4 +1,4 @@
-package Questions.LinkList;
+package Algorithm.LinkList;
 import java.util.NoSuchElementException;
 import  static Lib.Base.*;
 /**

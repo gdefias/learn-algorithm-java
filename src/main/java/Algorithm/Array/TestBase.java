@@ -1,4 +1,4 @@
-package Questions.Array;
+package Algorithm.Array;
 
 /**
  * @author: Defias

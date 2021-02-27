@@ -1,4 +1,4 @@
-package Questions.Math;
+package Algorithm.Math;
 
 /**
  * Created by Defias on 2020/07.

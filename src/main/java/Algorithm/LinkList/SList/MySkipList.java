@@ -1,4 +1,4 @@
-package Questions.LinkList.SList;
+package Algorithm.LinkList.SList;
 import java.util.Random;
 
 /**

@@ -1,4 +1,4 @@
-package Questions.Array;
+package Algorithm.Array;
 import java.util.*;
 import java.util.Comparator;
 import java.util.Deque;

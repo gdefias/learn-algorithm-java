@@ -1,4 +1,4 @@
-package Questions.Sorts;
+package Algorithm.Sorts;
 /**
  * @author: Defias
  * @date: 2020/12/8

@@ -1,4 +1,4 @@
-package Questions.DFA.Re;
+package Algorithm.DFA.Re;
 import Lib.StdIn;
 import Lib.StdOut;
 /**

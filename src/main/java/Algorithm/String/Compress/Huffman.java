@@ -1,5 +1,5 @@
-package Questions.String.Compress;
-import Questions.Queue.MyPriorityQueue2;
+package Algorithm.String.Compress;
+import Algorithm.Queue.MyPriorityQueue2;
 /**
  * Created by Defias on 2020/06.
  * Description:  霍夫曼编码

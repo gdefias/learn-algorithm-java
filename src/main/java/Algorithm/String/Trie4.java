@@ -1,4 +1,4 @@
-package Questions.String;
+package Algorithm.String;
 import java.util.HashMap;
 
 /**

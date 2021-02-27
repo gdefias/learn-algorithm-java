@@ -1,4 +1,4 @@
-package Questions.Greedy;
+package Algorithm.Greedy;
 
 /**
  * @author: Defias

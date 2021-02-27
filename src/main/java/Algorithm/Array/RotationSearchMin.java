@@ -1,4 +1,4 @@
-package Questions.Array;
+package Algorithm.Array;
 
 /**
  * Created by Defias on 2017/10/7.

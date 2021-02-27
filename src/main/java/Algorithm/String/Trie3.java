@@ -1,4 +1,4 @@
-package Questions.String;
+package Algorithm.String;
 /**
  * Created by Defias on 2017/11/4.
  *

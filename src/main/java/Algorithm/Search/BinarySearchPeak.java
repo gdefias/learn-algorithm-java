@@ -1,4 +1,4 @@
-package Questions.Search;
+package Algorithm.Search;
 
 /**
  * Created by Jeff on 2016/5/2.

@@ -1,4 +1,4 @@
-package Questions.LinkList;
+package Algorithm.LinkList;
 /**
  * Created by Defias on 2020/06.
  * Description: 双向链表

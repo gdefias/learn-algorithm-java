@@ -1,9 +1,9 @@
-package Questions.Array;
+package Algorithm.Array;
 import java.util.*;
 /**
  * Created by Defias on 2016/4/25.
  *
- * Remove Duplicate Numbers in Collection.Questions.Array
+ * Remove Duplicate Numbers in Collection.Algorithm.Array
  *
  *  Given nums = [1,3,1,4,4,2], you should:
  * 	Move duplicate integers to the tail of nums => nums = [1,3,4,2,?,?].

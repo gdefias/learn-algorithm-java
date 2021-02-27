@@ -1,4 +1,4 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import static Lib.Base.*;
 
 /**

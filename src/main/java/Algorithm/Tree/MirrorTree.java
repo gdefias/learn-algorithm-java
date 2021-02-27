@@ -1,10 +1,10 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import static Lib.Base.*;
 import Lib.Util;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
-import static Questions.Tree.BinaryTree.printTreeLevelOrder;
+import static Algorithm.Tree.TraversalBinaryTree.printTreeLevelOrder;
 /**
  * Created with IntelliJ IDEA.
  * Description: 二叉树的镜像

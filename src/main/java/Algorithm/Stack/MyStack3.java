@@ -1,4 +1,4 @@
-package Questions.Stack;
+package Algorithm.Stack;
 
 import java.util.LinkedList;
 

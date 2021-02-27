@@ -1,4 +1,4 @@
-package Questions.LinkList;
+package Algorithm.LinkList;
 import static Lib.Base.*;
 import Lib.Util;
 
@@ -105,7 +105,7 @@ public class ReverseList {
 
     //尾递归 对递归的优化
     //以上递归往下传递的时候基本上没有逻辑处理，当往回反弹的时候才开始处理，也就是从链表的尾端往前开始处理的。可以再改一下，在链表递归的
-    //时候从前往后处理，处理完之后直接返回递归的结果，这就是所谓的尾递归，这种运行效率要比上一种更多
+    //时候从前往后处理，处理完之后直接返回递归的结果，这就是所谓的尾递归，这种运行效率要比上一种更高
     //尾递归虽然也会不停的压栈，但由于最后返回的是递归函数的值，所以在返回的时候都会一次性出栈，不会一个个出栈这么慢
     public static ListNode reverseListLast(ListNode head) {
         return reverseListLast(head, null);

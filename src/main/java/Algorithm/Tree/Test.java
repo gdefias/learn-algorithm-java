@@ -1,7 +1,7 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import java.util.*;
 import static Lib.Base.TreeNode;
-import static Questions.Tree.BinaryTree.mockTree;
+import static Algorithm.Tree.TraversalBinaryTree.mockTree;
 
 /**
  * Created by Defias on 2020/07.

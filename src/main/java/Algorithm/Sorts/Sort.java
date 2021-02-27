@@ -1,4 +1,4 @@
-package Questions.Sorts;
+package Algorithm.Sorts;
 
 /**
  * Created by Defias on 2016/3/23.

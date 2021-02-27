@@ -1,4 +1,4 @@
-package Questions.Array;
+package Algorithm.Array;
 import Lib.Util;
 /**
  * Created by Defias on 2017/10/8.

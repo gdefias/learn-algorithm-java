@@ -1,4 +1,4 @@
-package Questions.String;
+package Algorithm.String;
 /**
  * Created by Defias on 2020/06.
  * Description: 字典树/前缀树

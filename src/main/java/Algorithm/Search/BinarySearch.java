@@ -1,4 +1,4 @@
-package Questions.Search;
+package Algorithm.Search;
 
 /**
  * Created with IntelliJ IDEA.

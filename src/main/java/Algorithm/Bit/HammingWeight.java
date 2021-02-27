@@ -1,4 +1,4 @@
-package Questions.Bit;
+package Algorithm.Bit;
 
 /**
  * Created by Defias on 2017/10/15.

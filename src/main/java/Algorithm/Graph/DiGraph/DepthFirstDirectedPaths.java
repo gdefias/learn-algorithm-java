@@ -1,4 +1,4 @@
-package Questions.Graph.DiGraph;
+package Algorithm.Graph.DiGraph;
 
 import Lib.StdOut;
 

@@ -1,8 +1,6 @@
-package Questions.Tree.AVLTree;
+package Algorithm.Tree.AVLTree;
 import Lib.Base.*;
-import Questions.Tree.BST.BST;
-import Questions.Tree.BST.PrintLeafNode;
-import Questions.Tree.BinaryTree;
+import Algorithm.Tree.BST.BST;
 
 /**
  * @author: Defias

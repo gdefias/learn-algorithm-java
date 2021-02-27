@@ -1,6 +1,6 @@
-package Questions.Graph.DiGraph;
+package Algorithm.Graph.DiGraph;
 
-import Questions.Set.Bag;
+import Algorithm.Set.Bag;
 import Lib.In;
 import com.sun.istack.internal.NotNull;
 

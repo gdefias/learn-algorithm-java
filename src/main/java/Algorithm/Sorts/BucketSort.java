@@ -1,4 +1,4 @@
-package Questions.Sorts;
+package Algorithm.Sorts;
 
 /**
  * Created by Defias on 2020/06.
@@ -48,7 +48,7 @@ public class BucketSort {
         //所需桶的数量
         int bucketnums = (Alen%bucketsize == 0)?(Alen/bucketsize):(Alen/bucketsize+1);
 
-        List<Integer>[] buckets = new ArrayList[bucketnums];
+        List<Integer>[] buckets = new ArrayList[bucketnums];  //使用列表数组
         for (int i=0; i<bucketnums; i++) {
             buckets[i] = new ArrayList<>();
         }
@@ -76,11 +76,11 @@ public class BucketSort {
 
 
     //一个桶内只放一个元素，桶内的元素不再需要排序，桶排序退化为计数排序
-    public static int[] bucketSort1(int[] A) { // 要求A中数据>=0 （如果A中有数据小于0，解决方案：1、使用偏移量 2、使用HashTable）
+    public static int[] bucketSort2(int[] A) { // 要求A中数据>=0 （如果A中有数据小于0，解决方案：1、使用偏移量 2、使用HashTable）
         if (A == null || A.length < 2) {
             return A;
         }
-        int[] B = new int[A.length];
+        int[] B = new int[A.length]; //使用整型数组
 
         //找出最大值
         int max = getMaxMin(A)[0];

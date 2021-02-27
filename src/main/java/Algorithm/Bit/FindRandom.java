@@ -1,4 +1,4 @@
-package Questions.Bit;
+package Algorithm.Bit;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
@@ -26,10 +26,10 @@ public class FindRandom {
             list.add(random.nextInt(100000000));
         }
 
-        System.out.println("产生的随机数有");
-        for(int i=0; i<list.size(); i++) {
-            System.out.println(list.get(i));
-        }
+       // System.out.println("产生的随机数有");
+       // for(int i=0; i<list.size(); i++) {
+       //     System.out.println(list.get(i));
+       // }
 
         //List存入BitSet
         BitSet bitSet = new BitSet(100000000);
@@ -37,8 +37,8 @@ public class FindRandom {
             bitSet.set(list.get(i));
         }
 
-        System.out.println("0~1亿不在上述随机数中有"+bitSet.size());
-        for (int i = 0; i < 100000000; i++) {
+        System.out.println("0~1亿不在上述随机数中有");
+        for (int i = 0; i < 100; i++) {
             if(!bitSet.get(i)) {
                 System.out.println(i);
             }

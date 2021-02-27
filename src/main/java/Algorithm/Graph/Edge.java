@@ -1,4 +1,4 @@
-package Questions.Graph;
+package Algorithm.Graph;
 
 /**
  * Created by Defias on 2020/06.

@@ -1,5 +1,5 @@
-package Questions.String;
-import Questions.Queue.MyQueue2;
+package Algorithm.String;
+import Algorithm.Queue.MyQueue2;
 import Lib.StdOut;
 /**
  * Created by Defias on 2020/06.

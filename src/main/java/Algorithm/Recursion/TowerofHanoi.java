@@ -1,4 +1,4 @@
-package Questions.Recursion;
+package Algorithm.Recursion;
 import java.util.Scanner;
 /**
  * Created by Defias on 2017/2/25.

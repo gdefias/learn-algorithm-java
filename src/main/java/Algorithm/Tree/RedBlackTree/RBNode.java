@@ -1,4 +1,4 @@
-package Questions.Tree.RedBlackTree;
+package Algorithm.Tree.RedBlackTree;
 
 /**
  * Created with IntelliJ IDEA.

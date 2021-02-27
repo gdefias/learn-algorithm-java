@@ -1,4 +1,4 @@
-package Questions.LinkList;
+package Algorithm.LinkList;
 import Lib.Node;
 import Lib.Util;
 import java.util.HashMap;

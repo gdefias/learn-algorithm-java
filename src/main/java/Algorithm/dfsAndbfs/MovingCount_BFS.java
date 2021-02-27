@@ -1,4 +1,4 @@
-package Questions.dfsAndbfs;
+package Algorithm.dfsAndbfs;
 import java.util.LinkedList;
 import java.util.Queue;
 /**

@@ -1,4 +1,4 @@
-package Questions.Bit;
+package Algorithm.Bit;
 /**
  * Created by Defias on 2020/06.
  * Description:  java数据类型字节

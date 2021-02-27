@@ -1,4 +1,4 @@
-package Questions.BackTracking;
+package Algorithm.BackTracking;
 import java.util.*;
 /**
  * Created by Defias on 2017/10/14.

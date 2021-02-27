@@ -1,4 +1,4 @@
-package Questions.DP;
+package Algorithm.DP;
 import java.util.Arrays;
 /**
  * Created by Defias on 2020/07.

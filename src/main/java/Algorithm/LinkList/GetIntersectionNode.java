@@ -1,4 +1,4 @@
-package Questions.LinkList;
+package Algorithm.LinkList;
 import java.util.HashSet;
 import java.util.Set;
 

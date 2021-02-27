@@ -1,4 +1,4 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import Lib.Util;
 import java.util.LinkedList;
 import java.util.Queue;

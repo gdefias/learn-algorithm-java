@@ -1,4 +1,4 @@
-package Questions.Sorts;
+package Algorithm.Sorts;
 
 /**
  * Created by Defias on 2020/06.
@@ -54,8 +54,5 @@ public class CountSort {
             B[C[A[j]-min]-1] = A[j];  //注意：B从0开始存，此处需要减1
             C[A[j]-min] = C[A[j]-min] - 1;
         }
-
     }
-
-
 }

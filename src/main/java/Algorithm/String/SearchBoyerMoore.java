@@ -1,4 +1,4 @@
-package Questions.String;
+package Algorithm.String;
 import Lib.StdOut;
 /**
  * Created by Defias on 2020/06.

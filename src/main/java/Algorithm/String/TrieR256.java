@@ -1,6 +1,6 @@
-package Questions.String;
+package Algorithm.String;
 import Lib.StdOut;
-import Questions.Queue.MyQueue2;
+import Algorithm.Queue.MyQueue2;
 import java.util.Iterator;
 /**
  * Created by Defias on 2020/06.

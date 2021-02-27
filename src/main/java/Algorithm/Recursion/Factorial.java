@@ -1,4 +1,4 @@
-package Questions.Recursion;
+package Algorithm.Recursion;
 
 /**
  * Created with IntelliJ IDEA.

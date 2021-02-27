@@ -1,4 +1,4 @@
-package Questions.HashTable;
+package Algorithm.HashTable;
 import static Lib.Base.*;
 /**
  * Created by Defias on 2016/4/25.

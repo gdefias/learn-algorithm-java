@@ -1,4 +1,4 @@
-package Questions.Tree.BST;
+package Algorithm.Tree.BST;
 import Lib.Base.*;
 import Lib.Util;
 

@@ -1,4 +1,4 @@
-package Questions.Search;
+package Algorithm.Search;
 
 /**
  * Created by Defias on 2020/07.

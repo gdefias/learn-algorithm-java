@@ -23,7 +23,7 @@
  *
  *
  */
-package Questions.Bit;
+package Algorithm.Bit;
 
 public class JavaBit1 {
 
@@ -165,7 +165,7 @@ public class JavaBit1 {
            10000000 00000000 00000000 00001110 （原码  即：-14）
         */
 
-        System.out.println("5 << 2: " + String.valueOf(5 << 2)); //左移位：将运算数的二进制码整体左移指定位数，左移后右边空出来的位以0来填充 （左移1位相当于乘以2^1）
+        System.out.println("5 << 2: " + String.valueOf(5 << 2)); //左移位：将运算数的二进制码整体左移指定位数，左移后右边空出来的位以0来填充 （左移n位相当于乘以2^n）
         /*
               00000000 00000000 00000000 00000101
           <<2
@@ -200,7 +200,7 @@ public class JavaBit1 {
 
 
 
-        System.out.println("5 >> 2: " + String.valueOf(5 >> 2));  //右移位：把第一个操作数的二进制码右移指定位数后，左边空出来的位以原来的符号位来填充（右移1位相当于除以2^1）
+        System.out.println("5 >> 2: " + String.valueOf(5 >> 2));  //右移位：把第一个操作数的二进制码右移指定位数后，左边空出来的位以原来的符号位来填充（右移n位相当于除以2^n）
         /*
               00000000 00000000 00000000 00000101
           >>2
@@ -208,7 +208,7 @@ public class JavaBit1 {
               00000000 00000000 00000000 00000001 （1）
         */
 
-        System.out.println("-5 >> 2: " + String.valueOf(-5 >> 2));  //负数右移位貌似没有相当于除以2的这个规律了
+        System.out.println("-5 >> 2: " + String.valueOf(-5 >> 2));  //负数右移
         /*
               11111111 11111111 11111111 11111011
           >>2
@@ -218,7 +218,10 @@ public class JavaBit1 {
               10000000 00000000 00000000 00000010 （原码 即：-2）
         */
 
-        System.out.println("-5 >>> 2: " + String.valueOf(-5 >>> 2));  //无符号右移位：把第一个操作数的二进制码右移指定位数后，左边空出来的位以0来填充
+        System.out.println("16 >>> 2: " + String.valueOf(16 >>> 2)); //无符号右移位：把第一个操作数的二进制码右移指定位数后，左边空出来的位以0来填充
+
+
+        System.out.println("-5 >>> 2: " + String.valueOf(-5 >>> 2));
         /*
               11111111 11111111 11111111 11111011
           >>2
@@ -227,9 +230,14 @@ public class JavaBit1 {
         */
 
 
-
+        // 5>>>32 = -5>>>0
         System.out.println("-5 >>> 32: " + String.valueOf(-5 >>> 32));
+        System.out.println("-5 >>> 0: " + String.valueOf(-5 >>> 0));
 
+       // 5<<-2 = 5<<30
+        System.out.println("5 << -2: " + String.valueOf(5 << -2));
+        System.out.println("5 << 30: " + String.valueOf(5 << 30));
 
+        System.out.println("1 << 5: " + String.valueOf(2 >> 5));
     }
 }

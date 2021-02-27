@@ -1,6 +1,6 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import static Lib.Base.*;
-import Lib.Util;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +39,7 @@ public class BuildTree {
         int[] preOrder = {1,2,4,7,3,5,6,8};
         int[] inOrder = {4,7,2,1,5,3,8,6};
         TreeNode root = buildTree(preOrder, inOrder);
-        BinaryTree.printTreeLevelOrder(root);
+        TraversalBinaryTree.printTreeLevelOrder(root);
 
     }
 
@@ -127,7 +127,4 @@ public class BuildTree {
 
         return root;
     }
-
-
-
 }

@@ -1,8 +1,8 @@
-package Questions.Graph.SP;
+package Algorithm.Graph.SP;
 
 import Lib.In;
 import Lib.StdOut;
-import Questions.Queue.MyQueue2;
+import Algorithm.Queue.MyQueue2;
 import java.util.Stack;
 
 /**

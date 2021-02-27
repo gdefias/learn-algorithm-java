@@ -1,4 +1,4 @@
-package Questions.Sorts;
+package Algorithm.Sorts;
 
 /**
  * Created by Jeff on 2016/4/25.
@@ -60,7 +60,7 @@ public class RadixSort {
         int radix = 10;
         int[] output = new int[A.length];
         int[] buckets = new int[radix];  //10个桶，每个桶存0-9中的1个数
-        for(int i=0; i<radix; i++) {
+        for(int i=0; i<radix; i++) {  //初始化
             buckets[i] = 0;
         }
 
@@ -69,6 +69,7 @@ public class RadixSort {
             buckets[(A[i]/exp)%10]++;
 
 
+        //
         for (int i=1; i<radix; i++)
             buckets[i] += buckets[i-1];
 

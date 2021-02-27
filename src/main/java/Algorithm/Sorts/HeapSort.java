@@ -1,4 +1,4 @@
-package Questions.Sorts;
+package Algorithm.Sorts;
 
 /**
  * Created by Defias on 2016/4/25.
@@ -56,7 +56,7 @@ public class HeapSort {
 
 	}
 
-	//大顶堆维护（前提：parent结点的左右孩子树都已经是大顶堆）  O(lgn)
+	//大顶堆维护（前提：parent结点的左右孩子为根的子树都已经是大顶堆）  O(lgn)
 	public static void rebuildMaxHeap(int[] A, int parent, int last) {
 		int leftchile = getChild(parent)[0];
 		int rightchile = getChild(parent)[1];

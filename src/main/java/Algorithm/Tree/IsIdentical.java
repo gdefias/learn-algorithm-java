@@ -1,4 +1,4 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import static Lib.Base.*;
 /**
  * Created by Defias on 2017/10/7.

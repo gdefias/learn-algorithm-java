@@ -1,4 +1,4 @@
-package Questions.Tree.BST;
+package Algorithm.Tree.BST;
 import static Lib.Base.*;
 import Lib.Util;
 import java.util.Stack;

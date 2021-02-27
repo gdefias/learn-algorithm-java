@@ -1,4 +1,4 @@
-package Questions.Array;
+package Algorithm.Array;
 
 /**
  * Created by Jeff on 2016/3/7.

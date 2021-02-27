@@ -1,4 +1,4 @@
-package Questions.Math;
+package Algorithm.Math;
 import java.util.*;
 /**
  * Created by Defias on 2016/4/28.

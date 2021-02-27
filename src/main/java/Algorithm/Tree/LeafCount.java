@@ -1,6 +1,6 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import Lib.Base;
-import static Questions.Tree.BinaryTree.mockTree;
+import static Algorithm.Tree.TraversalBinaryTree.mockTree;
 /**
  * @author: Defias
  * @date: 2020/12/23

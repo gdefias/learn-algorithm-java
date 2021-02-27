@@ -1,4 +1,4 @@
-package Questions.DP;
+package Algorithm.DP;
 
 /**
  * @author: Defias

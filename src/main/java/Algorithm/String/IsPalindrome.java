@@ -1,4 +1,4 @@
-package Questions.String;
+package Algorithm.String;
 import java.util.regex.*;
 /**
  * Created by Defias on 2016/4/28.

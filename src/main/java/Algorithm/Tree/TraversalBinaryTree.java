@@ -1,4 +1,4 @@
-package Questions.Tree;
+package Algorithm.Tree;
 import java.util.*;
 import java.util.LinkedList;
 import static Lib.Base.TreeNode;
@@ -11,7 +11,7 @@ import static Lib.Base.TreeNode;
  *
  * 前序、中序、后序、层序遍历 递归与非递归 莫里斯遍历
  */
-public class BinaryTree {
+public class TraversalBinaryTree {
 
     public static void main(String[] args) {
         TreeNode root = mockTree();
@@ -162,8 +162,8 @@ public class BinaryTree {
         }
     }
 
-    //莫里斯前序遍历
-    public static void Morris_preorderTraversal(TreeNode root){
+    //莫里斯前序遍历 非递归 无需栈
+    public static void Morris_preorderTraversal(TreeNode root) {
         TreeNode cur = root;
         while(cur!=null){
             if(cur.left!=null){

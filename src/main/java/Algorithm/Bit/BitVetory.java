@@ -1,4 +1,4 @@
-package Questions.Bit;
+package Algorithm.Bit;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -66,8 +66,8 @@ public class BitVetory {
      * @param i
      */
     public void clr(int i){
-        P = i / BIT_LENGTH;
-        Q = i % BIT_LENGTH;
+        P = i / BIT_LENGTH;  //确定第i位在哪个数组中
+        Q = i % BIT_LENGTH;   //确定第i位在所在数组中的相对位
 
         bitArray[P] &= ~(1 << Q);
     }

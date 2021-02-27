@@ -1,4 +1,4 @@
-package Questions.DivideAndConquer;
+package Algorithm.DivideAndConquer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

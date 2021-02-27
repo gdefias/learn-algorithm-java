@@ -7,7 +7,7 @@ package Algorithm.Others;
  */
 public class XthDay {
     public static void main(String[] args) {
-        String inputday = "20210601";
+        String inputday = "20200301";
         System.out.println(getXthday(inputday));
     }
 

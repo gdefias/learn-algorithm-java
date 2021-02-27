@@ -1,4 +1,4 @@
-package Questions.dfsAndbfs;
+package Algorithm.dfsAndbfs;
 
 /**
  * Created by Defias on 2020/07.

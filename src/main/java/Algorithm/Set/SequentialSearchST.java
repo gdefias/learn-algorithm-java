@@ -1,4 +1,4 @@
-package Questions.Set;
+package Algorithm.Set;
 
 /**
  * Created by Defias on 2017/9/12.

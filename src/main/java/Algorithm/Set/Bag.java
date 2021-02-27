@@ -1,4 +1,4 @@
-package Questions.Set;
+package Algorithm.Set;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

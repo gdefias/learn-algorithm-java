@@ -1,6 +1,5 @@
-package Questions.Tree.BST;
-import Lib.Util;
-import Questions.Tree.BinaryTree;
+package Algorithm.Tree.BST;
+import Algorithm.Tree.TraversalBinaryTree;
 import static Lib.Base.TreeNode;
 /**
  * Created by Defias on 2017/10/7.
@@ -25,7 +24,7 @@ public class SortedArrayToBST {
         int[] A = {1,2,3,4,5,6,7,8,9};
         TreeNode root = sortedArrayToBST(A);
 
-        BinaryTree.printTreeLevelOrder(root);
+        TraversalBinaryTree.printTreeLevelOrder(root);
         System.out.println(IsBST.isValidBST(root));  //验证BST
     }
 

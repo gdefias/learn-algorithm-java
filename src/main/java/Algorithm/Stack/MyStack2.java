@@ -1,4 +1,4 @@
-package Questions.Stack;
+package Algorithm.Stack;
 
 /**
  * Created by Defias on 2020/07.

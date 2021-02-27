@@ -1,4 +1,4 @@
-package Questions.Math;
+package Algorithm.Math;
 
 import java.util.HashSet;
 

@@ -1,4 +1,4 @@
-package Questions.Others;
+package Algorithm.Others;
 
 //十进制转十六进制
 public class Dex2hex {

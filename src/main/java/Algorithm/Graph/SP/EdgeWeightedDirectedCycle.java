@@ -1,4 +1,4 @@
-package Questions.Graph.SP;
+package Algorithm.Graph.SP;
 
 import Lib.StdOut;
 import Lib.StdRandom;

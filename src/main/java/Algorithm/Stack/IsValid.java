@@ -1,4 +1,4 @@
-package Questions.Stack;
+package Algorithm.Stack;
 
 import java.util.Stack;
 
@@ -26,6 +26,10 @@ import java.util.Stack;
  */
 
 public class IsValid {
+    public static void main(String[] args) {
+        String s = "((()))()()";
+        System.out.println(IsValid.isValid(s));
+    }
 
     public static boolean isValid(String s) {
         if(s==null || s.length()==0) {

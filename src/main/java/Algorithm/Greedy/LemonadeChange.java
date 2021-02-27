@@ -1,4 +1,4 @@
-package Questions.Greedy;
+package Algorithm.Greedy;
 
 import java.util.HashMap;
 import java.util.Map;

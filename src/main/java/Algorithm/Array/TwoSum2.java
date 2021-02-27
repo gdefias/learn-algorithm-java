@@ -1,4 +1,4 @@
-package Questions.Array;
+package Algorithm.Array;
 import java.util.*;
 
 /**

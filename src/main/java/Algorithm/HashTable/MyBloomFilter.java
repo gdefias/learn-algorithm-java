@@ -1,11 +1,10 @@
-package Questions.HashTable;
+package Algorithm.HashTable;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
 /**
  * Created by Defias on 2020/06.
  * Description: 布隆过滤器
- *
  */
 
 public class MyBloomFilter {
@@ -16,9 +15,7 @@ public class MyBloomFilter {
     private SimpleHash[] func = new SimpleHash[seeds.length];  //哈希函数组
 
     public static void main(String[] args) {
-
         testMyBloomFilter();
-
     }
 
     public static void testMyBloomFilter() {

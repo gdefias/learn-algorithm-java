@@ -1,4 +1,4 @@
-package Questions.Graph;
+package Algorithm.Graph;
 import Lib.StdOut;
 
 /**
