@@ -20,10 +20,22 @@ package Algorithm.DP;
 
  0 < grid.length <= 200
  0 < grid[0].length <= 200
+
+ 贪心无法保证全局最优解，如：
+ [
+ [1,3,1],
+ [1,5,4],
+ [44,1,1]
+ ]
+
+
  */
 
 public class MaxValue {
 
+
+
+    //动态规划
     public int maxValue(int[][] grid) {
         int rows = grid.length;
         int cols = grid[0].length;

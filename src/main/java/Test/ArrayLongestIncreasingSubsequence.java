@@ -21,9 +21,8 @@ public class ArrayLongestIncreasingSubsequence {
 //        System.out.println(lengthOfLIS(A));
 
         int[] nums = new int[]{3, 5, 6, 2, 5, 4, 19, 5, 6, 7, 12};
-        ArrayLongestIncreasingSubsequence solution = new ArrayLongestIncreasingSubsequence();
-        int lengthOfLIS = lengthOfLIS1(nums);
-        System.out.println("最长上升子序列的长度：" + lengthOfLIS);
+
+        System.out.println("最长上升子序列的长度：" + lengthOfLIS1(nums));
     }
 
     //DP
@@ -36,7 +35,7 @@ public class ArrayLongestIncreasingSubsequence {
 
         dp[0] = 1;
         for(int i=1; i<nums.length; i++) {
-            int maxlen = 1;
+            int maxlen = 1;  //最长上升子序列的长度最小是1
             for(int j=0; j<i; j++) {
                 if(nums[j]<nums[i]) {
                     maxlen = Math.max(maxlen, dp[j]+1);

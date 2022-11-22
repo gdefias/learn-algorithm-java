@@ -2,62 +2,75 @@ package Algorithm.Search;
 
 /**
  * Created by Jeff on 2016/5/2.
- *
- * 寻找峰值
- *
- * 给出一个整数数组(size为n)，其具有以下特点：
- * 相邻位置的数字是不同的
- * A[0] < A[1] 并且 A[n - 2] > A[n - 1]
- * 假定P是峰值的位置则满足A[P] > A[P-1]且A[P] > A[P+1]，返回数组中任意一个峰值的位置
- *
- * 给出数组[1, 2, 1, 3, 4, 5, 7, 6]返回1, 即数值2所在位置, 或者6, 即数值7所在位置
- *
+
+ 寻找峰值
+ https://leetcode-cn.com/problems/find-peak-element/
+
+ 峰值元素是指其值大于左右相邻值的元素。
+
+ 给你一个输入数组 nums，找到峰值元素并返回其索引。数组可能包含多个峰值，在这种情况下，返回 任何一个峰值 所在位置即可。
+ 你可以假设 nums[-1] = nums[n] = -∞
+
+ 1 <= nums.length <= 1000
+ -231 <= nums[i] <= 231 - 1
+ 对于所有有效的 i 都有 nums[i] != nums[i + 1]
+
+ 进阶：你可以实现时间复杂度为 O(logN) 的解决方案吗？
+
+ 输入：nums = [1,2,3,1]
+ 输出：2
+ 解释：3 是峰值元素，你的函数应该返回其索引 2。
+
+ 输入：nums = [1,2,1,3,5,6,4]
+ 输出：1 或 5
+ 解释：你的函数可以返回索引 1，其峰值元素为 2；或者返回索引 5， 其峰值元素为 6。
  */
 
 public class BinarySearchPeak {
 
     public static void main(String[] args) {
-        int[] nums = new int[] {1,3,5,6,22,234};
-
-        //System.out.println(searchInsert(nums, 4));
-
-        //int[] xznums = new int[] {4, 5, 6, 7, 0, 1, 2};
-        //System.out.println(findMin(xznums));
-        //System.out.println(searchRotation(xznums, 1));
-        //
-        //int[] array = new int[] {1, 2, 1, 3, 4, 5, 7, 6};
-        //System.out.println(findPeak(array));
-
-
+        int[] array = new int[]{1, 2, 1, 3, 5, 6, 4};
+        System.out.println(findPeak2(array));
     }
 
     public static int findPeak(int[] A) {
-        if(A == null || A.length == 0) {
+        if (A == null || A.length == 0) {
             return -1;
         }
         int start = 1;
-        int end = A.length-2;
+        int end = A.length - 2;
 
-        while(start < end - 1) {
+        while (start <= end) {
             int mid = start + (end - start) / 2;
-            if(A[mid] > A[mid-1] && A[mid] > A[mid+1]) {
+            if (A[mid] > A[mid - 1] && A[mid] > A[mid + 1]) {
                 return mid;
-            } else if(A[mid] < A[mid-1] && A[mid] > A[mid+1]) {
-                end = mid;
+            }
+
+            //在题目描述中出现了 nums[-1] = nums[n] = -∞，这就代表着 只要数组中存在一个元素比相邻元素大，那么沿着它一定可以找到一个峰值
+            if (A[mid] < A[mid - 1] && A[mid] > A[mid + 1]) {
+                end = mid - 1;
             } else {
-                start = mid;
+                start = mid + 1;
             }
         }
 
-        if(A[start] > A[start-1] && A[start] > A[start+1]) {
+        if ((start == A.length - 1) && (A[start] > A[start - 1])) {
             return start;
         }
 
-        if(A[end] > A[end-1] && A[end] > A[end+1]) {
+        if ((end == 0) && (A[end] > A[end + 1])) {
             return end;
         }
 
         return -1;
     }
 
+    public static int findPeak2(int[] A) {
+
+        for (int i = 0; i < A.length - 1; i++) {
+            if (A[i] > A[i + 1])
+                return i;
+        }
+        return A.length - 1;
+    }
 }

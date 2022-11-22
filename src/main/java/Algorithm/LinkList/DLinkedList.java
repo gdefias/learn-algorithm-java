@@ -53,7 +53,7 @@ public class DLinkedList {
     }
 
 
-    //移动指定结点移到链表头
+    //移动指定结点到链表头
     public void moveNodeToHand(DListNode node) {
         deleteNode(node);
         addHeadNode(node);

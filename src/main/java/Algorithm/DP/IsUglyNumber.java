@@ -19,7 +19,7 @@ package Algorithm.DP;
  解释: 8 = 2 × 2 × 2
 
 1 是丑数
-输入不会超过 32 位有符号整数的范围: [−231,  231 − 1]
+输入不会超过 32 位有符号整数的范围: [−2^31,  2^31 − 1]
  */
 public class IsUglyNumber {
     public static void main(String[] args) {

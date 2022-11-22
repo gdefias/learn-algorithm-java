@@ -16,6 +16,14 @@ package Algorithm.Search;
  给出target = 3，返回true
  */
 public class BinarySearchMatrix {
+    public static void main(String[] args) {
+        int[][] nums = new int[][] {
+                {1, 3, 5, 7},
+                {10, 11, 16, 20},
+                {23, 30, 34, 50}
+        };
+        System.out.println(searchMatrix(nums, 4));
+    }
 
 
     //解法：两次二分法查找
@@ -30,43 +38,36 @@ public class BinarySearchMatrix {
         int row = matrix.length;
         int column = matrix[0].length;
 
-        // find the row index, the last number <= target
+        //查找target可能存在的那一行
         int start = 0, end = row-1;
-        while (start < end - 1) {
-            int mid = start + (end - start) / 2;
+        while (start <= end) {
+            int mid = start + (end-start) / 2;
             if (matrix[mid][0] == target) {
                 return true;
             } else if (matrix[mid][0] < target) {
-                start = mid;
+                start = mid+1;
             } else {
-                end = mid;
+                end = mid-1;
             }
         }
-        if (matrix[end][0] <= target) {
-            row = end;
-        } else if (matrix[start][0] <= target) {
-            row = start;
-        } else {
+
+        row = start-1;
+        if(row < 0) {
             return false;
         }
 
-        // find the column index, the number equal to target
+        //在上一步确定的行中查找target
         start = 0;
         end = column - 1;
-        while (start < end - 1) {
+        while (start <= end) {
             int mid = start + (end - start) / 2;
             if (matrix[row][mid] == target) {
                 return true;
             } else if (matrix[row][mid] < target) {
-                start = mid;
+                start = mid+1;
             } else {
-                end = mid;
+                end = mid-1;
             }
-        }
-        if (matrix[row][start] == target) {
-            return true;
-        } else if (matrix[row][end] == target) {
-            return true;
         }
         return false;
     }

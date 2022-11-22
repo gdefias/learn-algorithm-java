@@ -36,20 +36,20 @@ public class Sort3Colors {
 
     //方法1： 双指针
     public static void sortColors1(int[] nums) {
-        int k = -1;
+        int k = -1;  //指向最左边的白色
         int i = 0;
         int j = nums.length-1;
 
         while(i<=j) {  //排白色和蓝色
             while(i<=j) {
-                if(nums[i]==2) {
+                if(nums[i]==2) {  //蓝
                     break;
-                } else if(nums[i]==0) {     //将红色方在数组头部
+                } else if(nums[i]==0) {  //红
                     if(k>=0) {
-                        swap(nums, i, k);
+                        swap(nums, i, k);  //将红色放在数组头部
                         k++;
                     }
-                } else {
+                } else {  //白
                     if(k<0) {
                         k = i;
                     }

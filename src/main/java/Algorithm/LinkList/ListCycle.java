@@ -1,4 +1,5 @@
 package Algorithm.LinkList;
+import Algorithm.Sorts.LSBSort;
 import Lib.Base.*;
 
 import java.util.HashSet;
@@ -68,5 +69,26 @@ public class ListCycle {
         }
 
         return false;
+    }
+
+
+    public boolean hasCycleTest(ListNode head) {
+        if(head==null || head.next==null) {
+            return false;
+        }
+
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while(fast!=slow) {
+
+            if(fast.next.next==null || slow.next==null) {
+                return false;
+            }
+
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        return true;
     }
 }

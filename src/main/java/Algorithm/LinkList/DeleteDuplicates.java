@@ -60,7 +60,4 @@ public class DeleteDuplicates {
         slow.next = null;
         return head;
     }
-
-
-
 }

@@ -9,7 +9,7 @@ import java.util.Map;
  * Description: LRU Cache
 
  实现：
- 直接使用java的LinkedHashMap实现
+ 使用LinkedHashMap的accessOrder模式
  */
 
 public class LRUCache2 extends LinkedHashMap<Integer, Integer> {

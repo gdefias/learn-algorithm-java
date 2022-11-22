@@ -118,8 +118,8 @@ public class Fibonacci {
         int b = 1;
 
         for(int i=0; i<n; i++) {
-            int a_ = b, b_ = a + b;
-            a = a_;
+            int b_ = a + b;
+            a = b;
             b = b_;
         }
 

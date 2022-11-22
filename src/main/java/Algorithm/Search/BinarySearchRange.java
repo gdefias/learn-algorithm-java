@@ -8,8 +8,12 @@ package Algorithm.Search;
  */
 
 public class BinarySearchRange {
+    public static void main(String[] args) {
+        int[] nums = new int[] {5, 7, 7, 8, 8, 10};
+        System.out.println(searchRange(nums, 8));
+    }
 
-    public int[] searchRange(int[] A, int target) {
+    public static int[] searchRange(int[] A, int target) {
         int[] result = new int[] {-1, -1};
         if(A==null || A.length==0) {
             return result;

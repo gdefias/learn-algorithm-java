@@ -29,8 +29,14 @@ package Algorithm.dfsAndbfs;
 
 public class PathInMatrix {
 
+    public static void main(String[] args) {
+        char[][] A = new char[][] { {'A','B','C','E'}, {'S','F','C','S'}, {'A','D','E','E'} };
+        String word = "ABCCED";
+        System.out.println(exist(A, word));
+    }
+
     //DFS
-    public boolean exist(char[][] board, String word) {
+    public static boolean exist(char[][] board, String word) {
         if(board==null || word==null) {
             return false;
         }
@@ -46,7 +52,7 @@ public class PathInMatrix {
         return false;
     }
 
-    public boolean dfs(char[][] board, char[] words, int i, int j, int k) {
+    public static boolean dfs(char[][] board, char[] words, int i, int j, int k) {
         //剪枝
         if(i>=board.length || i<0 || j>=board[0].length || j<0  || board[i][j] != words[k] ) {
             return false;
@@ -59,8 +65,10 @@ public class PathInMatrix {
         //递归
         char tmp = board[i][j];
         board[i][j] = '/';
+
         //按下上左右的顺序分别进行dfs
         boolean res = dfs(board, words, i+1, j, k+1) || dfs(board, words, i-1, j, k+1) || dfs(board, words, i, j-1, k+1) || dfs(board, words, i, j+1, k+1);
+
         board[i][j] = tmp;
 
         return res;

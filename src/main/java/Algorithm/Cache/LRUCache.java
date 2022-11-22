@@ -62,7 +62,6 @@ public class LRUCache {
     }
 
 
-
     public LRUCache(int capacity) {
         this.capacity = capacity;
         this.cache = new HashMap<>();
@@ -94,5 +93,4 @@ public class LRUCache {
             dlinklist.addHeadNode(newnode);  //同时链表中链表头也添加新结点
         }
     }
-
 }

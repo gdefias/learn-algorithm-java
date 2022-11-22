@@ -5,7 +5,6 @@ import static Lib.Base.*;
 
  自定义hash表（哈希集合）
 
-
  数组+单链表  链地址法
  */
 
@@ -37,15 +36,15 @@ public class MyHashTable {
 	}
 
 
-	public MyHashTable(){
+	public MyHashTable() {
 		this.size = DEFAULT_SIZE;
 		st = new ListNode[size];
 		initTable();
 	}
 
-	public MyHashTable(int size){
-		st = new ListNode[size];
+	public MyHashTable(int size) {
 		this.size = size;
+		st = new ListNode[size];
 		initTable();
 
 	}

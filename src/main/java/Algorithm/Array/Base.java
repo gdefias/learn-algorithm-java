@@ -5,7 +5,7 @@ package Algorithm.Array;
  * @date: 2020/12/1
  * @description:
  */
-public class TestBase {
+public class Base {
     public static void findArray() {
         //max  sum
         int[] scoress = new int[] {90, 95, 92, 89, 100, 98};

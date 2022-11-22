@@ -10,7 +10,7 @@ import Lib.Util;
 public class SortNColors {
 
     public static void main(String[] args) {
-        int[] colornums = new int[] {1, 0, 1, 2};
+        int[] colornums = new int[] {1, 0, 1, 2, 0, 0, 2, 2, 1};
         sortColors(colornums, 3);
         Util.printArray(colornums);
     }
@@ -38,7 +38,7 @@ public class SortNColors {
                 } else if (colors[cur] > min && colors[cur] < max) {
                     cur++;
                 } else {
-                    int tmp = colors[cur];
+                    //int tmp = colors[cur];
                     swap(cur, right, colors);
                     right--;
                 }

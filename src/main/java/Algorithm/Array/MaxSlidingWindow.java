@@ -108,7 +108,6 @@ public class MaxSlidingWindow {
         }
 
         int[] res = new int[nums.length-k+1];  //存放结果
-        int index=0;
         PriorityQueue<Integer> pq = new PriorityQueue<>(k, new Comparator<Integer>() {
             public int compare(Integer o1, Integer o2) {
                 return o2.compareTo(o1);
@@ -118,6 +117,7 @@ public class MaxSlidingWindow {
         //初始窗口
         int left = 0;
         int right = k-1;
+        int index=0;
         for(int i=0; i<k; i++) {
             pq.offer(nums[i]);
         }
@@ -135,7 +135,7 @@ public class MaxSlidingWindow {
     }
 
 
-    //方法3：使用双端队列 保持双端队列升序
+    //方法3：使用双端队列 保持双端队列降序
     public static int[] maxSlidingWindow3(int[] nums, int k) {
         if(nums == null || nums.length == 0 || k <= 0) {
             return new int[0];

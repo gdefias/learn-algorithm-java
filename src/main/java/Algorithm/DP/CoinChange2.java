@@ -5,6 +5,7 @@ package Algorithm.DP;
  * Description:  零钱兑换 II
 
  https://leetcode-cn.com/problems/coin-change-2/
+ https://leetcode-cn.com/problems/coin-change-2/solution/bei-bao-si-xiang-jie-jue-ling-qian-dui-huan-wen-ti/
 
  给定不同面额的硬币和一个总金额。写出函数来计算可以凑成总金额的硬币组合数。假设每一种面额的硬币有无限个。 
 
@@ -43,6 +44,7 @@ public class CoinChange2 {
         int n = coins.length;
         int[][] dp = new int[n + 1][amount + 1];
         dp[0][0] = 1;   //dp[i][j]: 前i种硬币组成总金额j的组合数
+
         for (int i = 1; i <= n; i++) {    //1~n种硬币
             for (int j = 0; j <= amount; j++) {  //0~amount总金额
                 for (int k = 0; k * coins[i-1] <= j; k++) {  //每种硬币的数量从0开始取

@@ -53,11 +53,23 @@ class TwoSum2 {
             indexnums[i] = i;
         }
 
+        //for(int index: indexnums) {
+        //    System.out.print(index + " ");
+        //}
+        //System.out.println();
+
         indexsort(nums, indextmp, 0, nums.length-1);
 
-//        for(int index: indexnums) {
-//            System.out.println(index);
-//        }
+        //for(int num: nums) {
+        //    System.out.print(num + " ");
+        //}
+        //System.out.println();
+        //
+        //
+        //for(int index: indexnums) {
+        //    System.out.print(index + " ");
+        //}
+        //System.out.println();
 
         int start = 0;
         int end = nums.length-1;
@@ -106,7 +118,4 @@ class TwoSum2 {
 
         return;
     }
-
-
-
 }

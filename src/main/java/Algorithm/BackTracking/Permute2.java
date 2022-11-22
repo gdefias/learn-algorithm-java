@@ -5,6 +5,7 @@ import java.util.*;
  * Description:  数组全排列 II
 
  https://leetcode-cn.com/problems/permutations-ii/
+ https://leetcode-cn.com/problems/permutations-ii/solution/47-quan-pai-lie-iiche-di-li-jie-pai-lie-zhong-de-q/
 
  给定一个可包含重复数字的序列，返回所有不重复的全排列
 

@@ -32,7 +32,9 @@ import java.util.Set;
 public class LongestSubstring {
 
     public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring4("abcdeafgjke"));
+        //String s = "abcdeafgjke";
+        String s = "abba";
+        System.out.println(lengthOfLongestSubstring3(s));
     }
 
 
@@ -100,10 +102,11 @@ public class LongestSubstring {
         while(j<=s.length()-1) {
             if(map.containsKey(s.charAt(j))) {
                 i = Math.max(i, map.get(s.charAt(j))+1); //i只会往前走，防止类似输入case："abba" 时i又回到后面去了
+                System.out.println("i: " + i);
             }
             map.put(s.charAt(j), j);
 
-            if((j-i+1)>count) {
+            if((j-i+1) > count) {
                 count = (j-i+1);
             }
             j++;

@@ -61,6 +61,7 @@ public class MergeKLists {
                     minnode = lists[i];
                 }
             }
+
             if(minnode==null) {
                 break;
             }

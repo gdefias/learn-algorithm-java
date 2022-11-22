@@ -48,14 +48,14 @@ public class ReversePrint {
         return res;
     }
 
-
-    //无需返回数组的递归打印  单链表从后往前打印
-    public void reversePrintNotReturn(ListNode head) {
+    //单链表逆序打印 无需返回  递归
+    private void printListNode(ListNode head) {
         if (head == null)
             return;
-        reversePrint(head.next);
+        printListNode(head.next);
         System.out.println(head.val);
     }
+
 
     //方法2：递归
     public static int[] reversePrint2(ListNode head) {
@@ -87,4 +87,5 @@ public class ReversePrint {
 
 
     //方法3：先反转链表，再顺序打印
+
 }

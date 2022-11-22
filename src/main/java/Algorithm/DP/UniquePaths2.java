@@ -50,23 +50,23 @@ public class UniquePaths2 {
         int[][] dp = new int[rows][cols];
 
         //基本情况
-        int n = 1;  //初值，也标识了是否遇到障碍了
+        int flag = 1;  //初值，也标识了是否遇到障碍了
         for(int j=0; j<cols; j++) {  //第1行各列的值
-            if(n==1 && obstacleGrid[0][j]!=1) {
-                dp[0][j] = n;
+            if(flag==1 && obstacleGrid[0][j]!=1) {
+                dp[0][j] = 1;
             } else {
-                n = 0;   //第1行一旦遇到障碍了，后面的值就都是0
-                dp[0][j] = n;
+                flag = 0;   //第1行一旦遇到障碍了，后面的值就都是0
+                dp[0][j] = 0;
             }
         }
 
-        n = 1;
+        flag = 1;
         for(int i=0; i<rows; i++) {  //第1列各行的值
-            if(n==1 && obstacleGrid[i][0]!=1) {
-                dp[i][0] = n;
+            if(flag==1 && obstacleGrid[i][0]!=1) {
+                dp[i][0] = 1;
             } else {
-                n = 0;      //第1列一旦遇到障碍了，后面的值就都是0
-                dp[i][0] = n;
+                flag = 0;      //第1列一旦遇到障碍了，后面的值就都是0
+                dp[i][0] = 0;
             }
         }
 
@@ -94,13 +94,13 @@ public class UniquePaths2 {
         int[] dp = new int[cols];  //某1行各列的值
 
         //基本情况
-        int n = 1;
+        int flag = 1;
         for(int j=0; j<cols; j++) {     //第1行各列的值
-            if(n==1 && obstacleGrid[0][j]!=1) {
-                dp[0] = n;
+            if(flag==1 && obstacleGrid[0][j]!=1) {
+                dp[0] = 1;
             } else {
-                n = 0;
-                dp[j] = n;
+                flag = 0;
+                dp[j] = 0;
             }
         }
 

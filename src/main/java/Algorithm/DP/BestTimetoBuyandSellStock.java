@@ -37,12 +37,12 @@ public class BestTimetoBuyandSellStock {
 
         int[][] dp = new int[prices.length][2];
 
-        dp[0][0] = 0;  //第一天什么都不做 利润为0
-        dp[0][1] = -prices[0];  //第一天买入 利润为负数  （第一天不可能卖出）
+        dp[0][0] = 0;  //第一天不持股（什么都不做） 利润为0
+        dp[0][1] = -prices[0];  //第一天持股 利润为负数  （第一天不可能卖出）
 
         for(int i=1; i<=prices.length-1; i++) {
             dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1]+prices[i]);
-            dp[i][1] = Math.max(dp[i-1][1], -prices[i]);
+            dp[i][1] = Math.max(dp[i-1][1], -prices[i]);  //第i天持股的利润 = 前一天持股今天什么也不做的利润 与 前一天不持股今天买入的利润 较大者
         }
 
 
@@ -52,7 +52,7 @@ public class BestTimetoBuyandSellStock {
 
 
 
-    //一次遍历 贪心
+    //一次遍历 贪心  [7,1,5,3,6,4]
     public static int maxProfit1(int[] prices) {
         if(prices==null || prices.length==0) {
             return 0;
@@ -75,7 +75,7 @@ public class BestTimetoBuyandSellStock {
         return maxres;
     }
 
-    //更简的一次遍历  贪心
+    //更简的一次遍历  贪心  [7,1,5,3,6,4]
     public static int  maxProfit1_2(int[] prices) {
         int min = Integer.MAX_VALUE;
         int maxProfit = 0;

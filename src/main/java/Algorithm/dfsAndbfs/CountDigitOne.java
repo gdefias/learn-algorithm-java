@@ -9,7 +9,7 @@ package Algorithm.dfsAndbfs;
  https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/
 
  输入一个整数 n ，求1～n这n个整数的十进制表示中1出现的次数。
- 例如，输入12，1～12这些整数中包含1 的数字有1、10、11和12，1一共出现了5次。
+ 例如，输入12，1～12这些整数中包含1的数字有1、10、11和12，1一共出现了5次。
 
  输入：n = 12
  输出：5
@@ -19,7 +19,7 @@ package Algorithm.dfsAndbfs;
 public class CountDigitOne {
 
     public static void main(String[] args) {
-        System.out.println(countDigitOne2(22));
+        System.out.println(countDigitOne2(4));
     }
 
     //方法1：DFS
@@ -39,12 +39,12 @@ public class CountDigitOne {
         int left = n % pow;  //234
 
         if(hight==1) {
-            return dfs(pow-1) + dfs(left) + left + 1;
+            return dfs(pow-1) + dfs(left) + left + 1; //left：234中从1开始每个数都可以与最高位1组成一个含有一个1的数
         } else {
             return dfs(pow-1)*hight + dfs(left) + pow;
             //dfs(pow-1)*hight: 最高位分别为0~hight-1时统计低位的1
             //dfs(left): 最高位为hight时统计低位的1
-            //pow: 最高位为1时，低位每个数都需要统计1次
+            //pow: 最高位为1时，低位每个数都需要统计1次(0~999)
         }
     }
 

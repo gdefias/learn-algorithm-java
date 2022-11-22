@@ -19,7 +19,7 @@ package Algorithm.Search;
 public class BinarySearch {
     public static void main(String[] args) {
         int[] nums = new int[]{1, 3, 5, 20, 22, 23, 234};
-        System.out.println(binarySearch2(nums, 22));
+        System.out.println(binarySearch(nums, 0));
     }
 
     //方法1: 循环版本
@@ -33,7 +33,7 @@ public class BinarySearch {
         while (start <= end) {
             int mid = start+(end-start) / 2;
             //int mid = start+((end-start)>>1);
-            //int mid = (start+end)/2;
+            //int mid = start+(end-start)/2;
             if (target == nums[mid]) {
                 return mid;
             } else if (target < nums[mid]) {
@@ -42,6 +42,9 @@ public class BinarySearch {
                 start = mid+1;
             }
         }
+
+        System.out.println(start);
+        System.out.println(end);
         return  -1;
     }
 

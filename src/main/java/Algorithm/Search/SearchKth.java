@@ -15,7 +15,7 @@ import Algorithm.Sorts.QuickSort;
 
 public class SearchKth {
     public static void main(String[] args) {
-        int[] A = {1, 23, 34, 9, 32, 59, 1, 2, 3, 4, 5, 6, 6, 10, 0, 0, 26, 26, 85, 9, 31, 1, 64};
+        int[] A = {1, 23, 34, 9, 32, 59, 1, 2, 3, 64, 5, 6, 6, 10, 0, 0, 26, 26, 85, 9, 31, 1, 64};
         printArray(A);
         System.out.println(kthLargestElement3(A, 3));
         printArray(A);

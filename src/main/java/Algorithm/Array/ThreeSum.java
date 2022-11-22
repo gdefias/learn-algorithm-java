@@ -30,7 +30,7 @@ public class ThreeSum {
         System.out.println(threeSum(A));
     }
 
-    //排序 + 双指针二分法
+    //排序 + 双指针
     public static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         if(nums==null || nums.length<3) {
@@ -47,7 +47,7 @@ public class ThreeSum {
                 continue;
             }
 
-            //二分法
+            //双指针
             int left = k+1;
             int right = nums.length-1;
             int target = 0 - cur;
