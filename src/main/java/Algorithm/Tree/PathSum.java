@@ -12,7 +12,7 @@ import java.util.*;
  https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof
 
  输入一棵二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径，从树的根结点开始往下一直到叶结点所经过的结点形成一条路径
- 给定如下二叉树，以及目标和 sum = 22，
+ 给定如下二叉树，以及目标和sum = 22
 
         5
        / \
@@ -33,20 +33,48 @@ public class PathSum {
 
     public static void main(String[] args) {
         TreeNode A = Util.makeTree();
-        System.out.println(pathSum2(A, 21));
+        System.out.println(pathSum2(A, 24));
     }
 
-    //方法1： 先序遍历  回溯  DFS  累加
+    //方法1： 先序遍历  回溯 DFS  sum往下减
     public static List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> result = new LinkedList<>();  //存放最终结果
+        Deque<Integer> path = new LinkedList<>();  //存放遍历到的路径
+
+        backtrace(root, sum, path, result);
+        return result;
+    }
+
+    public static void backtrace(TreeNode root, int sum, Deque<Integer> path, List<List<Integer>> result) {
+        if(root == null) {
+            return;
+        }
+        path.addLast(root.val);
+        sum = sum - root.val;
+
+        if(root.left==null && root.right==null && sum==0) {
+            result.add(new LinkedList<>(path));
+        }
+
+        backtrace(root.left, sum, path, result);
+        backtrace(root.right, sum, path, result);
+
+        path.removeLast();  //回溯
+        //sum = sum + root.val; //加回来也和上一层没任何关系，上一层的sum仍然是没减之前的值。注意传值和传引用的区别
+    }
+
+
+    //方法2： 先序遍历  回溯  DFS  累加
+    public static List<List<Integer>> pathSum2(TreeNode root, int sum) {
         List<List<Integer>> result = new LinkedList<>();  //存放最终结果
         Deque<Integer> path = new LinkedList<>();  //存放遍历到的路径
         int s = 0;  //已遍历路径的累加和
 
-        backtrace(root, sum, s, path, result);
+        backtrace2(root, sum, s, path, result);
         return result;
     }
 
-    public static void backtrace(TreeNode root, int sum, int s, Deque<Integer> path, List<List<Integer>> result) {
+    public static void backtrace2(TreeNode root, int sum, int s, Deque<Integer> path, List<List<Integer>> result) {
         if(root == null) {
             return;
         }
@@ -58,49 +86,24 @@ public class PathSum {
         }
 
         if(root.left!=null) {
-            backtrace(root.left, sum, s, path,  result);
+            backtrace2(root.left, sum, s, path,  result);
         }
 
         if(root.right!=null) {
-            backtrace(root.right, sum, s, path,  result);
+            backtrace2(root.right, sum, s, path,  result);
         }
 
         path.removeLast();  //回溯
-        s -= root.val;
+        //s -= root.val;
     }
 
-    //方法2： 先序遍历  回溯 DFS  往下减
-    public static List<List<Integer>> pathSum2(TreeNode root, int sum) {
-        List<List<Integer>> result = new LinkedList<>();  //存放最终结果
-        Deque<Integer> path = new LinkedList<>();  //存放遍历到的路径
-
-        backtrace2(root, sum, path, result);
-        return result;
-    }
-
-    public static void backtrace2(TreeNode root, int sum, Deque<Integer> path, List<List<Integer>> result) {
-        if(root == null) {
-            return;
-        }
-        path.addLast(root.val);
-
-        if(root.left==null && root.right==null) {
-            if(root.val==sum) {
-                result.add(new LinkedList<>(path));
-            }
-        } else {
-            backtrace2(root.left, sum - root.val, path, result);
-            backtrace2(root.right, sum - root.val, path, result);
-        }
-
-        path.removeLast();  //回溯
-    }
 
 
     //方法3：先序遍历  回溯  DFS  累加  栈
     public static List<List<Integer>> pathSum3(TreeNode root, int sum) {
-        Stack<Integer> stack = new Stack<>(); //存放遍历到的路径
         List<List<Integer>> result = new LinkedList<>();  //存放最终结果
+        Stack<Integer> stack = new Stack<>(); //存放遍历到的路径
+
         recur(root, sum, stack, result);
 
         return result;
@@ -126,6 +129,7 @@ public class PathSum {
         if(root.right!=null) {
             recur(root.right, sum-root.val, stack, result);
         }
+
         stack.pop();
     }
 

@@ -22,15 +22,25 @@ package Algorithm.Array;
  */
 
 public class MissingNumber {
-    public int missingNumber(int[] nums) {
+
+    public static void main(String[] args) {
+        int[] nums = new int[] {0, 1, 2};
+        int res = missingNumber(nums);
+        System.out.println(res);
+    }
+
+
+    //二分法
+    //特征：某个数的索引值是否与数值相等
+    //缺失数字之前的数符合特征，缺失数字之后的数不符合特征
+    public static int missingNumber(int[] nums) {
         int i = 0;
         int j = nums.length-1;
 
-        //二分法思想
-        while(i<=j) {
+        while(i <= j) {
             int mid = i+(j-i)/2;
             if(nums[mid]!=mid) {
-                if((mid-1<0) || (nums[mid-1]!=mid)) {
+                if((mid-1<0) || (nums[mid-1]==mid-1)) {
                     return mid;
                 } else {
                     j = mid-1;

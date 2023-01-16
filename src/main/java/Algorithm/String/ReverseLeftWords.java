@@ -2,7 +2,7 @@ package Algorithm.String;
 
 /**
  * Created with IntelliJ IDEA.
- * Description: 左旋转字符串
+ * Description:    左旋转字符串
  * User: Defias Date: 2018-10
 
  https://leetcode-cn.com/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/
@@ -21,33 +21,34 @@ public class ReverseLeftWords {
 
     }
 
-    //方法1：子字符串拼接
-    public static void reverseLeftWords(String s, int a) {
-        String res = s.substring(a, s.length()) + s.substring(0, a);
+    //方法1：字符串切片
+    public static void reverseLeftWords(String s, int n) {
+        String res = s.substring(n, s.length()) + s.substring(0, n);
         System.out.println(res);
     }
 
+
     //方法2：StringBuilder + 逐字符遍历
-    public static void reverseLeftWords2(String s, int a) {
+    public static void reverseLeftWords2(String s, int n) {
         StringBuilder sb = new StringBuilder();
 
-        for(int i=a; i<(s.length()+a); i++) {
+        for(int i=n; i<(s.length()+n); i++) {
             sb.append(s.charAt(i%s.length()));
         }
-
         String res = sb.toString();
         System.out.println(res);
     }
 
 
     //方法3：对称交换3次
-    public static void reverseLeftWords3(String s, int a) {
-        if(s==null||a<0||a>=s.length())
+    public static void reverseLeftWords3(String s, int n) {
+        if(n<0 || n>=s.length()) {
             return;
+        }
 
         char[] sc = s.toCharArray();
-        helper(sc, 0, a-1);
-        helper(sc, a, sc.length-1);
+        helper(sc, 0, n-1);
+        helper(sc, n, sc.length-1);
         helper(sc, 0, sc.length-1);
 
         String result = new String(sc);
@@ -55,8 +56,9 @@ public class ReverseLeftWords {
     }
 
     public static void helper(char[] s, int start, int end) {
-        if(s==null || s.length<=1 || start<0 || end>=s.length)
+        if(s.length<=1 || start<0 || end>=s.length) {
             return;
+        }
 
         int i = start;
         int j = end;

@@ -18,7 +18,7 @@ public class BinarySearchFrist {
         System.out.println(binarySearch(nums, 22));
     }
 
-    //方法1
+    //方法1： while条件严格比较
     public static int binarySearch(int[] nums, int target) {
         if(nums==null || nums.length ==0 || target < nums[0] || target > nums[nums.length-1]) {
             return -1;
@@ -26,23 +26,27 @@ public class BinarySearchFrist {
         int start = 0;
         int end = nums.length-1;
 
-        while(start <= end) {
-            int mid = start+(end-start) / 2;
-            if(nums[mid] >= target) {
-                end = mid-1;     //相等继续往左二分找（因为要找第一次出现的），即使左边再也找不到了，最终start也会刚好指向本次mid
-            } else  {
+        while(start < end) {
+            int mid = start+(end-start) / 2;  //取偏左的中间值
+            if(nums[mid] < target) {
                 start = mid+1;
+            } else if(nums[mid] > target) {
+                end = mid-1;
+            } else {
+                end = mid;
             }
         }
 
-        if(start>=nums.length || nums[start]!=target) {
-            return -1;
+        if(nums[start] == target) {
+            return start;
         }
-        return start;
+
+        return -1;
     }
 
-    //方法2
-    public static int binarySearch1(int[] nums, int target) {
+
+    //方法2：while条件非严格比较
+    public static int binarySearch2(int[] nums, int target) {
         if(nums==null || nums.length ==0 || target < nums[0] || target > nums[nums.length-1]) {
             return -1;
         }
@@ -67,8 +71,8 @@ public class BinarySearchFrist {
         return -1;
     }
 
-    //方法3： 对方法2进行了分支合并优化
-    public static int binarySearch2(int[] nums, int target) {
+    //方法3： 对方法1进行了分支合并优化
+    public static int binarySearch3(int[] nums, int target) {
         if(nums==null || nums.length ==0 || target < nums[0] || target > nums[nums.length-1]) {
             return -1;
         }
@@ -89,5 +93,29 @@ public class BinarySearchFrist {
         }
         return -1;
     }
+
+    //方法4
+    public static int binarySearch4(int[] nums, int target) {
+        if(nums==null || nums.length ==0 || target < nums[0] || target > nums[nums.length-1]) {
+            return -1;
+        }
+        int start = 0;
+        int end = nums.length-1;
+
+        while(start <= end) {
+            int mid = start+(end-start) / 2;
+            if(nums[mid] >= target) {
+                end = mid-1;     //相等继续往左二分找（因为要找第一次出现的），即使左边再也找不到了，最终start也会刚好指向本次mid
+            } else  {
+                start = mid+1;
+            }
+        }
+
+        if(start>=nums.length || nums[start]!=target) {
+            return -1;
+        }
+        return start;
+    }
+
 
 }

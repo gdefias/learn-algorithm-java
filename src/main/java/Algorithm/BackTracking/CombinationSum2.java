@@ -6,15 +6,15 @@ import java.util.*;
 
  https://leetcode-cn.com/problems/combination-sum-ii/
 
- 给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合
- candidates 中的每个数字在每个组合中只能使用一次
+ 给定一个数组candidates和一个目标数target，找出candidates中所有可以使数字和为target的组合
+ candidates中的每个数字在每个组合中只能使用一次
 
  说明：
  所有数字（包括目标数）都是正整数
  解集不能包含重复的组合
 
 
- 输入: candidates = [10,1,2,7,6,1,5], target = 8,
+ 输入: candidates = [10,1,2,7,6,1,5], target = 8,
  所求解集为:
  [
  [1, 7],
@@ -23,11 +23,11 @@ import java.util.*;
  [1, 1, 6]
  ]
 
- 输入: candidates = [2,5,2,1,2], target = 5,
+ 输入: candidates =[2,5,2,1,2], target =5,
  所求解集为:
  [
-   [1,2,2],
-   [5]
+  [1,2,2],
+  [5]
  ]
  */
 public class CombinationSum2 {
@@ -37,29 +37,25 @@ public class CombinationSum2 {
         System.out.println(combinationSum2(candidates,target));
     }
 
-    //方法1
+
+    /**
+     * 排序 + 回溯 + 去重
+     * */
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
         int start = 0;
         int sum = 0;
-        boolean[] visited = new boolean[candidates.length];
+        boolean[] visited = new boolean[candidates.length];  //只是为了进行树层去重
 
         Arrays.sort(candidates);
-        backtrack(candidates, target, start, sum, visited, path, res);
+        backstrace(candidates, target, start, sum, visited, path, res);
 
         return  res;
     }
 
-    /**
-     * 回溯 + 剪枝
-     *
-     * 去重：要去重的是“同一树层上的使用过”
-     * 「如果candidates[i] == candidates[i - 1] 并且 used[i - 1] == false，就说明：前一个树枝，使用了candidates[i - 1]，也就是
-     * 说同一树层使用过candidates[i - 1]」
-     *
-     * */
-    public static void backtrack(int[] candidates, int target, int start, int sum, boolean[] visited,
+
+    public static void backstrace(int[] candidates, int target, int start, int sum, boolean[] visited,
                                  List<Integer> path, List<List<Integer>> res) {
         if(sum == target) {
             res.add(new ArrayList<>(path));
@@ -80,7 +76,7 @@ public class CombinationSum2 {
             sum += candidates[i];
             path.add(candidates[i]);
 
-            backtrack(candidates, target, i+1, sum, visited, path, res);  //这里是i+1，每个数字在每个组合中只能使用一次
+            backstrace(candidates, target, i+1, sum, visited, path, res);  //这里是i+1，每个数字在每个组合中只能使用一次
 
             visited[i] = false;
             sum -= candidates[i];
@@ -88,8 +84,9 @@ public class CombinationSum2 {
         }
     }
 
-
-    //方法2：与方法1类似，只是没有专门保存sum，而是根据当前sum每次改变target值
+    /**
+     * 排序 + 回溯 + 去重
+     * */
     public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
@@ -97,12 +94,14 @@ public class CombinationSum2 {
         boolean[] visited = new boolean[candidates.length];
 
         Arrays.sort(candidates);
-        backtrack2(candidates, target, start, visited, path, res);
+
+        //没有专门保存和的sum变量，而是每次改变target值
+        backstrace2(candidates, target, start, visited, path, res);
 
         return  res;
     }
 
-    public static void backtrack2(int[] candidates, int target, int start, boolean[] visited,
+    public static void backstrace2(int[] candidates, int target, int start, boolean[] visited,
                                   List<Integer> path, List<List<Integer>> res) {
         if(target == 0) {
             res.add(new ArrayList<>(path));
@@ -122,7 +121,7 @@ public class CombinationSum2 {
             visited[i] = true;
             path.add(candidates[i]);
 
-            backtrack2(candidates, target-candidates[i], i+1, visited, path, res);
+            backstrace2(candidates, target-candidates[i], i+1, visited, path, res);
 
             visited[i] = false;
             path.remove(path.size()-1);

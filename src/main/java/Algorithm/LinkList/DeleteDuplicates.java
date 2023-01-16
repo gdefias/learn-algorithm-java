@@ -11,11 +11,11 @@ import Lib.Util;
 
  给定一个排序链表，删除所有重复的元素，使得每个元素只出现一次
 
- 示例 1:
+ 示例1:
  输入: 1->1->2
  输出: 1->2
 
- 示例 2:
+ 示例2:
  输入: 1->1->2->3->3
  输出: 1->2->3
  */
@@ -24,7 +24,7 @@ public class DeleteDuplicates {
         ListNode mylist = Util.createList();
     }
 
-    //方法1：直接法
+    //方法1：单指针
     public static ListNode deleteDuplicates(ListNode head) {
         if(head==null || head.next==null) {
             return head;
@@ -41,8 +41,30 @@ public class DeleteDuplicates {
         return head;
     }
 
-    //方法2：快慢指针
-    public static ListNode deleteDuplicates2(ListNode head) {
+    //方法3：双指针
+    public ListNode deleteDuplicates2(ListNode head) {
+        if(head==null || head.next==null) {
+            return head;
+        }
+
+        ListNode q = head;
+        ListNode p = head.next;
+        while(p!=null) {
+            if(p.val != q.val) {
+                q = q.next;
+                p = p.next;
+            } else {
+                while(p!=null && p.val==q.val) {
+                    p = p.next;
+                }
+                q.next = p;
+            }
+        }
+        return head;
+    }
+
+    //方法3：快慢指针
+    public static ListNode deleteDuplicates3(ListNode head) {
         if(head==null || head.next==null) {
             return head;
         }
@@ -50,7 +72,6 @@ public class DeleteDuplicates {
         ListNode fast = head;
         ListNode slow = head;
         while(fast!=null) {
-
             if(fast.val != slow.val) {
                 slow.next = fast;
                 slow = slow.next;

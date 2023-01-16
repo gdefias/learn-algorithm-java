@@ -1,4 +1,6 @@
 package Lib;
+import java.util.List;
+
 import static Lib.Base.*;
 /**
  * Created by Defias on 2017/9/26.
@@ -129,9 +131,9 @@ public class Util {
                      /     \
                     3       10
                   /  \        \
-                 1    6        14
+                 1    6        4
                      / \       /
-                    4   7    13
+                    4   7    2
 
     * */
     public static TreeNode makeTree() {
@@ -140,10 +142,10 @@ public class Util {
         TreeNode node3 = new TreeNode(10);
         TreeNode node4 = new TreeNode(1);
         TreeNode node5 = new TreeNode(6);
-        TreeNode node6 = new TreeNode(14);
+        TreeNode node6 = new TreeNode(4);
         TreeNode node7 = new TreeNode(4);
         TreeNode node8 = new TreeNode(7);
-        TreeNode node9 = new TreeNode(13);
+        TreeNode node9 = new TreeNode(2);
 
         node1.left = node2;
         node1.right = node3;
@@ -186,11 +188,11 @@ public class Util {
    * */
     public static TreeNode makeTree3() {
         TreeNode node1 = new TreeNode(10);
-        TreeNode node2 = new TreeNode(6);
+        TreeNode node2 = new TreeNode(12);
         TreeNode node3 = new TreeNode(14);
         TreeNode node4 = new TreeNode(4);
         TreeNode node5 = new TreeNode(8);
-        TreeNode node6 = new TreeNode(12);
+        TreeNode node6 = new TreeNode(6);
         TreeNode node7 = new TreeNode(16);
 
         node1.left = node2;
@@ -204,7 +206,7 @@ public class Util {
         return node1;
     }
 
-    public static int[][] MakeArray() {
+    public static int[][] make2DArray() {
         int[][] A = new int[5][3];
         A[0][0] = 1;
         A[0][1] = 2;
@@ -237,6 +239,22 @@ public class Util {
 //        //A[4][4] = 25;
 
         return A;
+    }
+
+
+    public static void print2DArray(int[][] array2D) {
+        if(array2D==null || array2D.length==0 || array2D[0].length==0) {
+            return;
+        }
+        int rows = array2D.length;
+        int cols = array2D[0].length;
+
+        for(int x=0; x<rows; x++){
+            for (int y=0; y<cols; y++) {
+                System.out.print(array2D[x][y]+" ");
+            }
+            System.out.println();
+        }
     }
 
 
@@ -327,6 +345,15 @@ public class Util {
         return node1;
     }
 
+    public static TreeNode makeTree5() {
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node2 = new TreeNode(1);
+
+        node1.left = node2;
+        return node1;
+    }
+
+
 
     //创建List
     public static ListNode createList() {
@@ -367,5 +394,15 @@ public class Util {
         for(int i: nums) {
             System.out.println(i);
         }
+    }
+
+    //list装原始类型数组
+    public static int[] listToIntArray(List<Integer> lists) {
+        int[] result = new int[lists.size()];
+        for(int i=0; i<lists.size(); i++) {
+            result[i] = lists.get(i);
+        }
+
+        return result;
     }
 }

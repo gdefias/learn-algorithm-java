@@ -18,24 +18,27 @@ package Algorithm.DP;
  解释: 因为路径 1→3→1→1→1 的总和最小。
  */
 
-
 public class MinPathSum {
 
 
-    //DP
+    //DP 动态规划
     //dp[i][j]: i行j列的网格，左上角到右下角的路径最小和
+    //时间复杂度 O(MN) 空间复杂度 O(MN)
     public int minPathSum(int[][] grid) {
         int rows = grid.length;
         int cols = grid[0].length;
         int[][] dp = new int[rows][cols];
 
-        dp[0][0] = grid[0][0];
-        for(int i=1; i<rows; i++) {  //仅1列的情况
-            dp[i][0] = dp[i-1][0] + grid[i][0];
+        dp[0][0] = grid[0][0];  //起始位置
+
+        //第1行
+        for(int j=1; j<cols; j++) {
+            dp[0][j] = dp[0][j-1] + grid[0][j];
         }
 
-        for(int j=1; j<cols; j++) {  //仅1行的情况
-            dp[0][j] = dp[0][j-1] + grid[0][j];
+        //第1列
+        for(int i=1; i<rows; i++) {
+            dp[i][0] = dp[i-1][0] + grid[i][0];
         }
 
         for(int i=1; i<rows; i++) {
@@ -47,19 +50,21 @@ public class MinPathSum {
         return dp[rows-1][cols-1];
     }
 
-    //DP  空间优化
-    //dp[j]
-    public int minPathSum1(int[][] grid) {
+    //DP  动态规划 空间优化 一维滚动数组
+    //时间复杂度 O(MN) 空间复杂度 O(N)
+    public int minPathSum_1(int[][] grid) {
         int rows = grid.length;
         int cols = grid[0].length;
         int[] dp = new int[cols];
 
         dp[0] = grid[0][0];
-        for(int j=1; j<cols; j++) {  //第0行 各列的值
+
+        //第1行
+        for(int j=1; j<cols; j++) {
             dp[j] = dp[j-1] + grid[0][j];
         }
 
-        for(int i=1; i<rows; i++) {  //第1行到最后一行
+        for(int i=1; i<rows; i++) {  //第2行到最后一行
             dp[0] = dp[0] + grid[i][0];  //任意行第0列的值
             for(int j=1; j<cols; j++) {  //第1列到最后一列
                 dp[j] = Math.min(dp[j-1], dp[j]) + grid[i][j];
@@ -67,5 +72,32 @@ public class MinPathSum {
         }
 
         return dp[cols-1];
+    }
+
+
+    //DP  动态规划 空间优化 直接在grid上原地修改
+    //时间复杂度 O(MN) 空间复杂度 O(1)
+    public int minPathSum_2(int[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+
+
+        //第1行
+        for(int j=1; j<cols; j++) {
+            grid[0][j] += grid[0][j-1];
+        }
+
+        //第1列
+        for(int i=1; i<rows; i++) {
+            grid[i][0] += grid[i-1][0];
+        }
+
+        for(int i=1; i<rows; i++) {
+            for(int j=1; j<cols; j++) {
+                grid[i][j] += Math.min(grid[i-1][j], grid[i][j-1]);
+            }
+        }
+
+        return grid[rows-1][cols-1];
     }
 }

@@ -22,7 +22,7 @@ public class BinarySearch {
         System.out.println(binarySearch(nums, 0));
     }
 
-    //方法1: 循环版本
+    //方法1: 迭代版本
     public static int binarySearch(int[] nums, int target) {
         if(nums==null || nums.length==0 || target < nums[0] || target > nums[nums.length-1]) {
             return -1;
@@ -33,7 +33,6 @@ public class BinarySearch {
         while (start <= end) {
             int mid = start+(end-start) / 2;
             //int mid = start+((end-start)>>1);
-            //int mid = start+(end-start)/2;
             if (target == nums[mid]) {
                 return mid;
             } else if (target < nums[mid]) {

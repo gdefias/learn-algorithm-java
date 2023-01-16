@@ -8,7 +8,7 @@ import java.util.*;
 
  https://leetcode-cn.com/problems/subarray-sum-equals-k/
 
- 给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。
+ 给定一个整数数组和一个整数k，你需要找到该数组中和为k的连续的子数组的个数。
 
  示例 1 :
  输入:nums = [1,1,1], k = 2
@@ -16,7 +16,7 @@ import java.util.*;
 
  说明 :
  数组的长度为 [1, 20,000]。
- 数组中元素的范围是 [-1000, 1000] ，且整数 k 的范围是 [-1e7, 1e7]。
+ 数组中元素的范围是 [-1000, 1000] ，且整数k的范围是[-1e7, 1e7]。
  */
 public class SubArraySumK {
     public static void main(String[] args) {
@@ -26,14 +26,17 @@ public class SubArraySumK {
         System.out.println(result);
     }
 
-    //遍历
+    //枚举  （相当于一个滑动窗口  左边和右边依次枚举）
+    //时间复杂度：O(n^2)  空间复杂度：O(1)
     public static int subarraySum(int[] nums, int k) {
-        int start;
-        int end;
-        int count=0;
+
+        int start;  //窗口左边
+        int end; //窗口右边
+        int count = 0; //统计结果数量
+
         for(start=0; start<nums.length; start++) {
             int sum = 0;
-            for(end=start; end>=0; end--) {
+            for(end=start; end<nums.length; end++) {
                 sum += nums[end];
                 if(sum==k) {
                     count++;
@@ -43,7 +46,9 @@ public class SubArraySumK {
         return count;
     }
 
-    //前缀和
+    //前缀和 + 哈希表优化
+    //时间复杂度：O(n)，其中 n 为数组的长度。我们遍历数组的时间复杂度为 O(n)，中间利用哈希表查询删除的复杂度均为O(1)，因此总时间复杂度为O(n)
+    //空间复杂度：O(n)，其中 n 为数组的长度。哈希表在最坏情况下可能有 n 个不同的键值，因此需要 O(n) 的空间复杂度
     public static int subarraySum2(int[] nums, int k) {
         int count = 0;
         int sum = 0;

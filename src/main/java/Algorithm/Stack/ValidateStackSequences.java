@@ -19,12 +19,12 @@ import java.util.Stack;
 
  0 <= pushed.length == popped.length <= 1000
  0 <= pushed[i], popped[i] < 1000
- pushed 是 popped 的排列。
+ pushed是popped的排列。
  */
 public class ValidateStackSequences {
     public static void main(String[] args) {
         int[] A = {1, 2, 3, 4, 5};
-        int[] B = {4, 5, 3, 2, 1};
+        int[] B = {4,3,5,1,2};
         System.out.println(validateStackSequences(A, B));
 
     }
@@ -43,7 +43,8 @@ public class ValidateStackSequences {
             stack.push(pushed[i]);  //入栈
 
             while(!stack.isEmpty() && stack.peek() == popped[p]) {
-                if(++p == popped.length) {  //出栈序列走完了
+                p++;
+                if(p == popped.length) {  //出栈序列走完了
                     return true;
                 }
                 stack.pop();

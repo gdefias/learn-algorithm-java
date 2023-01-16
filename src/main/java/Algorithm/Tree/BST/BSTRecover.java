@@ -1,5 +1,8 @@
 package Algorithm.Tree.BST;
 import Lib.Util;
+
+import java.util.ArrayList;
+import java.util.List;
 import static Lib.Base.TreeNode;
 /**
  * Created by Defias on 2017/10/12.
@@ -13,47 +16,55 @@ import static Lib.Base.TreeNode;
 
  */
 public class BSTRecover {
-    public static TreeNode firstElement = null;
-    public static TreeNode secondElement = null;
-    public static TreeNode prev = null;
-
     public static void main(String[] args) {
         TreeNode root = Util.makeTree3();
         Util.printTreeInOrder(root);
         System.out.println();
+
         recoverTree(root);
+
         Util.printTreeInOrder(root);
     }
 
     public static void recoverTree(TreeNode root) {
-        traverse(root);
+        //中序遍历
+        List<TreeNode> lists = new ArrayList<>();
+        dfs(root, lists);
 
-        int temp = firstElement.val;
-        firstElement.val = secondElement.val;
-        secondElement.val = temp;
-        //System.out.println(firstElement.val);
-        //System.out.println(secondElement.val);
+        //找到出错的两个位置
+        TreeNode x = null;
+        TreeNode y = null;
+        int size = lists.size();
+        for(int i=0; i<size-1; i++) {
+            if(lists.get(i).val > lists.get(i+1).val) {
+                y = lists.get(i+1);
+                if(x == null) {
+                    x = lists.get(i);
+                } else {
+                    break;
+                }
+            }
+        }
+
+
+        //恢复
+        if(x!=null && y!=null) {
+            int tmp = x.val;
+            x.val = y.val;
+            y.val = tmp;
+
+        }
     }
 
     //中序遍历找出出错的两个结点
-    public static void traverse(TreeNode root) {
+    public static void dfs(TreeNode root, List<TreeNode> lists) {
         if(root==null) {
             return;
         }
 
-        traverse(root.left);
-
-        if(prev!=null && prev.val>root.val) {
-            if(firstElement==null) {
-                firstElement = prev;
-                secondElement = root;
-            } else {
-                secondElement = root;
-            }
-        }
-        prev = root;
-
-        traverse(root.right);
+        dfs(root.left, lists);
+        lists.add(root);
+        dfs(root.right, lists);
     }
 }
 

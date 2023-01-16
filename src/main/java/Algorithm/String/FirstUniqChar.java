@@ -22,7 +22,7 @@ import java.util.Map;
 public class FirstUniqChar {
 
     public static void main(String[] args) {
-        String s = "abaccbdebff";
+        String s = "abaccbdebfftt";
         System.out.println(firstUniqChar(s));
     }
 

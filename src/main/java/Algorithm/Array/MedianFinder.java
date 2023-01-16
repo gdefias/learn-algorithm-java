@@ -13,7 +13,7 @@ import java.util.PriorityQueue;
  那么中位数就是所有数值排序之后中间两个数的平均值。
 
  例如，
- [2,3,4] 的中位数是 3
+ [2,3,4]的中位数是 3
  [2,3] 的中位数是 (2 + 3) / 2 = 2.5
 
  设计一个支持以下两种操作的数据结构：
@@ -28,13 +28,40 @@ import java.util.PriorityQueue;
  输出：
  [null,null,null,1.50000,null,2.00000]
 
+ 提示:
+ -105 <= num <= 105
+ 在调用 findMedian 之前，数据结构中至少有一个元素
+ 最多 5 * 104 次调用 addNum 和 findMedian
+
  */
 
-//小顶堆（存放一半或较多的一半）+大顶堆
+//方法1： 优先队列/堆
+//大顶堆  记录小于或等于中位数的数 （存放一半或较多的一半）
+//小顶堆  记录大于中位数的数  （存放另一半）
+//   尾--maxQ--头    头--minQ--尾
+//     [3   5]        [6  10]
+//确保大顶堆中最大元素（堆顶元素）始终小于或等于 小顶堆中最小元素（堆顶元素）
+
+
+//时间复杂度：
+//addNum:  O(logn)，其中n为累计添加的数的数量
+//findMedian: O(1)
+//空间复杂度：O(n) 主要为优先队列的开销
+
 public class MedianFinder {
 
     PriorityQueue<Integer> minqueue;
     PriorityQueue<Integer> maxqueue;
+
+    public static void main(String[] args) {
+        MedianFinder mf = new MedianFinder();
+        mf.addNum(1);
+        mf.addNum(2);
+        System.out.println(mf.findMedian());
+        mf.addNum(3);
+        System.out.println(mf.findMedian());
+    }
+
 
     public MedianFinder() {
         minqueue = new PriorityQueue<Integer>();
@@ -47,27 +74,27 @@ public class MedianFinder {
     }
 
     public void addNum(int num) {
-        int n = minqueue.size()+maxqueue.size();
-
-        if(n!=0 && !minqueue.isEmpty() && num<minqueue.peek()) {
-            maxqueue.offer(num);
-            num = maxqueue.poll();
-        }
-
-        minqueue.offer(num);
-        if(minqueue.size()-maxqueue.size()>1) {
+        //优先往大顶堆里面放
+        if(!maxqueue.isEmpty() && num > maxqueue.peek()) {
+            minqueue.offer(num);
             num = minqueue.poll();
-            maxqueue.offer(num);
+        }
+        maxqueue.offer(num);
+
+        //放多了就调整到小顶堆中去
+        if(maxqueue.size() > minqueue.size() + 1) {
+            num = maxqueue.poll();
+            minqueue.offer(num);
         }
     }
 
     public double findMedian() {
-        int n = minqueue.size()+maxqueue.size();
-        if((n&1)==1) {
-            return minqueue.peek();
+        int n = minqueue.size() + maxqueue.size();
+        if((n&1)==1) { //总数为奇数
+            return maxqueue.peek();  //大顶堆堆顶元素
         }
 
+        //总数为偶数  两个堆顶元素的平均值
         return (minqueue.peek()+maxqueue.peek())/2.0;
-
     }
 }

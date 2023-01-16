@@ -1,5 +1,5 @@
 package Algorithm.Tree.BST;
-import Algorithm.Tree.TraversalBinaryTree;
+import Algorithm.Tree.Base.TraversalBinaryTree;
 import static Lib.Base.TreeNode;
 /**
  * Created by Defias on 2017/10/7.
@@ -22,12 +22,15 @@ public class SortedArrayToBST {
 
     public static void main(String[] args) {
         int[] A = {1,2,3,4,5,6,7,8,9};
+
         TreeNode root = sortedArrayToBST(A);
 
         TraversalBinaryTree.printTreeLevelOrder(root);
-        System.out.println(IsBST.isValidBST(root));  //验证BST
+        System.out.println(IsBST.isValidBST3(root));  //验证BST
     }
 
+    //中序遍历 总是选择中间位置左边的数字作为根节点
+    //时间复杂度：O(n) 空间复杂度：O(logn)
     public static TreeNode sortedArrayToBST(int[] A) {
         int len = A.length;
         TreeNode root = null;
@@ -37,7 +40,7 @@ public class SortedArrayToBST {
     }
 
     public static TreeNode helper(TreeNode root, int[] A, int left, int right) {
-        if(left<=right) {
+        if(left <= right) {
             int mid = left+(right-left)/2;
             root = new TreeNode(A[mid]);
             root.left = helper(root.left, A, left, mid-1);

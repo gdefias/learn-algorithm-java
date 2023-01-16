@@ -7,8 +7,8 @@ import java.util.Arrays;
  https://leetcode-cn.com/problems/coin-change/
 
  给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。
- 如果没有任何一种硬币组合能组成总金额，返回 -1。
-  
+ 如果没有任何一种硬币组合能组成总金额，返回-1。
+ 
 
  输入: coins = [1, 2, 5], amount = 11
  输出: 3
@@ -25,64 +25,109 @@ public class CoinChange {
 
     public static void main(String[] args) {
         int[] coins = new int[] {1,2,5};
-        System.out.println(coinChange2(coins, 11));
+        System.out.println(coinChange3(coins, 11));
     }
 
-    // DP  ---自下而上   时间复杂度：O(Sn) S是金额，n是面额数     空间复杂度：O(S)
-    // F(S)=min(F(S−C)) +1
-    // F(S)：组成金额S所需的最少硬币数量   最后一枚硬币的面值是C
-    // dp[am]: 组成金额am所需的最少硬币数量
+    //方法1：递归
+    //时间复杂度：O(S^n)
+    //空间复杂度 O(n)
+    //思路：枚举每个硬币数量，取值范围为[0, S/C_i]，S是总金额，C_i是第i枚硬币的面值
     public static int coinChange(int[] coins, int amount) {
-        int[] dp = new int[amount+1];
-        Arrays.fill(dp, amount+1);  //初始化为一个不可能取到的最大数量amount+1
-        dp[0] = 0;
-        for(int am = 1; am<=amount; am++) {  //自下而上遍历金额
-            for(int i=0; i<coins.length; i++) {  //遍历不同的面额
-                if(coins[i]<=am) {
-                    dp[am] = Math.min(dp[am], dp[am-coins[i]] + 1);
-                }
-            }
-        }
-        return dp[amount]==amount+1? -1: dp[amount];
-    }
-
-    //递归   时间复杂度：O(S^n)  空间复杂度 O(n)
-    //枚举每个硬币数量子集[X_0~X_(n-1)]
-    //X_i的取值范围为[0, S/C_i]，S 是总金额，C_i是第 i 枚硬币的面值，X_i是面值为C_i的硬币数量
-    public static int coinChange1(int[] coins, int amount) {
         int index = 0;
-        return coinChange1(coins, amount, index);
+        return coinChange(coins, amount, index);
     }
 
-    public static int coinChange1(int[] coins, int amount, int index) {
+    public static int coinChange(int[] coins, int amount, int index) {
         if(amount == 0) {
             return 0;
         } else if(index >= coins.length && amount != 0) {
             return -1;
         }
 
+        int ans = Integer.MAX_VALUE;
         int coin = coins[index];
-        int maxcurr = amount / coin;
-        int mincount = Integer.MAX_VALUE;
-
+        int maxcurr = amount / coin;  //最多maxcurr枚面值为coin的硬币
         for(int i=0; i<=maxcurr; i++) {
-            int others = coinChange1(coins, amount-coin*i, index+1);
+            int others = coinChange(coins, amount-coin*i, index+1);
             if(others != -1) {
-                mincount = Math.min(mincount, others+i);
+                ans = Math.min(ans, others+i);
             }
         }
 
-        return mincount==Integer.MAX_VALUE? -1 : mincount;
+        return ans==Integer.MAX_VALUE? -1 : ans;
+    }
+
+    //方法2：DP 动态规划 记忆法搜索  自上而下
+    //时间复杂度：O(Sn) S是金额，n是面额数
+    //空间复杂度：O(S)
+    //memo[n] 表示钱币n可以被换取的最少的硬币数，不能换取就为−1
+    public static int coinChange2(int[] coins, int amount) {
+        int[] memo = new int[amount+1];
+        Arrays.fill(memo, -2);
+        memo[0] = 0;
+
+        return coinChange2(coins, amount, memo);
+    }
+
+    public static int coinChange2(int[] coins, int amount, int[] memo) {
+        if(amount < 0) {
+            return -1;
+        } else if(amount == 0){
+            return 0;
+        }
+
+        if(memo[amount] != -2) {
+            return memo[amount];
+        }
+
+        int min = Integer.MAX_VALUE;
+        for(int coin: coins) {
+            int num = coinChange2(coins, amount-coin, memo);
+            if(num>=0 && num+1<min) {
+                min = num+1;
+            }
+        }
+
+        memo[amount] = (min==Integer.MAX_VALUE) ? -1 : min;
+        return  memo[amount];
+    }
+
+
+    //方法3：DP 动态规划  自下而上
+    //时间复杂度：O(Sn) S是金额，n是面额数
+    //空间复杂度：O(S)
+    //转移方程： F(S) = min(F(S−C)) +1
+    //F(S): 组成金额S所需的最少硬币数量   最后一枚硬币的面值是C
+    //memo[n] 表示钱币n可以被换取的最少的硬币数，不能换取就为−1
+    public static int coinChange3(int[] coins, int amount) {
+        int[] memo = new int[amount+1];
+
+        Arrays.fill(memo, amount+1);  //初始化为一个不可能取到的最大数量amount+1
+        memo[0] = 0;
+
+        for(int am=1; am<=amount; am++) {  //自下而上遍历金额
+            for(int i=0; i<coins.length; i++) {  //遍历不同的面额
+                if(coins[i]<=am) {
+                    // memo[am]有两种情况：
+                    // 包含当前的coins[i],那么剩余钱就是am-coins[i],这种操作要兑换的硬币数是 memo[am-coins[i]] + 1
+                    // 不包含当前的coins[i]，要兑换的硬币数是memo[am]
+                    memo[am] = Math.min(memo[am], memo[am-coins[i]]+1);
+                }
+            }
+        }
+        return memo[amount]==amount+1? -1: memo[amount];
     }
 
 
 
-    //dfs
-    public static int coinChange2(int[] coins, int amount) {
+    //方法4：DFS
+    public static int coinChange4(int[] coins, int amount) {
         Arrays.sort(coins);  //升序
         int index = coins.length-1;  //从最大面额的开始算
         int cnt = 0;  //所需的硬币数量
+
         dfs(coins, amount, index, cnt);
+
         return ans==Integer.MAX_VALUE? -1: ans;
     }
 
@@ -91,7 +136,7 @@ public class CoinChange {
             return;
         }
 
-        for(int c = amount/coins[index]; c>=0; c--) {
+        for(int c=amount/coins[index]; c>=0; c--) {
             cnt = cnt + c;  //累加所需的硬币数量
 
             int na = amount - (c * coins[index]);

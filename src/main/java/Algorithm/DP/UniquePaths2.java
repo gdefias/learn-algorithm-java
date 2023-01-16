@@ -11,9 +11,9 @@ package Algorithm.DP;
 
  输入: 网格中的障碍物和空位置分别用 1 和 0 来表示。
  [
-   [0,0,0],
-   [0,1,0],
-   [0,0,0]
+  [0,0,0],
+  [0,1,0],
+  [0,0,0]
  ]
  输出: 2
  解释:
@@ -33,95 +33,91 @@ public class UniquePaths2 {
                 {0, 0, 0}
         };
 
-        System.out.println(O.uniquePathsWithObstacles1(obstacleGrid));
+        System.out.println(O.uniquePathsWithObstacles(obstacleGrid));
     }
 
 
-    //DP
-    //dp[i][j]: i行j列的网格从Start到Finish的不同路径数 (i,j从0开始)
+    //DP 动态规划
+    //dp[i][j]: 从第i行第j列网格到Finish的不同路径数
+    //时间复杂度: O(MN) 空间复杂度: O(MN)
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        if(obstacleGrid == null || obstacleGrid.length==0 || obstacleGrid[0].length==0) {
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+        int[][] dp = new int[m][n];
+
+        if(obstacleGrid[m-1][n-1] == 1 || obstacleGrid[0][0] == 1 ) {
             return 0;
         }
 
-        int rows = obstacleGrid.length;
-        int cols = obstacleGrid[0].length;
-
-        int[][] dp = new int[rows][cols];
-
-        //基本情况
-        int flag = 1;  //初值，也标识了是否遇到障碍了
-        for(int j=0; j<cols; j++) {  //第1行各列的值
-            if(flag==1 && obstacleGrid[0][j]!=1) {
-                dp[0][j] = 1;
+        //最后一行
+        dp[m-1][n-1] = 1;
+        for(int j=n-2; j>=0; j--) {
+            if(obstacleGrid[m-1][j] == 1) {
+                dp[m-1][j] = 0;
             } else {
-                flag = 0;   //第1行一旦遇到障碍了，后面的值就都是0
-                dp[0][j] = 0;
+                dp[m-1][j] = dp[m-1][j+1];
             }
         }
 
-        flag = 1;
-        for(int i=0; i<rows; i++) {  //第1列各行的值
-            if(flag==1 && obstacleGrid[i][0]!=1) {
-                dp[i][0] = 1;
+        //最后一列
+        for(int i=m-2; i>=0; i--) {
+            if(obstacleGrid[i][n-1] == 1) {
+                dp[i][n-1] = 0;
             } else {
-                flag = 0;      //第1列一旦遇到障碍了，后面的值就都是0
-                dp[i][0] = 0;
+                dp[i][n-1] = dp[i+1][n-1];
             }
         }
 
-        for(int i=1; i<rows; i++) {  //从第2行第2列开始计算
-            for(int j=1; j<cols; j++) {
-                if(obstacleGrid[i][j] == 1) {  //计算到有障碍物的格子就给0值
+        for(int i=m-2; i>=0; i--) {
+            for(int j=n-2; j>=0; j--) {
+                if(obstacleGrid[i][j] == 1) {
                     dp[i][j] = 0;
                 } else {
-                    dp[i][j] = dp[i-1][j] + dp[i][j-1];
+                    dp[i][j] = dp[i+1][j] + dp[i][j+1];
                 }
             }
         }
-        return dp[rows-1][cols-1];
+
+        return dp[0][0];
     }
 
-    //DP 空间优化
-    public int uniquePathsWithObstacles1(int[][] obstacleGrid) {
-        if(obstacleGrid == null || obstacleGrid.length==0 || obstacleGrid[0].length==0) {
+    //DP 动态规划 空间优化  一维滚动数组
+    //时间复杂度: O(MN) 空间复杂度: O(N)
+    public int uniquePathsWithObstacles_(int[][] obstacleGrid) {
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+        int[] dp = new int[n];
+
+        if(obstacleGrid[m-1][n-1] == 1 || obstacleGrid[0][0] == 1 ) {
             return 0;
         }
 
-        int rows = obstacleGrid.length;
-        int cols = obstacleGrid[0].length;
-
-        int[] dp = new int[cols];  //某1行各列的值
-
-        //基本情况
-        int flag = 1;
-        for(int j=0; j<cols; j++) {     //第1行各列的值
-            if(flag==1 && obstacleGrid[0][j]!=1) {
-                dp[0] = 1;
-            } else {
-                flag = 0;
+        //最后一行各列
+        dp[n-1] = 1;
+        for(int j=n-2; j>=0; j--) {
+            if(obstacleGrid[m-1][j] == 1) {
                 dp[j] = 0;
+            } else {
+                dp[j] = dp[j+1];
             }
         }
 
-        for(int i=1; i<rows; i++) {
-
-            //第i行第1列(j=0)的值
-            if(obstacleGrid[i][0] == 1) {
-                dp[0] = 0;
+        for(int i=m-2; i>=0; i--) {
+            if(obstacleGrid[i][n-1] == 1) {
+                dp[n-1] = 0;
             } else {
-                dp[0] = 1;
+                dp[n-1] = dp[n-1];
             }
 
-            //第i行j列的值
-            for(int j=1; j<cols; j++) {
+            for(int j=n-2; j>=0; j--) {
                 if(obstacleGrid[i][j] == 1) {
                     dp[j] = 0;
                 } else {
-                    dp[j] = dp[j] + dp[j-1];
+                    dp[j] = dp[j] + dp[j+1];
                 }
             }
         }
-        return dp[cols-1];
+
+        return dp[0];
     }
 }

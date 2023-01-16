@@ -4,7 +4,7 @@ import static Lib.Base.printArray;
 
 /**
  * Created by Defias on 2020/06.
- * Description:  并差集
+ * Description:  并查集
  *
  * 加权quick-union算法 / 路径压缩的加权quick-union算法
  */
@@ -13,8 +13,6 @@ public class UF_WeightedQuickUnion {
     private int[] parent;  //存放触点的父触点，根触点的父触点是自身，同一连通分量中的触点有同一个根触点（用根触点标识该分量）
     private int[] rank;   //秩：各个根结点对应的分量树高度的上界
     private int count;     //连通分量的数量
-
-
 
     public static void main(String[] args) {
         UF_WeightedQuickUnion uf = new UF_WeightedQuickUnion(10);

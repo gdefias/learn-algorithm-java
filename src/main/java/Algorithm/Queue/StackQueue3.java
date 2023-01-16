@@ -27,7 +27,7 @@ public class StackQueue3 {
     }
 
     private void stack2ToStack1() {
-        while (! stack2.empty()) {
+        while (!stack2.empty()) {
             stack1.push(stack2.pop());
         }
     }
@@ -37,16 +37,27 @@ public class StackQueue3 {
     }
 
     public int pop() {
-        if (stack1.empty() == true) {
+        if(stack1.empty()) {
             this.stack2ToStack1();
         }
-        return stack1.pop();
+
+        if(!stack1.empty()) {
+            return stack1.pop();
+        } else {
+            return -1;
+        }
+
     }
 
     public int top() {
-        if (stack1.empty() == true) {
+        if(stack1.empty()) {
             this.stack2ToStack1();
         }
-        return stack1.peek();
+
+        if(!stack1.empty()) {
+            return stack1.peek();
+        } else {
+            return -1;
+        }
     }
 }

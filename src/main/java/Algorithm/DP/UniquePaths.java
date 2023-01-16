@@ -26,48 +26,52 @@ public class UniquePaths {
 
     public static void main(String[] args) {
         UniquePaths O = new UniquePaths();
-        System.out.println(O.uniquePaths1(3, 2));
+        System.out.println(O.uniquePaths(3, 2));
     }
 
-    //DP
-    //dp[i][j]: i行j列的网格从Start到Finish的不同路径数 (i,j从0开始)
+    //DP 动态规划
+    //dp[i][j]: 从第i行第j列网格到Finish的不同路径数
+    //时间复杂度: O(MN) 空间复杂度: O(MN)
     public int uniquePaths(int m, int n) {
         int[][] dp = new int[m][n];
 
-        //基本情况
-        for(int j=0; j<n; j++) {  //第1行各列的值
-            dp[0][j] = 1;
+        //最后一行
+        for(int j=n-1; j>=0; j--) {
+            dp[m-1][j] = 1;
         }
 
-        for(int i=0; i<m; i++) {  //第1列各行的值
-            dp[i][0] = 1;
+        //最后一列
+        for(int i=m-2; i>=0; i--) {
+            dp[i][n-1] = 1;
         }
 
-        for(int i=1; i<m; i++) {
-            for(int j=1; j<n; j++) {
-                dp[i][j] = dp[i-1][j] + dp[i][j-1];
+        for(int i=m-2; i>=0; i--) {
+            for(int j=n-2; j>=0; j--) {
+                dp[i][j] = dp[i+1][j] + dp[i][j+1];
             }
         }
-        return dp[m-1][n-1];
+
+        return dp[0][0];
     }
 
-    //DP 空间优化
-    //根据状态转换公式 dp[i][j] = dp[i-1][j] + dp[i][j-1] 可知：当要计算第 i 行的值时，除了会用到第 i - 1 行外，其他第 1 至 第 i-2 行的值
-    //都是不需要用到的，也就是说，对于那部分用不到的值没必要保存他们
-    public int uniquePaths1(int m, int n) {
+    //DP 动态规划 空间优化 一维滚动数组
+    //时间复杂度: O(MN) 空间复杂度: O(N)
+    public int uniquePaths_(int m, int n) {
+        int[] dp = new int[n];
 
-        int[] dp = new int[n];  //某1行各列的值
-
-        //基本情况
-        for(int j=0; j<n; j++) {  //第1行各列的值
+        //最后一行
+        for(int j=n-1; j>=0; j--) {
             dp[j] = 1;
         }
 
-        for(int i=1; i<m; i++) {  //从第2行第2列开始计算
-            for(int j=1; j<n; j++) {
-                dp[j] = dp[j] + dp[j-1];
+        for(int i=m-2; i>=0; i--) {
+            dp[n-1] = 1;
+            for(int j=n-2; j>=0; j--) {
+                dp[j] = dp[j] + dp[j+1];
             }
         }
-        return dp[n-1];
+
+        return dp[0];
+
     }
 }

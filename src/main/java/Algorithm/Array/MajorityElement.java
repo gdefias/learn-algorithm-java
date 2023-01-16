@@ -25,6 +25,7 @@ public class MajorityElement {
     }
 
     //方法1：摩尔投票法
+    //时间复杂度：O(n)  空间复杂度：O(1)
     public static int majorityElement(int[] nums) {
 
         int x = 0; //众数
@@ -47,6 +48,7 @@ public class MajorityElement {
 
 
     //方法2：计数
+    //时间复杂度：O(n)  空间复杂度： 大于O(n)
     public static int majorityElement1(int[] A) {
         if(A==null || A.length==0) {
             throw new ArithmeticException();
@@ -79,6 +81,7 @@ public class MajorityElement {
 
 
     //方法3: 排序
+    //时间复杂度：O(nlogn) 空间复杂度：O(logn)
     public static int majorityElement3(int[] A) {
         Arrays.sort(A);
         return A[A.length/2];
@@ -87,6 +90,7 @@ public class MajorityElement {
 
 
     //方法4：分治
+    //时间复杂度： O(nlogn)  空间复杂度：O(logn)
     public static int majorityElement4(int[] A) {
         if(A==null||A.length==0) {
             return -1;
@@ -127,6 +131,7 @@ public class MajorityElement {
 
 
     //方法5：快排的思想
+    //时间复杂度是O(N)
     public static int majorityElement5(int[] A) {
         if(A==null || A.length==0) {
             throw new ArithmeticException();
@@ -135,43 +140,32 @@ public class MajorityElement {
         int start = 0;
         int end = A.length-1;
         int mid = A.length/2;
+
         int index = partiton(A, start, end);
         while(index != mid) {
-            if(index>mid) {
-                end = index-1;
-                index = partiton(A, start, end);
+            if(index > mid) {
+                index = partiton(A, start, index-1);
             }
-            if(index<mid) {
-                start = index+1;
-                index = partiton(A, start, end);
+
+            if(index < mid) {
+                index = partiton(A, index+1, end);
             }
         }
         return A[mid];
     }
 
     public static int partiton(int[] A, int left, int right) {
-        int i = left;
-        int j = right+1;
         int V = A[left];
+        int lo = left;
 
-        while(true) {
-            while(A[++i]<V) {
-                if (i==right)
-                    break;
+        for(int i=left+1; i<=right; i++) {
+            if(A[i] < V) {
+                lo++;
+                swap(A, lo, i);
             }
-
-            while(A[--j]>V) {
-                if(j==left)
-                    break;
-            }
-
-            if(i>=j) {
-                break;
-            }
-            swap(A, i, j);
         }
-        swap(A, left, j);
-        return j;
+        swap(A, lo, left);
+        return lo;
     }
 
     public static void swap(int[] A, int i, int j) {

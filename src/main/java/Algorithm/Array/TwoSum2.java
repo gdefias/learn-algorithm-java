@@ -21,7 +21,7 @@ class TwoSum2 {
 		System.out.println(result[1]);
 	}
 
-    //使用hashmap
+    //使用哈希表
     public static int[] twoSum(int[] nums, int target) {
         if(nums==null) {
             return null;

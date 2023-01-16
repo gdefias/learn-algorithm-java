@@ -5,6 +5,8 @@ import java.util.*;
 
  删除有序数组中的重复项
 
+ https://leetcode.cn/problems/remove-duplicates-from-sorted-array/
+
  给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。
  不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。
 
@@ -28,34 +30,65 @@ public class RemoveDuplicate {
 		//Arrays.sort(nums);  //对于无序数组可以先排序
 
 		int[] nums = new int[] {0,0,1,1,1,2,2,3,3,4};
-		int res = deduplication(nums);
+		int res = removeDuplicates(nums);
 		System.out.println(res);
 		for(int n:nums) {
 			System.out.print(n+" ");
 		}
 	}
 
-	// O(nlogn) time, O(1) extra space
-	// 双指针  不保证重复的数放在尾部
-	public static int deduplication(int[] nums) {
-		if (nums.length == 0) {
+	// 方法1： 双指针
+	// 时间复杂度：O(nlogn) 空间复杂度：O(1)
+	public static int removeDuplicates(int[] nums) {
+		if (nums==null || nums.length == 0) {
 			return 0;
 		}
 
-		int len = 0;  //标识已删除重复元素的长度（最后一个元素的索引）
-		for (int i = 0; i < nums.length; i++) {
-			if (nums[i] != nums[len]) { //去重
-				nums[++len] = nums[i];
+		int lo = 0;  //已删除重复元素序列的最后一个元素的索引
+		for (int i=1; i<nums.length; i++) {
+			if (nums[i] != nums[lo]) { //去重
+				lo++;
+				nums[lo] = nums[i];
 			}
 		}
-		return len + 1;
+		return lo + 1;
+	}
+
+	// 双指针
+	// 另一种写法
+	public static int removeDuplicates1(int[] nums) {
+		if(nums==null || nums.length<1) {
+			return 0;
+		}
+
+		int ans = 0;
+		int left = -1;
+		int right = 0;
+		while(right <= nums.length-1) {
+			while(right < nums.length-1 && (nums[right] == nums[right+1])) {
+				right++;
+			}
+
+			left++;
+			swap(nums, left, right);
+			ans++;
+			right++;
+		}
+
+		return ans;
+	}
+
+	public static void swap(int[] nums, int i, int j) {
+		int tmp = nums[i];
+		nums[i] = nums[j];
+		nums[j] = tmp;
 	}
 
 
 
-	// O(n) time, O(n) space
-	// 利用HashMap的key不会重复的特性 不保证重复的数放在尾部
-	public static int deduplication2(int[] nums) {
+	// 方法2： 利用HashMap的key不会重复的特性
+	// 时间复杂度：O(n) 空间复杂度：O(n)
+	public static int removeDuplicates2(int[] nums) {
 		HashMap<Integer, Boolean> mp = new HashMap<Integer, Boolean>();
 		for (int i=0; i<nums.length; ++i)
 			mp.put(nums[i], true);
@@ -65,21 +98,6 @@ public class RemoveDuplicate {
 			nums[result++] = entry.getKey();
 		return result;
 	}
-
-
-    //姓名去重：给一串名字，将他们去重之后返回。两个名字重复是说在忽略大小写的情况下是一样的
-    public static List<String> nameDeduplication(String[] names) {
-        Set<String> nameSet =  new  HashSet();
-        List<String> nameList = new ArrayList();
-
-        for(String name: names)   {
-            name = name.toLowerCase();
-            if(nameSet.add(name)) {
-                nameList.add(name);
-            }
-        }
-        return nameList;
-    }
 
 
 }

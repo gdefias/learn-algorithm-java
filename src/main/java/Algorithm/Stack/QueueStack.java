@@ -7,6 +7,8 @@ import java.util.Queue;
  * @date: 2020/12/4
  * @description: 用队列实现栈    --- 两个队列实现
 
+  https://leetcode.cn/problems/implement-stack-using-queues/
+
   使用队列实现栈的下列操作：
   push(x) -- 元素 x 入栈
   pop() -- 移除栈顶元素

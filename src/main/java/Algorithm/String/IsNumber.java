@@ -15,7 +15,7 @@ public class IsNumber {
 
     public static void main(String[] args) {
         IsNumber O = new IsNumber();
-        String s = "    .12e23          ";
+        String s = "    .12e234          ";
         if (O.isNumber(s)) {
             System.out.println("true");
         } else {

@@ -1,5 +1,4 @@
 package Algorithm.String;
-
 /**
  * Created by Defias on 2017/10/7.
  *
@@ -24,7 +23,7 @@ public class LowerToUpper {
     //将一个字符串中的小写字母转换为大写字母。忽略其他不是字母的字符
     public static String lowercaseToUppercases(String str) {
         StringBuilder sb = new StringBuilder(str);
-        for (int index = 0; index < sb.length(); index++) {
+        for (int index=0; index<sb.length(); index++) {
             char c = sb.charAt(index);
             if (Character.isLowerCase(c)) {
                 sb.setCharAt(index, Character.toUpperCase(c));

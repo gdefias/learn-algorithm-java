@@ -1,41 +1,40 @@
 package Algorithm.Math;
-
 import java.util.HashSet;
-
 /**
  * Created by Defias on 2017/10/14.
- *
- * Valid Sudoku
- *
- * https://leetcode.com/problems/valid-sudoku/description/
+
+ 有效的数独
+
+ https://leetcode.cn/problems/valid-sudoku/
+
+ 请你判断一个 9 x 9 的数独是否有效。只需要 根据以下规则 ，验证已经填入的数字是否有效即可。
+ 数字 1-9 在每一行只能出现一次。
+ 数字 1-9 在每一列只能出现一次。
+ 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。（请参考示例图）
+
+ 注意：
+ 一个有效的数独（部分已被填充）不一定是可解的。
+ 只需要根据以上规则，验证已经填入的数字是否有效即可。
+ 空白格用 '.' 表示。
+
  */
 
 
 public class SudokuIfValid {
 
     public boolean isValidSudoku(char[][] board) {
-        if(board==null) {
-            return false;
-        }
-
-        int row = board.length;
-        int col = board[0].length;
-        if(row!=9 || col!=9) {
-            return false;
-        }
-
-        HashSet<String> set = new HashSet<>();
-        for(int i=0; i<row; i++) {
-            for(int j=0; j<col; j++) {
-                if(board[i][j]!='.') {
-                    int checked = board[i][j];
-                    if(checked<1 || checked>9) {
-                        return false;
-                    }
-                    String row_value = "row_" + i + "_" + checked;
-                    String col_value = "col_" + j + "_" + checked;
-                    String box_value = "box_" + (i/3)*3+j/3 + "_" + checked;
-                    if(!set.add(row_value) || !set.add(col_value) || !set.add(box_value)) {
+        int[][] rows = new int[9][9];
+        int[][] columns = new int[9][9];
+        int[][][] subboxes = new int[3][3][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                char c = board[i][j];
+                if (c != '.') {
+                    int index = c - '0' - 1;
+                    rows[i][index]++;
+                    columns[j][index]++;
+                    subboxes[i / 3][j / 3][index]++;
+                    if (rows[i][index] > 1 || columns[j][index] > 1 || subboxes[i / 3][j / 3][index] > 1) {
                         return false;
                     }
                 }

@@ -17,7 +17,7 @@ package Algorithm.DP;
  */
 public class TranslateNum {
 
-    //DP
+    //DP 动态规划
     //dp[i] 以Xi结尾的数字的翻译方法数（i位数）
     public int translateNum(int num) {
         String ns = String.valueOf(num);

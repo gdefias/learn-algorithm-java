@@ -1,15 +1,14 @@
 package Algorithm.String;
 /**
  * Created by Defias on 2017/10/15.
- *
- * 替换空格
- *
- * https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/
- *
- * 实现一个函数，把字符串中的每个空格替换成"%20"
- * 如：输入"We are happy." -> "We%20are%20happy."
- *
- * 0 <= s 的长度 <= 10000
+   替换空格
+
+   https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/
+
+   实现一个函数，把字符串中的每个空格替换成"%20"
+   如：输入"We are happy." -> "We%20are%20happy."
+
+   0 <= s 的长度 <= 10000
  */
 
 public class ReplaceSpace {

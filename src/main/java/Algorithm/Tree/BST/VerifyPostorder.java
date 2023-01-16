@@ -56,7 +56,6 @@ public class VerifyPostorder {
 
         int rootval = A[j];
         int mid = j;  //从前往后第一个比rootval大的值的下标
-
         for(int k=i; k<j; k++) {
             if(A[k] > rootval) {
                 mid = k;
@@ -73,7 +72,7 @@ public class VerifyPostorder {
         return helper(A, i, mid-1) && helper(A, mid, j-1);
     }
 
-    //方法2：非递归 栈  从后往前看  [1,6,3,2,5]  [1,3,2,6,8,7,5]
+    //方法2：非递归 单调栈   从后往前看  [1,6,3,2,5]  [1,3,2,6,8,7,5]
     public static boolean verifyPostorder2(int[] postorder) {
         Stack<Integer> stack = new Stack<>();
         int parent = Integer.MAX_VALUE;
@@ -81,7 +80,7 @@ public class VerifyPostorder {
         //for循环是倒序遍历的
         for(int i = postorder.length-1; i>=0; i--) {
             int cur = postorder[i];
-            //当如果前节点小于栈顶元素，说明栈顶元素和当前值构成了倒序，
+            //如果当前节点小于栈顶元素，说明栈顶元素和当前值构成了倒序，
             //说明当前节点是前面某个节点的左子节点，我们要找到他的父节点
             while(!stack.isEmpty() && stack.peek() > cur)
                 parent = stack.pop();

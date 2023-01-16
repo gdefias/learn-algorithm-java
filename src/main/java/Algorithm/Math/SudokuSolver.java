@@ -1,12 +1,24 @@
 package Algorithm.Math;
-
 /**
  * Created by Defias on 2017/10/14.
- *
- * Sudoku Solver  数独
- *
- *
- * https://leetcode.com/problems/sudoku-solver/description/
+
+ 解数独
+
+ https://leetcode.cn/problems/sudoku-solver/
+
+ 编写一个程序，通过填充空格来解决数独问题。
+
+ 数独的解法需 遵循如下规则：
+ 数字 1-9 在每一行只能出现一次。
+ 数字 1-9 在每一列只能出现一次。
+ 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。（请参考示例图）
+ 数独部分空格内已填入了数字，空白格用 '.' 表示。
+
+ 提示：
+ board.length == 9
+ board[i].length == 9
+ board[i][j] 是一位数字或者 '.'
+ 题目数据 保证 输入数独仅有一个解
  */
 
 public class SudokuSolver {

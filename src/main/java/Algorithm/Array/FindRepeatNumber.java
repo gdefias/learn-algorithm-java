@@ -19,14 +19,15 @@ import Lib.Base;
 public class FindRepeatNumber {
 
     public static void main(String[] args) {
-        int[] A = new int[] {2, 3, 1, 0, 2, 5, 3};
+//        int[] A = new int[] {2, 3, 1, 0, 2, 5, 3};
+        int[] A = new int[] {1, 3, 2, 4, 0, 5, 6};
         System.out.println(findRepeatNumber4(A));
     }
 
     //方法1：使用集合set
     //方法2：先排序再查找
 
-    //方法3
+    //方法3：计数
     public static int findRepeatNumber3(int[] nums) {
         int[] count = new int[nums.length];
 
@@ -34,6 +35,7 @@ public class FindRepeatNumber {
         for(i=0; (i<nums.length)&&(count[nums[i]]==0); i++) {
             count[nums[i]]++;
         }
+
         if(count[nums[i]]>0) {
             return nums[i];
         } else {
@@ -41,21 +43,23 @@ public class FindRepeatNumber {
         }
     }
 
-    //方法4：原地交换  索引和值一对多
+    //方法4：原地交换  索引和值一对多 {1, 3, 2, 4, 0, 5, 6}
     public static int findRepeatNumber4(int[] nums) {
-
-        for(int i=0; i<nums.length; i++) {
+        int i = 0;
+        while(i < nums.length) {
             if(nums[i] == i) {
+                i++;
                 continue;
             }
 
-            if(nums[i] == nums[nums[i]]) {
+            if(nums[nums[i]] == nums[i]) {
                 return nums[i];
             }
 
-            Base.swap(nums, i, nums[i]);
+            int tmp = nums[i];
+            nums[i] = nums[tmp];
+            nums[tmp] = tmp;
         }
-
         return -1;
     }
 

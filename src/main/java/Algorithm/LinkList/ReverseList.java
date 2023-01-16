@@ -32,16 +32,17 @@ public class ReverseList {
 
 
     //方法1：头插法
-    public static ListNode reverseList(ListNode head) {
-        ListNode prev = null;
+    public static ListNode reverseList(ListNode root) {
+        ListNode pre = null; //已完成反转的链表头
+        ListNode curr = root;  //当前结点
 
-        while(head != null) {
-            ListNode tmp = head.next;
-            head.next = prev;
-            prev = head;
-            head = tmp;
+        while(curr != null) {
+            ListNode next = curr.next; //当前结点的next结点
+            curr.next = pre;
+            pre = curr;
+            curr = next;
         }
-        return prev;
+        return pre;
     }
 
 
@@ -91,12 +92,12 @@ public class ReverseList {
     }
 
     //更易理解的递归版本
-    public ListNode reverseList33(ListNode head) {
+    public static ListNode reverseList33(ListNode head) {
         if (head == null || head.next == null)
             return head;
 
         ListNode next = head.next;
-        ListNode reverse = reverseList(next);
+        ListNode reverse = reverseList33(next);
         next.next = head;
 
         head.next = null;
@@ -126,19 +127,20 @@ public class ReverseList {
 
 
     //其他头插法写法
-    public static ListNode reverseList4(ListNode root) {
-        ListNode pre = null; //已完成反转的链表头
-        ListNode curr = root;  //当前结点
-        ListNode next;  //当前结点的next
 
-        while(curr != null) {
-            next = curr.next;
-            curr.next = pre;
-            pre = curr;
-            curr = next;
+    //翻转完后head指向null
+    public static ListNode reverseList4(ListNode head) {
+        ListNode prev = null;
+
+        while(head != null) {
+            ListNode tmp = head.next;
+            head.next = prev;
+            prev = head;
+            head = tmp;
         }
-        return pre;
+        return prev;
     }
+
 
     //头插法
     public static ListNode reverseList5(ListNode root) {

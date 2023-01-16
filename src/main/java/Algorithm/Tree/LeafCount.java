@@ -1,6 +1,6 @@
 package Algorithm.Tree;
-import Lib.Base;
-import static Algorithm.Tree.TraversalBinaryTree.mockTree;
+import static Lib.Base.*;
+import static Algorithm.Tree.Base.TraversalBinaryTree.mockTree;
 /**
  * @author: Defias
  * @date: 2020/12/23
@@ -8,15 +8,14 @@ import static Algorithm.Tree.TraversalBinaryTree.mockTree;
  */
 public class LeafCount {
     public static int count = 0;
-    public static int maxDepth = 0;
 
     public static void main(String[] args) {
-        Base.TreeNode root = mockTree();
+        TreeNode root = mockTree();
         System.out.println(gtLeafCount(root));
     }
 
-    //方法1
-    public static int gtLeafCount(Base.TreeNode root) {
+    //DFS
+    public static int gtLeafCount(TreeNode root) {
         if(root==null) {
             return count;
         }

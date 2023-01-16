@@ -1,8 +1,7 @@
 package Algorithm.String;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import Algorithm.String.Trie4.TrieNode;
+import Algorithm.String.Trie.Trie4.TrieNode;
 /**
  * @author: Defias
  * @date: 2020/12/8
@@ -19,9 +18,8 @@ public class WordSearchII2 {
         System.out.println((new WordSearchII2()).findWords(board, words));
     }
 
+    // 回溯 + 字典树Trie
     public List<String> findWords(char[][] board, String[] words) {
-
-        // Step 1). Construct the Trie
         TrieNode root = new TrieNode();
         for (String word : words) {
             TrieNode node = root;
@@ -43,7 +41,7 @@ public class WordSearchII2 {
         for (int row = 0; row < board.length; ++row) {
             for (int col = 0; col < board[row].length; ++col) {
                 if (root.children.containsKey(board[row][col])) {
-                    backtracking(row, col, root);
+                    backtrace(row, col, root);
                 }
             }
         }
@@ -51,7 +49,7 @@ public class WordSearchII2 {
         return this._result;
     }
 
-    private void backtracking(int row, int col, TrieNode parent) {
+    private void backtrace(int row, int col, TrieNode parent) {
         Character letter = this._board[row][col];
         TrieNode currNode = parent.children.get(letter);
 
@@ -78,7 +76,7 @@ public class WordSearchII2 {
             }
 
             if (currNode.children.containsKey(this._board[newRow][newCol])) {
-                backtracking(newRow, newCol, currNode);
+                backtrace(newRow, newCol, currNode);
             }
         }
 

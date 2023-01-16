@@ -25,7 +25,7 @@ public class FindContinuousSequence {
     }
 
 
-    //双指针
+    //双指针 滑动窗口
     public static int[][] findContinuousSequence(int target) {
         List<int[]> result = new ArrayList<>();
 

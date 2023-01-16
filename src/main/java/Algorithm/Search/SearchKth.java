@@ -1,8 +1,10 @@
 package Algorithm.Search;
-import Algorithm.Sorts.HeapSort;
+import Algorithm.Sort.Compare.HeapSort;
 
 import static Lib.Base.printArray;
-import Algorithm.Sorts.QuickSort;
+
+import Algorithm.Sort.Compare.HeapSort2;
+import Algorithm.Sort.Compare.QuickSort3;
 /**
  * Created by Defias on 2020/06.
  * Description: 数组中的第K个最大元素
@@ -10,18 +12,22 @@ import Algorithm.Sorts.QuickSort;
  https://leetcode-cn.com/problems/kth-largest-element-in-an-array/
 
  寻找N元素数组中第K大(或第K小)的元素
- 第K大即大于K的元素有K-1个，小于或等于K的元素有N-K+1个（从0开始索引的话索引是N-K）
+
+ 数组第K大的元素 即数组降序排序后的第K个（最大的）元素，而不是第K个不同的元素
+                也即数组升序排序后的第N-K个（最小的）元素
+
  */
 
 public class SearchKth {
     public static void main(String[] args) {
-        int[] A = {1, 23, 34, 9, 32, 59, 1, 2, 3, 64, 5, 6, 6, 10, 0, 0, 26, 26, 85, 9, 31, 1, 64};
+//        int[] A = {1, 23, 34, 9, 32, 59, 1, 2, 3, 64, 5, 6, 6, 10, 0, 0, 26, 26, 85, 9, 31, 1, 64};
+        int[] A = {3,5,3,1,2,5,5,5,6};
         printArray(A);
-        System.out.println(kthLargestElement3(A, 3));
+        System.out.println(kthLargestElement3(A, 4));
         printArray(A);
     }
 
-  // 方法1：快速排序思想 递归快速选择   平均情况时间复杂度O(N)，最坏情况O(N^2)  空间复杂度O(1)
+  // 方法1：快速排序思想    平均情况时间复杂度O(N)，最坏情况O(N^2)  空间复杂度O(1)
   public static int kthLargestElement(int[] nums, int k) {
         if (nums == null || nums.length == 0 || k<1 || k>nums.length) {
             return 0;
@@ -34,7 +40,7 @@ public class SearchKth {
         if (left == right) {
             return nums[left];
         }
-        int privot = QuickSort.partition(nums, left, right);
+        int privot = QuickSort3.partition(nums, left, right);
         if (privot == k) {
             return nums[privot];
         } else if (privot < k) {
@@ -51,16 +57,17 @@ public class SearchKth {
         }
 
         int[] kminheap = new int[k];
-        for(int i=0; i<k; i++) {
+        for(int i=0; i<k; i++) {  //前k个元素
             kminheap[i] = nums[i];
         }
 
-        HeapSort.buildMinHeap(kminheap);
+//        HeapSort2.buildMinHeap(kminheap);
+        HeapSort2.buildMinHeap2(kminheap);
 
-        for(int i=k; i<nums.length; ++i) {
+        for(int i=k; i<nums.length; ++i) {  //剩余元素
             if(nums[i] > kminheap[0]) {  //比堆顶元素大说明堆顶的元素不可能是第K大
                 kminheap[0] = nums[i];    //替代堆顶元素
-                HeapSort.rebuildMinHeap(kminheap, 0);     //重新调整
+                HeapSort2.rebuildMinHeap(kminheap, 0);     //重新调整
             }
         }
 
@@ -73,18 +80,23 @@ public class SearchKth {
             return 0;
         }
 
-        HeapSort.buildMaxHeap(nums);
+        int[] kmaxheap = new int[nums.length];
+        for(int i=0; i<nums.length; i++) {  //所有元素
+            kmaxheap[i] = nums[i];
+        }
+
+//        HeapSort.buildMaxHeap(kmaxheap);
+        HeapSort.buildMaxHeap2(kmaxheap);
         //建立大顶堆后，堆顶元素是所有元素中最大的元素
 
-        int last = nums.length-1;
-        int i=1;
-        while (i<k) {     //经过k-1次调整后，堆顶元素是所有元素中第k大的元素
-            nums[0] = nums[last];
+        int last = kmaxheap.length-1;
+        for(int i=1; i<=k-1; i++) {  //经过k-1次调整后，堆顶元素是所有元素中第k大的元素
+            kmaxheap[0] = kmaxheap[last];
             last--;
-            HeapSort.rebuildMaxHeap(nums, 0, last);
-            i++;
+            HeapSort.rebuildMaxHeap(kmaxheap, 0, last);
         }
-        return nums[0];
+
+        return kmaxheap[0];
     }
 }
 

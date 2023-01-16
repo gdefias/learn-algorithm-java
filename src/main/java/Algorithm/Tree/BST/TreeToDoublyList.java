@@ -19,47 +19,47 @@ import java.util.Stack;
  使用 中序遍历“从小到大”访问树的节点， 将访问到的节点构建成双向链表
  */
 public class TreeToDoublyList {
-    public static TreeNode tail = null; //双向链表尾
-    public static TreeNode head = null; //双向链表头
+    public static TreeNode pre = null; //当前结点的前一个结点  当遍历完后即是双向链表尾结点
+    public static TreeNode head = null; //双向链表头结点
 
     public static void main(String[] args) {
         TreeNode A = Util.makeTree3();
         TreeNode B = treeToDoublyList(A);
-        Util.printDTreeNode(B);
+//        Util.printDTreeNode(B);
     }
 
     //方法1：递归 中序遍历  DFS
     public static TreeNode treeToDoublyList(TreeNode root) {
-        if(root==null) {
+        if(root == null) {
             return null;
         }
-        helper(root);
-        head.left = tail;
-        tail.right = head;
+
+        dfs(root);
+
+        //首尾相连构成环
+        head.left = pre;
+        pre.right = head;
+
         return head;
     }
 
-    public static void  helper(TreeNode curr) {
-        if(curr==null) {
+    public static void  dfs(TreeNode cur) {
+        if(cur==null) {
             return;
         }
 
-        helper(curr.left);
+        dfs(cur.left);
 
-        if(head==null) {
-            head = curr;
+        if(pre == null) {
+            head = cur;
+        } else {
+            pre.right = cur;
         }
+        cur.left = pre;
+        pre = cur;
 
-        if(tail != null) {
-            tail.right = curr;
-        }
-
-        curr.left = tail;
-        tail = curr;
-
-        helper(curr.right);
+        dfs(cur.right);
     }
-
 
 
 

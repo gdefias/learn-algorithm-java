@@ -6,11 +6,11 @@ import java.util.*;
 
  https://leetcode-cn.com/problems/combination-sum/
 
- 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合
- candidates 中的数字可以无限制重复被选取
+ 给定一个无重复元素的数组candidates和一个目标数target，找出candidates中所有可以使数字和为target的组合
+ candidates中的数字可以无限制重复被选取
 
  说明：
- 所有数字（包括 target）都是正整数
+ 所有数字（包括target）都是正整数
  解集不能包含重复的组合
 
  输入: candidates = [2,3,6,7], target = 7,
@@ -23,9 +23,9 @@ import java.util.*;
  输入: candidates = [2,3,5], target = 8,
  所求解集为:
  [
-   [2,2,2,2],
-   [2,3,3],
-   [3,5]
+  [2,2,2,2],
+  [2,3,3],
+  [3,5]
  ]
 
  1 <= candidates.length <= 30
@@ -41,88 +41,78 @@ import java.util.*;
 public class CombinationSum {
 
     public static void main(String[] args) {
-        int[] candidates = new int[] {2,3,5};
-        int target = 8;
+        int[] candidates = new int[] {2,3,6,7};
+        int target = 7;
         System.out.println(combinationSum(candidates,target));
     }
 
-    //方法1
+    /**
+     * 回溯
+     * */
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
-        int start = 0;
-        int sum = 0;
+        int start = 0;  //起始索引
+        int sum = 0;  //累加和
 
-        Arrays.sort(candidates);  //排序
-
-        backtrack(candidates, target, start, sum, path, res);
+        backstrace(candidates, target, start, sum, path, res);
 
         return  res;
     }
 
-    /**
-     * 回溯 + 剪枝
-     *
-     * 剪枝条件：已选元素总和如果已经大于n（题中要求的和）了，那么往后遍历就没有意义了，直接剪掉
-     *
-     * 对总集合排序之后，如果下一层的sum（就是本层的 sum + candidates[i]）已经大于target，就可以结束本轮for循环的遍历
-     *
-     * */
-    public static void backtrack(int[] candidates, int target, int start, int sum, List<Integer> path, List<List<Integer>> res) {
-        //if(sum > target) {  //因为有剪枝，这个判断可以不要
-        //    return;
-        //}
 
-        if(sum == target) {
+    public static void backstrace(int[] candidates, int target, int start, int sum, List<Integer> path, List<List<Integer>> res) {
+        if(sum == target) {  //满足条件时新增结果
             res.add(new ArrayList<>(path));
+            return;
+        } else if(sum > target) {  //因为都是正整数，所以和已经大了，当前组合不再可能是满足条件的
             return;
         }
 
         for(int i=start; i<candidates.length; i++) {
-            if(sum+candidates[i] > target) {  //剪枝
-                break;
-            }
-
             sum += candidates[i];
             path.add(candidates[i]);
 
-            backtrack(candidates, target, i, sum, path, res);  // 关键点:不用i+1了，表示可以重复读取当前的数
+            backstrace(candidates, target, i, sum, path, res);  // 关键点:不用i+1了，表示可以重复读取当前的数
 
             sum -= candidates[i];
             path.remove(path.size()-1);
         }
     }
 
-    //方法2：与方法1类似，只是没有专门保存sum，而是根据当前sum每次改变target值
+
+    /**
+     * 排序 + 回溯
+    * */
     public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
-        int start = 0;
+        int start = 0;  //起始索引
 
-        Arrays.sort(candidates);  //排序
+        Arrays.sort(candidates);  //排序  方便后面剪枝
 
-        backtrack2(candidates, target, start, path, res);
+        //没有专门保存和的sum变量，而是每次改变target值
+        backstrace2(candidates, target, start, path, res);
 
         return  res;
     }
 
-    public static void backtrack2(int[] candidates, int target, int start, List<Integer> path, List<List<Integer>> res) {
+    public static void backstrace2(int[] candidates, int target, int start, List<Integer> path, List<List<Integer>> res) {
         if(target == 0) {
             res.add(new ArrayList<>(path));
             return;
         }
 
         for(int i=start; i<candidates.length; i++) {
-            if(target-candidates[i] < 0) {  //剪枝
+            if(target-candidates[i] < 0) {  //剪枝  candidates已排序为升序，当前元素candidates[i]已经比target大了，后面元素的元素更不可能了，所以剪枝
                 break;
             }
 
             path.add(candidates[i]);
 
-            backtrack2(candidates, target-candidates[i], i, path, res);  // 关键点:不用i+1了，表示可以重复读取当前的数
+            backstrace2(candidates, target-candidates[i], i, path, res);  // 关键点: 不用i+1了，表示可以重复读取当前的数
 
             path.remove(path.size()-1);
         }
     }
-
 }

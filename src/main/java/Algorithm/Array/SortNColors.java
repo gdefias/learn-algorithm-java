@@ -2,9 +2,9 @@ package Algorithm.Array;
 import Lib.Util;
 /**
  * Created by Defias on 2017/10/8.
- *
- *
- * 颜色分类：给定一个有n个对象（包括k种不同的颜色，并按照1到k进行编号）的数组，将对象进行分类使相同颜色的对象相邻，并按照1,2，...k的顺序进行排序
+
+    颜色分类
+    给定一个有n个对象（包括k种不同的颜色，并按照1到k进行编号）的数组，将对象进行分类使相同颜色的对象相邻，并按照1,2，...k的顺序进行排序
  */
 
 public class SortNColors {
@@ -27,6 +27,7 @@ public class SortNColors {
                 min = Math.min(min, colors[i]);
                 max = Math.max(max, colors[i]);
             }
+
             int left = start;
             int right = end;
             int cur = left;

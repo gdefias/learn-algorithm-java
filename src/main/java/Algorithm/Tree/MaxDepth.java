@@ -1,12 +1,11 @@
 package Algorithm.Tree;
-import Lib.Base;
 import Lib.Util;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
 import static Lib.Base.TreeNode;
+
 /**
  * Created by Defias on 2016/3/21.
 
@@ -23,7 +22,7 @@ import static Lib.Base.TreeNode;
  9  20
  /  \
  15   7
- 返回它的最大深度 3
+ 返回它的最大深度3
 
  节点总数 <= 10000
  */
@@ -125,10 +124,10 @@ public class MaxDepth {
     }
 
     //方法5： BFS、层序遍历  写法2
-    public static int TreeHightGetter3(Base.TreeNode root) {
+    public static int TreeHightGetter3(TreeNode root) {
         if(root == null)
             return 0;
-        List<Base.TreeNode> queue = new LinkedList<Base.TreeNode>() {{
+        List<TreeNode> queue = new LinkedList<TreeNode>() {{
             add(root);
         }};
         int res = 0;
@@ -136,8 +135,8 @@ public class MaxDepth {
         while(!queue.isEmpty()) {
             res++;  //每访问一层深度加1
 
-            List<Base.TreeNode> qtmp = new LinkedList<>();  //存放下一层的所有结点
-            for(Base.TreeNode node : queue) { //倒出当前层的所有结点
+            List<TreeNode> qtmp = new LinkedList<>();  //存放下一层的所有结点
+            for(TreeNode node : queue) { //倒出当前层的所有结点
                 if(node.left != null)
                     qtmp.add(node.left);
                 if(node.right != null)

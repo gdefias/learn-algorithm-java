@@ -1,5 +1,8 @@
 package Algorithm.BackTracking;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by Defias on 2017/10/14.
 
@@ -17,32 +20,32 @@ public class N_Queens2 {
     public static int sum = 0;
 
     public static void main(String[] args) {
-        System.out.println(solveNQueens1(8));
+        System.out.println(totalNQueens(8));
     }
 
-
-    //方法1：只输出摆法的数量
-    public static int solveNQueens1(int n) {
+    //方法1： DFS
+    //时间复杂度：大于O(N!)  需要O(N)的时间复杂度来判断某个位置是否可以放置皇后
+    public static int totalNQueens(int n) {
         int[] A = new int[n];
-        solveNQueens1dfs(A, 0, n);
+        dfs(A, 0, n);
         return sum;
     }
 
-    public static void solveNQueens1dfs(int[] A, int row, int N) {
-        if(row==N) {
+    public static void dfs(int[] A, int row, int N) {
+        if(row == N) {
             sum++;
             return;
         }
 
         for(int i=0; i<N; i++) {
             A[row] = i;
-            if(isValidate1(A, row, i)) {
-                solveNQueens1dfs(A, row+1, N);
+            if(isValidate(A, row, i)) {
+                dfs(A, row+1, N);
             }
         }
     }
 
-    public static boolean isValidate1(int[] A, int row, int col) {
+    public static boolean isValidate(int[] A, int row, int col) {
         for(int i=0; i<row; i++) {
             int j = A[i];
             if(j==col || (Math.abs(i-row) == Math.abs(j-col))) {
@@ -51,4 +54,47 @@ public class N_Queens2 {
         }
         return true;
     }
+
+
+
+    //方法2： 回溯 - 基于集合的回溯
+    //时间复杂度：大于O(N!)  能够在O(1)的时间内判断一个位置是否可以放置皇后
+    public int totalNQueens2(int n) {
+        Set<Integer> columns = new HashSet<Integer>();
+        Set<Integer> diagonals1 = new HashSet<Integer>();
+        Set<Integer> diagonals2 = new HashSet<Integer>();
+        return backtrack(n, 0, columns, diagonals1, diagonals2);
+    }
+
+    public int backtrack(int n, int row, Set<Integer> columns, Set<Integer> diagonals1, Set<Integer> diagonals2) {
+        if (row == n) {
+            return 1;
+        } else {
+            int count = 0;  //统计可以放置皇后的总数量
+            for (int i = 0; i < n; i++) {
+                if (columns.contains(i)) {
+                    continue;
+                }
+                int diagonal1 = row - i;
+                if (diagonals1.contains(diagonal1)) {
+                    continue;
+                }
+                int diagonal2 = row + i;
+                if (diagonals2.contains(diagonal2)) {
+                    continue;
+                }
+                columns.add(i);
+                diagonals1.add(diagonal1);
+                diagonals2.add(diagonal2);
+
+                count += backtrack(n, row + 1, columns, diagonals1, diagonals2);
+
+                columns.remove(i);
+                diagonals1.remove(diagonal1);
+                diagonals2.remove(diagonal2);
+            }
+            return count;
+        }
+    }
+
 }

@@ -16,10 +16,10 @@ public class BinarySearchLast {
 
     public static void main(String[] args) {
         int[] nums = new int[]{1, 3, 22, 22, 22, 22, 234};
-        System.out.println(binarySearch(nums, 22));
+        System.out.println(binarySearch3(nums, 22));
     }
 
-    //方法1
+    //方法1： while条件严格比较
     public static int binarySearch(int[] A, int target) {
         if(A==null || A.length ==0 || target < A[0] || target > A[A.length-1]) {
             return -1;
@@ -27,23 +27,26 @@ public class BinarySearchLast {
 
         int start = 0;
         int end = A.length - 1;
-        while(start <= end) {
-            int mid = start+(end-start) / 2;
-            if(A[mid] <= target) {
-                start = mid+1;   //相等继续往右二分找（因为要找第最后一次出现的），即使右边再也找不到了，最终end也会刚好指向本次mid
-            } else {
+        while(start < end) {
+            int mid = end-(end-start) / 2;  //取偏右的中间值
+            if(A[mid] < target) {
+                start = mid+1;
+            } else if(A[mid] > target) {
                 end = mid-1;
+            } else {
+                start = mid;
             }
         }
 
-        if(end<0 || A[end]!=target) {
-            return -1;
+        if(A[start] == target) {
+            return start;
         }
-        return end;
+
+        return -1;
     }
 
-    //方法2
-    public static int binarySearch1(int[] A, int target) {
+    //方法2：while条件非严格比较
+    public static int binarySearch2(int[] A, int target) {
         if(A==null || A.length ==0 || target < A[0] || target > A[A.length-1]) {
             return -1;
         }
@@ -68,7 +71,7 @@ public class BinarySearchLast {
     }
 
     //方法3： 对方法2进行了分支合并优化
-    public static int binarySearch2(int[] A, int target) {
+    public static int binarySearch3(int[] A, int target) {
         if(A==null || A.length ==0 || target < A[0] || target > A[A.length-1]) {
             return -1;
         }
@@ -88,5 +91,28 @@ public class BinarySearchLast {
             }
         }
         return -1;
+    }
+
+    //方法4
+    public static int binarySearch4(int[] A, int target) {
+        if(A==null || A.length ==0 || target < A[0] || target > A[A.length-1]) {
+            return -1;
+        }
+
+        int start = 0;
+        int end = A.length - 1;
+        while(start <= end) {
+            int mid = start+(end-start) / 2;
+            if(A[mid] <= target) {
+                start = mid+1;   //相等继续往右二分找（因为要找第最后一次出现的），即使右边再也找不到了，最终end也会刚好指向本次mid
+            } else {
+                end = mid-1;
+            }
+        }
+
+        if(end<0 || A[end]!=target) {
+            return -1;
+        }
+        return end;
     }
 }

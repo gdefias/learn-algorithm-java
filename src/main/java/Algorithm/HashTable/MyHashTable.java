@@ -97,7 +97,6 @@ public class MyHashTable {
 
 		if(p==null){
 			st[index]=newNode;
-			n++;
 		} else {  //解决哈希冲突
 			ListNode nextp;
 			while((p.val != val) && (nextp=p.next)!=null) {
@@ -109,8 +108,8 @@ public class MyHashTable {
 				return;
 			}
 			p.next = newNode;
-			n++;
 		}
+		n++;
 	}
 
 	//哈希表中是否包含指定的元素

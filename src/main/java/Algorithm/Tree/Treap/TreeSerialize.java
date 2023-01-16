@@ -1,6 +1,6 @@
 package Algorithm.Tree.Treap;
 import Lib.Base.TreeNode;
-import Algorithm.Tree.TraversalBinaryTree;
+import Algorithm.Tree.Base.TraversalBinaryTree;
 import java.util.LinkedList;
 import java.util.Queue;
 

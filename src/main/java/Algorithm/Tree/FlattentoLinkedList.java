@@ -1,4 +1,6 @@
 package Algorithm.Tree;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 import static Lib.Base.*;
@@ -36,7 +38,7 @@ public class FlattentoLinkedList {
 
     public static void main(String[] args) {
         TreeNode root = makeTree1();
-        flatten3(root);
+        flatten(root);
         print2(root);
     }
 
@@ -57,7 +59,9 @@ public class FlattentoLinkedList {
 
         flatten(left);
         flatten(right);
+
     }
+
 
     //方法2： 前序遍历  非递归
     public static void flatten2(TreeNode root) {

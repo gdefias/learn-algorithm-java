@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  进阶：
  你可以不使用代码库中的排序函数来解决这道题吗？
  你能想出一个仅使用常数空间的一趟扫描算法吗？
-  
+ 
 
  示例 1：
  输入：nums = [2,0,2,1,1,0]
@@ -30,86 +30,66 @@ public class Sort3Colors {
 
     public static void main(String[] args) {
         int[] nums = new int[] {2,0,2,1,1,0};
-        sortColors3(nums);
+        sortColors2(nums);
         System.out.println(Arrays.stream(nums).boxed().collect(Collectors.toList()));
     }
 
+
     //方法1： 双指针
-    public static void sortColors1(int[] nums) {
-        int k = -1;  //指向最左边的白色
-        int i = 0;
-        int j = nums.length-1;
+    public static void sortColors(int[] nums) {
+        int len = nums.length;
+        int p = -1;  //红球的右边界
+        int q = len;  //白球的左边界
 
-        while(i<=j) {  //排白色和蓝色
-            while(i<=j) {
-                if(nums[i]==2) {  //蓝
-                    break;
-                } else if(nums[i]==0) {  //红
-                    if(k>=0) {
-                        swap(nums, i, k);  //将红色放在数组头部
-                        k++;
-                    }
-                } else {  //白
-                    if(k<0) {
-                        k = i;
-                    }
+        for(int i=0; i<q; i++) {
+            if(nums[i] == 0) {
+                p++;
+                swap(nums, p, i);
+            } else if(nums[i] == 2) {
+                q--;
+                swap(nums, q, i);
+                i--;
+            }
+        }
+    }
+
+    //双指针
+    public static void sortColors_(int[] nums) {
+        int len = nums.length;
+        int p = 0; //红球的右外边界
+        int q = 0;  //黄球的右外边界
+
+        for (int i=0; i<len; i++) {
+            if (nums[i] == 1) {  //黄球
+                swap(nums, i, q);
+                q++;
+            } else if(nums[i] == 0) {  //红球
+                swap(nums, i, p);
+                if (p < q) {  //必然把排好的黄球换走了
+                    swap(nums, i, q);  //把黄球换回来
                 }
-                i++;
-            }
-
-            while(i<=j && nums[j]==2) {
-                j--;
-            }
-
-            if(i<=j) {
-                swap(nums, i, j);
-                j--;
+                p++;
+                q++;
             }
         }
     }
 
 
-    //方法2：双指针 用指针p0来交换0，p1来交换1
+    //方法2：单指针 对数组进行两次遍历
     public static void sortColors2(int[] nums) {
-        if (nums==null || nums.length<=2) {
-            return;
-        }
-        int n = nums.length;
-        int p0 = 0, p1 = 0;
-        for (int i = 0; i < n; ++i) {
-            if (nums[i] == 1) {
-                swap(nums, i, p1);
-                ++p1;
-            } else if (nums[i] == 0) {
-                swap(nums, i, p0);
-                if (p0 < p1) {
-                    swap(nums, i, p1);
-                }
-                ++p0;
-                ++p1;
-            }
-        }
-    }
-
-
-    //方法3：单指针 对数组进行两次遍历
-    public static void sortColors3(int[] nums) {
-        int n = nums.length;
-        int ptr = 0;
-        for (int i = 0; i < n; ++i) {
+        int len = nums.length;
+        int p = 0;
+        for (int i=0; i<len; ++i) {  //第一趟排好红球
             if (nums[i] == 0) {
-                int temp = nums[i];
-                nums[i] = nums[ptr];
-                nums[ptr] = temp;
-                ++ptr;
+                swap(nums, p, i);
+                ++p;
             }
         }
-        for (int i = ptr; i < n; ++i) {
+
+        for (int i=p; i<len; ++i) {  //第二趟接着第一趟的最后位置排好黄球
             if (nums[i] == 1) {
-                int temp = nums[i];
-                nums[i] = nums[ptr];
-                nums[ptr] = temp;
-                ++ptr;
+                swap(nums, p, i);
+                ++p;
             }
         }
     }

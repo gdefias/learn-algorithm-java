@@ -39,7 +39,8 @@ public class BinarySearchMatrix {
         int column = matrix[0].length;
 
         //查找target可能存在的那一行
-        int start = 0, end = row-1;
+        int start = 0;
+        int end = row-1;
         while (start <= end) {
             int mid = start + (end-start) / 2;
             if (matrix[mid][0] == target) {
@@ -51,14 +52,14 @@ public class BinarySearchMatrix {
             }
         }
 
-        row = start-1;
+        row = start-1;  //所有行首元素值中比target值小的最大的那一个所在行
         if(row < 0) {
             return false;
         }
 
         //在上一步确定的行中查找target
         start = 0;
-        end = column - 1;
+        end = column-1;
         while (start <= end) {
             int mid = start + (end - start) / 2;
             if (matrix[row][mid] == target) {

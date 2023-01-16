@@ -36,23 +36,29 @@ public class Array2ZigzagPrintMatrix {
     public static void PrintMatrixZigZag(int[][] A) {
         int leftX = 0;  //第一路点（先向下走）
         int leftY = 0;
+
         int rightX = 0; //第二路点（先向右走）
         int rightY = 0;
+
         int endX = A.length-1;
         int endY = A[0].length-1;
-        boolean isFromBottom = true;
+        boolean isFromBottom = true; //控制打印方向
 
         while(leftY<=endY && rightX<=endX) {
             PrintLine(A, leftX, leftY, rightX, rightY, isFromBottom);
-            if(++leftX>endX) {
-                leftX=endX;
+            leftX++;
+            rightY++;
+
+            if(leftX > endX) {  //第一路点转弯以后leftX会始终大于endX
+                leftX = endX;
                 leftY++;
             }
 
-            if(++rightY>endY) {
-                rightY=endY;
+            if(rightY > endY) { //第二路点转弯以后rightY会始终大于endY
+                rightY = endY;
                 rightX++;
             }
+
             isFromBottom = !isFromBottom;
             System.out.println();
         }
@@ -61,12 +67,12 @@ public class Array2ZigzagPrintMatrix {
     public static void PrintLine(int[][] A, int leftX, int leftY, int rightX, int rightY, boolean isFromBottom) {
         if(isFromBottom) {
             int curend = leftY;  //斜向上走时从left点开始 结束点的横坐标等于起始的纵坐标
-            while(leftX >= curend) {
+            while(curend <= leftX ) {
                 System.out.print(A[leftX--][leftY++] + " ");
             }
         } else {
             int curend = rightY;   //斜向下走时从right点开始 结束点的横坐标等于起始的纵坐标
-            while(rightX <= curend) {
+            while(curend >= rightX) {
                 System.out.print(A[rightX++][rightY--] + " ");
             }
         }

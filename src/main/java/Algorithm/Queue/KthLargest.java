@@ -15,7 +15,7 @@ import java.util.PriorityQueue;
  解读：
  题目第k大的元素含义是“将数字从左到右降序排列后，从左边开始数的第k个数”，另外，题目要求每add一个元素“后”，就返回当前的第k大的元素
 
- 请实现 KthLargest 类：
+ 请实现 KthLargest类：
  KthLargest(int k, int[] nums) 使用整数 k 和整数流 nums 初始化对象
  int add(int val) 返回当前数据流中第 k 大的元素
 
@@ -47,7 +47,7 @@ public class KthLargest {
     int limit;
 
     public static void main(String[] args) {
-        int[] A = {4, 5, 8, 2};
+        int[] A = {4, 5, 2, 8};
         int k = 3;
         KthLargest O = new KthLargest(k, A);
         System.out.println(O.q.peek());
@@ -65,7 +65,7 @@ public class KthLargest {
 
     public KthLargest(int k, int[] a) {
         this.limit = k;
-        q = new PriorityQueue<Integer>(k);
+        q = new PriorityQueue<Integer>(k);  //PriorityQueue默认升序排列
         for (int n : a) {
             add(n);
         }

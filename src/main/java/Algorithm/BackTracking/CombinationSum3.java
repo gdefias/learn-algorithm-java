@@ -7,7 +7,7 @@ import java.util.*;
 
  https://leetcode-cn.com/problems/combination-sum-iii
 
- 找出所有相加之和为 n 的 k 个数的组合。组合中只允许含有 1 - 9 的正整数，并且每种组合中不存在重复的数字
+ 找出所有相加之和为n的k个数的组合。组合中只允许含有1-9的正整数，并且每种组合中不存在重复的数字
 
  说明：
  所有数字都是正整数
@@ -28,7 +28,9 @@ public class CombinationSum3 {
         System.out.println(combinationSum(-1,9));
     }
 
-    //方法1
+    /**
+     * 回溯 + 剪枝
+     * */
     public static List<List<Integer>> combinationSum(int k, int n) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
@@ -39,16 +41,14 @@ public class CombinationSum3 {
             return res;
         }
 
-        backtrack(k, n, start, sum, path, res);
+        backstrace(k, n, start, sum, path, res);
 
         return  res;
     }
 
-    /**
-     * 回溯 + 剪枝
-     * */
-    public static void backtrack(int k, int n, int start, int sum, List<Integer> path, List<List<Integer>> res) {
-        if(sum>n) {     //剪枝
+
+    public static void backstrace(int k, int n, int start, int sum, List<Integer> path, List<List<Integer>> res) {
+        if(sum > n) {     //剪枝
             return;
         }
 
@@ -63,7 +63,7 @@ public class CombinationSum3 {
             sum += i;
             path.add(i);
 
-            backtrack(k, n, i+1, sum, path, res);
+            backstrace(k, n, i+1, sum, path, res);
 
             sum -= i;
             path.remove(path.size()-1);
@@ -71,7 +71,9 @@ public class CombinationSum3 {
     }
 
 
-    //方法2：与方法1类似，只是没有专门保存sum，而是根据当前sum每次改变target值
+    /**
+     * 回溯 + 剪枝
+     * */
     public static List<List<Integer>> combinationSum2(int k, int n) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
@@ -81,7 +83,8 @@ public class CombinationSum3 {
             return res;
         }
 
-        backtrack2(k, n, start, path, res);
+        //没有专门保存和的sum变量，而是每次改变target值
+        backstrace2(k, n, start, path, res);
 
         return  res;
     }
@@ -89,7 +92,7 @@ public class CombinationSum3 {
     /**
      * 回溯 + 剪枝
      * */
-    public static void backtrack2(int k, int n, int start, List<Integer> path, List<List<Integer>> res) {
+    public static void backstrace2(int k, int n, int start, List<Integer> path, List<List<Integer>> res) {
         if(k == 0 && n == 0) {
             res.add(new ArrayList<>(path));
             return;
@@ -101,7 +104,7 @@ public class CombinationSum3 {
             }
             path.add(i);
 
-            backtrack2(k-1, n-i, i+1, path, res);
+            backstrace2(k-1, n-i, i+1, path, res);
 
             path.remove(path.size()-1);
         }

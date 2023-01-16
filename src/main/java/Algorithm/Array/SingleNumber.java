@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 /**
  * Created by Defias on 2017/9/27.
- *
- * https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/
+
+ https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/
 
  数组中数字出现的次数
 
@@ -26,29 +26,29 @@ public class SingleNumber {
     }
 
     public static int[] singleNumbers(int[] nums) {
-        int xors = xorn(nums);
-        int low1 = xors & (-xors);
-
-        //分组异或
-        int xor1=0;
-        int xor2=0;
+        int ret = 0; //所有数相异或的结果（异或：相同为0，不同为1   所有重复的数两两相抵消了）
         for(int i=0; i<nums.length; i++) {
-            if((nums[i]&low1)!=0) {
-                xor1 ^= nums[i];
+            ret ^= nums[i];
+        }
+
+        //找到ret中二进制位为1的最低位（实际ret中任意二进制位为1的位都可以）
+        int div = 1;
+        while ((div & ret) == 0) {
+            div <<= 1;
+        }
+
+        int a = 0;
+        int b = 0;
+
+        //每个数与div相与进行分组（不重复的a和b必然分到不同的组，重复的两个数必然分到同一组）   各组进行异或
+        for(int i=0; i<nums.length; i++) {
+            if((nums[i] & div) !=0 ) {
+                a ^= nums[i];
             } else {
-                xor2 ^= nums[i];
+                b ^= nums[i];
             }
         }
 
-        return  new int[] {xor1, xor2};
+        return  new int[] {a, b};
     }
-
-    public static int xorn(int[] nums) {
-        int res = nums[0];
-        for(int i=1; i<nums.length; i++) {
-            res ^= nums[i];
-        }
-        return res;
-    }
-
 }

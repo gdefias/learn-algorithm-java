@@ -45,8 +45,6 @@ public class Array2MergeReduplication {
     }
 
 
-
-
     //数组形式
     public static int[][] merge(int[][] intervals) {
         if(intervals==null || intervals.length<=1) {
@@ -58,11 +56,11 @@ public class Array2MergeReduplication {
         int[] last = intervals[0];
 
         for(int i=1; i<=intervals.length-1; i++) {
-            if(intervals[i][1] > last[1] && intervals[i][0] > last[1]) {  //无需合并的情况
+            if(intervals[i][0] > last[1]) {  //无需合并的情况
                 res.add(last);
                 last = intervals[i];
             } else {  //需要合并的情况
-                last[0] = Math.min(last[0], intervals[i][0]);
+//                last[0] = Math.min(last[0], intervals[i][0]);
                 last[1] = Math.max(last[1], intervals[i][1]);
             }
         }

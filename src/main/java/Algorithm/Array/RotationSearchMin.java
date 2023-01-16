@@ -3,12 +3,18 @@ package Algorithm.Array;
 /**
  * Created by Defias on 2017/10/7.
 
- 寻找旋转排序数组中的最小值
+ 寻找旋转排序数组中的最小值 - 无重复元素
  https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/
- https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/
 
- 假设按照升序排序的数组在预先未知的某个点上进行了旋转。例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2]
- 请找出其中最小的元素
+ 已知一个长度为 n 的数组，预先按照升序排列，经由 1 到 n 次 旋转 后，得到输入数组。
+ 例如，原数组 nums = [0,1,2,4,5,6,7] 在变化后可能得到：
+ 若旋转 4 次，则可以得到 [4,5,6,7,0,1,2]
+ 若旋转 7 次，则可以得到 [0,1,2,4,5,6,7]
+ 注意，数组 [a[0], a[1], a[2], ..., a[n-1]] 旋转一次 的结果为数组 [a[n-1], a[0], a[1], a[2], ..., a[n-2]] 。
+
+ 给你一个元素值互不相同的数组 nums ，它原来是一个升序排列的数组，并按上述情形进行了多次旋转。请你找出并返回数组中的 最小元素 。
+ 你必须设计一个时间复杂度为 O(log n) 的算法解决此问题。
+
 
  输入：nums = [3,4,5,1,2]
  输出：1
@@ -19,76 +25,44 @@ package Algorithm.Array;
  输入：nums = [1]
  输出：1
 
- 输入：[3,4,5,1,2]
- 输出：1
+ 输入：numbers = [2,2,2,0,1]
+ 输出：0
 
- 1 <= nums.length <= 5000
+ 提示：
+ n == nums.length
+ 1 <= n <= 5000
  -5000 <= nums[i] <= 5000
- nums 中的所有整数都是 唯一 的
- nums 原来是一个升序排序的数组，但在预先未知的某个点上进行了旋转
+ nums 中的所有整数 互不相同
+ nums 原来是一个升序排序的数组，并进行了 1 至 n 次旋转
  */
 
 public class RotationSearchMin {
     public static void main(String[] args) {
-        int[] num = new int[] {4,5,6,7,1,2};
-        System.out.println(findMin(num));
+//        int[] nums = new int[] {3,4,5,6,7,1,2};
+//        int[] nums = new int[] {1};
+        int[] nums = new int[] {3,4,5,6,7};
+        System.out.println(findMin(nums));
     }
 
-    public static int findMin(int[] num) {
-        if(num==null || num.length==0) {
-            return -1;
-        }
 
+    //二分查找
+    //时间复杂度：时间复杂度为O(logn)，其中n是数组nums的长度。在二分查找的过程中，每一步会忽略一半的区间，因此时间复杂度为O(logn)。
+    //空间复杂度：O(1)
+    //思路：https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/solutions/698479/xun-zhao-xuan-zhuan-pai-xu-shu-zu-zhong-5irwp/
+    public static int findMin(int[] nums) {
         int low = 0;
-        int hight = num.length-1;
-        if(num[hight] > num[low]) {
-            return num[low];
-        }
+        int hight = nums.length-1;
 
-        while(low<hight) {
+        while(low < hight) {
             int mid = low + (hight-low)/2;
-            if(num[mid] > num[hight]) {
-                low = mid+1;
-            } else if(num[mid] < num[hight]) {
-                hight = mid;
+            if(nums[mid] < nums[hight]) {   //与右边界值进行比较
+                hight = mid;  //nums[mid]有可能是最小值 所以mid不能丢弃
             } else {
-                hight--;
+                low = mid+1; //nums[mid]不可能是最小值 所以mid可以丢弃
             }
         }
 
-        return num[low];
+        return nums[low];
     }
 
-    public static int findMin2(int[] num) {
-        if(num==null || num.length==0) {
-            return -1;
-        }
-
-        if(num.length==1) {
-            return num[0];
-        }
-
-        int start = 0;
-        int end = num.length-1;
-        if(num[end] > num[start]) {
-            return num[start];
-        }
-
-        while(start <= end) {
-            int mid  = start + (end - start) / 2;
-            if(num[mid] > num[mid+1]) {
-                return num[mid + 1];
-            }
-            if(num[mid] < num[mid-1]) {
-                return num[mid];
-            }
-
-            if(num[mid]>num[start]) {
-                start = mid+1;
-            } else {
-                end = mid-1;
-            }
-        }
-        return -1;
-    }
 }

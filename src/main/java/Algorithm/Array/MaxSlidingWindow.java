@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
  https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/
 
+ https://leetcode.cn/problems/sliding-window-maximum/
+
  滑动窗口的最大值
  给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。
  输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
@@ -33,14 +35,95 @@ public class MaxSlidingWindow {
 
     public static void main(String[] args) {
         int[] A = {1,3,-1,-3,5,3,6,7};
-        int[] res = maxSlidingWindow11(A, 3);
+        int[] res = maxSlidingWindow2(A, 3);
         for(int a: res) {
             System.out.print(a+" ");
         }
     }
 
-    //方法1：暴力法 双重循环   O(nk)
-    public static int[] maxSlidingWindow1(int[] nums, int k) {
+
+    //方法1：单调队列（双端队列）
+    //时间复杂度：O(n) 空间复杂度：O(k)
+    public static int[] maxSlidingWindow(int[] nums, int k) {
+        if(nums == null || nums.length == 0 || k <= 0) {
+            return new int[0];
+        }
+        int[] res = new int[nums.length-k+1];
+        int index = 0;
+
+        Deque<Integer> maxD = new LinkedList<>();  //降序
+        int right = -1;
+        int left = -k;
+
+        //形成窗口
+        for(int i=0; i<k; i++) {
+            right++;
+            left++;
+
+            while(!maxD.isEmpty() && nums[right] > maxD.peekLast()) {
+                maxD.removeLast();
+            }
+            maxD.addLast(nums[right]);
+        }
+        res[index++] = maxD.peekFirst();
+
+        //滑动窗口
+        while(right < nums.length-1) {
+            if(nums[left] == maxD.peekFirst()) {
+                maxD.removeFirst();
+            }
+
+            while(!maxD.isEmpty() && nums[right+1] > maxD.peekLast()) {
+                maxD.removeLast();
+            }
+            maxD.addLast(nums[right+1]);
+            res[index++] = maxD.peekFirst();
+
+            right++;
+            left++;
+        }
+        return res;
+    }
+
+    //方法2  优先队列/堆
+    //时间复杂度： O(nlogn)  空间复杂度：O(n)
+    public static int[] maxSlidingWindow2(int[] nums, int k) {
+        if(nums == null || nums.length == 0 || k <= 0) {
+            return new int[0];
+        }
+        int[] res = new int[nums.length-k+1];  //存放结果
+        int index = 0;
+
+        //大顶堆
+        PriorityQueue<Integer> pq = new PriorityQueue<>(k, new Comparator<Integer>() {
+            public int compare(Integer o1, Integer o2) {
+                return o2.compareTo(o1);
+            }
+        });
+
+        //初始窗口
+        int left = 0;
+        int right = k-1;
+        for(int i=0; i<k; i++) {
+            pq.offer(nums[i]);
+        }
+        res[index++] = pq.peek();
+
+        //滑动窗口
+        while(right < nums.length-1)  {
+            pq.remove(nums[left]);
+            pq.offer(nums[right+1]);
+            res[index++] = pq.peek();
+
+            left++;
+            right++;
+        }
+        return res;
+    }
+
+    //方法3：暴力法  计算滑动窗口的数量依次计算最大值
+    //时间复杂度： O(nk)  n为滑动窗口数量
+    public static int[] maxSlidingWindow3(int[] nums, int k) {
         if(nums == null || nums.length == 0 || k <= 0) {
             return new int[0];
         }
@@ -52,7 +135,6 @@ public class MaxSlidingWindow {
 
         for(int i=0; i<winnum; i++) {
             int maxn = Integer.MIN_VALUE;
-
             for(int j=0; j<k; j++) {
                 if(nums[j+i]>maxn) {
                     maxn = nums[j+i];
@@ -64,7 +146,7 @@ public class MaxSlidingWindow {
     }
 
     //对暴力法进行优化
-    public static int[] maxSlidingWindow11(int[] nums, int k) {
+    public static int[] maxSlidingWindow3_(int[] nums, int k) {
         if(nums == null || nums.length == 0 || k <= 0) {
             return new int[0];
         }
@@ -90,92 +172,8 @@ public class MaxSlidingWindow {
                 }
                 res[i] = maxn;
             }
-
-
         }
         return res;
     }
 
-
-    //方法2：使用优先队列  大顶堆
-    public static int[] maxSlidingWindow2(int[] nums, int k) {
-        if(nums == null || nums.length == 0 || k <= 0) {
-            return new int[0];
-        }
-
-        if(k==1) {
-            return nums;
-        }
-
-        int[] res = new int[nums.length-k+1];  //存放结果
-        PriorityQueue<Integer> pq = new PriorityQueue<>(k, new Comparator<Integer>() {
-            public int compare(Integer o1, Integer o2) {
-                return o2.compareTo(o1);
-            }
-        });
-
-        //初始窗口
-        int left = 0;
-        int right = k-1;
-        int index=0;
-        for(int i=0; i<k; i++) {
-            pq.offer(nums[i]);
-        }
-        res[index++] = pq.peek();
-
-        //滑动窗口
-        for(int i=1; i<nums.length-k+1; i++) {
-            pq.remove(nums[left]);
-            pq.offer(nums[right+1]);
-            res[index++] = pq.peek();
-            left++;
-            right++;
-        }
-        return res;
-    }
-
-
-    //方法3：使用双端队列 保持双端队列降序
-    public static int[] maxSlidingWindow3(int[] nums, int k) {
-        if(nums == null || nums.length == 0 || k <= 0) {
-            return new int[0];
-        }
-        System.out.println(Arrays.stream(nums).boxed().collect(Collectors.toList()));
-
-        int right = -1;
-        int left = -k;
-        Deque<Integer> deque = new LinkedList<>();
-        int[] res = new int[nums.length-k+1];
-        int index=0;
-
-        //形成窗口
-        for(int i=0; i<k; i++) {
-            right++;
-            left++;
-            while(!deque.isEmpty() && nums[right] > deque.peekLast()) {
-                deque.removeLast();
-            }
-            deque.addLast(nums[right]);
-        }
-        System.out.println(deque);
-        res[index++] = deque.peekFirst();
-
-        //滑动窗口
-        for(int i=k; i<nums.length; i++) {
-            right++;
-            left++;
-            if(nums[left-1] == deque.peekFirst()) {
-                deque.removeFirst();
-            }
-
-            while(!deque.isEmpty() && nums[right] > deque.peekLast()) {
-                deque.removeLast();
-            }
-            deque.addLast(nums[right]);
-            System.out.println(deque);
-            res[index++] = deque.peekFirst();
-        }
-
-        return res;
-    }
 }

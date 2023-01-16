@@ -20,8 +20,6 @@ import java.util.Map;
 
  输入: ["A","A"]
  输出: []
-
-
  */
 public class FindLongestSubarray {
 
@@ -59,6 +57,6 @@ public class FindLongestSubarray {
             }
         }
 
-        return Arrays.copyOfRange(array, start+1, end+1);
+        return Arrays.copyOfRange(array, start+1, end+1);  //copyOfRange  [start+1, end+1)
     }
 }

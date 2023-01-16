@@ -1,5 +1,7 @@
 package Algorithm.String;
 
+import java.util.*;
+
 /**
  * Created by Defias on 2020/07.
  * Description:  翻转单词顺序
@@ -17,8 +19,13 @@ package Algorithm.String;
  如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
  */
 public class ReverseWords {
+    public static void main(String[] args) {
+        ReverseWords O = new ReverseWords();
+        String s = "I am a student.";
+        System.out.println(O.reverseWords3(s));
+    }
 
-    //双指针标示句子中的单词边界，逐个单词进行反转
+    //方法1：双指针 标示句子中的单词边界，从后向前逐个单词进行反转
     public String reverseWords(String s) {
         if(s==null) {
             return s;
@@ -42,4 +49,58 @@ public class ReverseWords {
 
         return res.toString().trim();
     }
+
+    //方法2：使用语言特性
+    public String reverseWords2(String s) {
+        // 除去开头和末尾的空白字符
+        s = s.trim();
+
+        // 正则匹配连续的空白字符作为分隔符分割
+        List<String> wordList = Arrays.asList(s.split("\\s+"));
+        Collections.reverse(wordList);
+        return String.join(" ", wordList);
+
+
+    }
+
+    //方法3：栈 或 双端队列
+    public String reverseWords3(String s) {
+        int left = 0, right = s.length() - 1;
+        // 去掉字符串开头的空白字符
+        while (left <= right && s.charAt(left) == ' ') {
+            ++left;
+        }
+
+        // 去掉字符串末尾的空白字符
+        while (left <= right && s.charAt(right) == ' ') {
+            --right;
+        }
+
+//        Stack<String> stack = new Stack<String>();
+        Deque<String> deque = new ArrayDeque<String>();
+        StringBuilder word = new StringBuilder();
+
+        while (left <= right) {
+            char c = s.charAt(left);
+            if ((word.length() != 0) && (c == ' ')) {
+//                stack.push(word.toString());  //栈
+                deque.offerFirst(word.toString());  //双端队列
+                word.setLength(0);
+            } else if (c != ' ') {
+                word.append(c);
+            }
+            ++left;
+        }
+//        stack.push(word.toString());
+        deque.offerFirst(word.toString());
+
+//        word.setLength(0);
+//        while(!stack.isEmpty()) {
+//            word.append(stack.pop() + " ");
+//        }
+//        return word.toString().substring(0, word.length()-1);
+        return String.join(" ", deque);
+    }
+
+
 }

@@ -19,7 +19,8 @@ import java.util.regex.*;
 
 public class IsPalindrome {
 	public static void main(String[] args) {
-		String s = "A man, a plan, a canal: Panamas";
+//		String s = "A man, a plan, a canal: Panamas";
+		String s= ".,";
 		System.out.println(isPalindrome(s));
 
         //System.out.println("Is moon a palindrome? " + isPalindrome2("moon"));
@@ -39,14 +40,14 @@ public class IsPalindrome {
 		int end = s.length()-1;
 
 		while(start < end) {
-			while(start<s.length() && !isVCharacter(s.charAt(start)))
+			while(start<s.length() && !Character.isLetterOrDigit(s.charAt(start)))
 				start++;
 
 			if(start == s.length()) {
-				return false;
+				return true;
 			}
 
-			while(end >= 0 && !isVCharacter(s.charAt(end)))
+			while(end >= 0 && !Character.isLetterOrDigit(s.charAt(end)))
 				end--;
 
 			if(Character.toLowerCase(s.charAt(start)) != Character.toLowerCase(s.charAt(end))) {
@@ -59,24 +60,20 @@ public class IsPalindrome {
 		return true;
 	}
 
-	public static boolean isVCharacter(char c) {
-		return  Character.isLetter(c) || Character.isDigit(c);
 
+	//方法2： 筛选 + 判断
+	public static boolean isPalindrome2(String s) {
+		StringBuffer sgood = new StringBuffer();
+		int length = s.length();
+		for (int i = 0; i < length; i++) {
+			char ch = s.charAt(i);
+			if (Character.isLetterOrDigit(ch)) {
+				sgood.append(Character.toLowerCase(ch));
+			}
+		}
+		StringBuffer sgood_rev = new StringBuffer(sgood).reverse();  //反转字符串
+		return sgood.toString().equals(sgood_rev.toString());
 	}
-
-	//方法2： 递归
-    public static boolean isPalindrome2(String s) {
-        return isPalindrome2(s, 0, s.length() - 1);
-    }
-
-    public static boolean isPalindrome2(String s, int low, int high) {
-        if (high <= low) // Basic case
-            return true;
-        else if (s.charAt(low) != s.charAt(high)) // Basic case
-            return false;
-        else
-            return isPalindrome2(s, low + 1, high - 1);
-    }
 
 
 

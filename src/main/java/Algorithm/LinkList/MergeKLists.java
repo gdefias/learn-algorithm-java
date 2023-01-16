@@ -28,7 +28,7 @@ import java.util.PriorityQueue;
 
  输入：lists = [[]]
  输出：[]
-  
+ 
  k == lists.length
  0 <= k <= 10^4
  0 <= lists[i].length <= 500
@@ -79,7 +79,7 @@ public class MergeKLists {
             return null;
         }
 
-        PriorityQueue<ListNode>  queue = new PriorityQueue<ListNode>(new Comparator<ListNode>() {
+        PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(new Comparator<ListNode>() {
             @Override
             public int compare(ListNode o1, ListNode o2) {
                 if(o1.val==o2.val)
@@ -111,7 +111,7 @@ public class MergeKLists {
         return dummy.next;
     }
 
-    //方法3：逐一进行二路归并  时间复杂度：O(NK)
+    //方法3：顺序合并 逐一进行二路归并  时间复杂度：O(NK)
     public static ListNode mergeKLists3(ListNode[] lists) {
         if(lists==null || lists.length==0) {
             return null;
@@ -119,14 +119,14 @@ public class MergeKLists {
 
         ListNode res = lists[0];
         for(int i=1; i<lists.length; i++) {
-            res = MergeTwoLists.mergeTwoLists2(res, lists[i]);
+            res = MergeTwoLists.mergeTwoLists(res, lists[i]);
         }
 
         return res;
     }
 
 
-    //方法4：对方法3进行优化，两两进行二路归并 --递归版本（分治/归并排序）  时间复杂度：O(NlogK)
+    //方法4：归并排序思想（分治思想） 递归版本  时间复杂度：O(NlogK)
     public static ListNode mergeKLists4(ListNode[] lists) {
         if(lists==null || lists.length==0) {
             return null;
@@ -140,36 +140,11 @@ public class MergeKLists {
             return lists[start];
         }
 
-        int mid = start+(end-start)/2;
-        ListNode l1 = merge(lists, start, mid);
-        ListNode l2 = merge(lists, mid+1, end);
+        int mid = start+(end-start)/2;  //中间砍一刀
+        ListNode l1 = merge(lists, start, mid);  //前一半合并
+        ListNode l2 = merge(lists, mid+1, end);  //后一半合并
 
+        //对已合并的前一半和后一半进行合并（也就是二路归并）得到最终的结果
         return MergeTwoLists.mergeTwoLists2(l1, l2);
     }
-
-    //   --迭代版本
-    public static ListNode mergeKLists44(ListNode[] lists) {
-        if(lists==null || lists.length==0) {
-            return null;
-        }
-
-        int k = lists.length;
-        while(k>1) {    // 多于1路就要进行归并
-            int index = 0;
-
-            //每两路进行二路归并
-            for(int i=0; i<k; i++) {
-                if(i == k-1) {   //k为奇数，最后只剩下一路
-                    lists[index++] = lists[i];
-                } else {
-                    lists[index++] = MergeTwoLists.mergeTwoLists2(lists[i], lists[i+1]);
-                }
-            }
-
-            k = index;
-        }
-
-        return lists[0];
-    }
-
 }

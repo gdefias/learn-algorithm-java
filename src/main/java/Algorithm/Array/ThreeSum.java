@@ -10,7 +10,7 @@ import java.util.List;
  *
  * https://leetcode-cn.com/problems/3sum/
  *
- * 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组
+ * 给你一个包含 n 个整数的数组nums，判断nums中是否存在三个元素 a，b，c ，使得a + b + c = 0 ？请你找出所有满足条件且不重复的三元组
  * 注意：答案中不可以包含重复的三元组
  *
  * 示例：
@@ -40,10 +40,10 @@ public class ThreeSum {
 
         for(int k=0; k<=nums.length-3; k++) {
             int cur = nums[k];
-            if(cur>0) {     //剪枝
+            if(cur>0) {     //剪枝 （排序后最小的数都大于0，那和不可能等于0）
                 return res;
             }
-            if(k>0 && (nums[k]==nums[k-1])) {    //去重
+            if(k>0 && (nums[k]==nums[k-1])) {    //防结果重复
                 continue;
             }
 
@@ -51,11 +51,11 @@ public class ThreeSum {
             int left = k+1;
             int right = nums.length-1;
             int target = 0 - cur;
-            while(left<right) {
+            while(left < right) {
                 if(nums[left] + nums[right] == target) {
                     res.add(new ArrayList<>(Arrays.asList(cur, nums[left], nums[right])));
 
-                    //去重
+                    //防结果重复
                     while(left<right && nums[left]==nums[left+1]) {
                         left++;
                     }

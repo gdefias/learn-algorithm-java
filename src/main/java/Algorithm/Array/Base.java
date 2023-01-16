@@ -6,6 +6,10 @@ package Algorithm.Array;
  * @description:
  */
 public class Base {
+    public static void main(String[] args) {
+        base1();
+    }
+
     public static void findArray() {
         //max  sum
         int[] scoress = new int[] {90, 95, 92, 89, 100, 98};

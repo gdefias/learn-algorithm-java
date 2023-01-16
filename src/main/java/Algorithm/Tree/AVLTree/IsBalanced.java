@@ -29,7 +29,7 @@ import Algorithm.Tree.BST.BST;
     3   3
     / \
     4   4
-    返回 false
+    返回false
 
  1 <= 树的结点个数 <= 10000
 

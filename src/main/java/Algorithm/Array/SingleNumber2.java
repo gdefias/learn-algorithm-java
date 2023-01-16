@@ -1,5 +1,8 @@
 package Algorithm.Array;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Defias on 2020/07.
  * Description: 数组中数字出现的次数 II
@@ -16,37 +19,42 @@ package Algorithm.Array;
  */
 public class SingleNumber2 {
 
+
+    //方法1：哈希表
     public int singleNumber(int[] nums) {
-        if(nums==null || nums.length==0) {
-            return 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        //key存储的是当前数字，value是数字的出现的次数
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
-        //记录累计各个位上1的个数
-        int[] bitns = new int[33];
-        int cur;
-        for(int i=0; i<nums.length; i++) {
-            cur = nums[i];
-            for(int j=32; j>0; j--) {
-                if((cur&1)==1) {
-                    bitns[j]++;
-                }
-                cur >>>= 1;
-            }
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1)
+                return entry.getKey();
         }
+        return -1;
+    }
 
-        for(int i=1; i<=32; i++) {
-            bitns[i] %= 3;
-        }
 
+    //方法2：位运算
+    //思路：在java中int类型是32位，统计所有数字在某一位置的和能不能被3整除，如果不能被3整除，说明那个只出现一次的数字的二进制在那个位置是1
+    public int singleNumber2(int[] nums) {
         int res = 0;
-        int n = 1;
-        for(int i=32; i>0; i--) {
-            if(bitns[i]==1) {
-                res = res | n;
-            }
-            n <<= 1;
-        }
+        //int类型有32位，统计每一位1的个数
+        for (int i = 0; i < 32; i++) {
 
+            //统计第i位中1的个数
+            int oneCount = 0;
+            for (int j = 0; j < nums.length; j++) {
+                oneCount += (nums[j] >>> i) & 1;
+            }
+
+            //如果1的个数不是3的倍数，说明那个只出现一次的数字的二进制位中在这一位是1
+            if (oneCount % 3 == 1) {
+                res |= 1 << i;
+            }
+
+        }
         return res;
     }
 }

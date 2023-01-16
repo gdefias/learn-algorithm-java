@@ -53,9 +53,31 @@ public class LevelSum {
         return sum;
     }
 
-
-    //方法2: DFS 用一个hashmap保存各层节点的值
+    //方法2：DFS  累加指定层的节点值
     public static int levelSum2(TreeNode root, int level) {
+        if(root==null || level<=0) {
+            return sum;
+        }
+        helper2(root, 1, level);   //根节点为第1层
+        return sum;
+    }
+
+    //DFS遍历到二叉树的每个结点
+    private static void helper2(TreeNode root, int currentlevel, int level) {
+        if(currentlevel == level) {
+            sum = sum + root.val;
+        }
+        if(root.left != null) {
+            helper2(root.left, currentlevel+1, level);
+        }
+        if(root.right != null) {
+            helper2(root.right, currentlevel+1, level);
+        }
+    }
+
+
+    //方法3: DFS 用一个hashmap保存各层节点的值
+    public static int levelSum3(TreeNode root, int level) {
         int levelSum = 0;
         if(root==null || level<=0) {
             return levelSum;
@@ -63,7 +85,7 @@ public class LevelSum {
         //保存各层结点的值列表
         Map<Integer, List<Integer>> map = new HashMap<>();
 
-        helper(root, root.val, 1, map);  //根节点为第1层
+        helper3(root, root.val, 1, map);  //根节点为第1层
         //System.out.println(map);
 
         //取出指定层的值列表然后求和
@@ -77,7 +99,7 @@ public class LevelSum {
     }
 
     //DFS遍历到二叉树的每个结点
-    public static void helper(TreeNode root, int val, int level, Map<Integer, List<Integer>> map) {
+    public static void helper3(TreeNode root, int val, int level, Map<Integer, List<Integer>> map) {
         if(!map.containsKey(level)) {
             List<Integer> levelvals = new ArrayList<>();
             map.put(level, levelvals);
@@ -85,35 +107,15 @@ public class LevelSum {
         map.get(level).add(val);
 
         if(root.left!=null) {
-            helper(root.left, root.left.val, level+1, map);
+            helper3(root.left, root.left.val, level+1, map);
         }
 
         if(root.right!=null) {
-            helper(root.right, root.right.val, level+1, map);
+            helper3(root.right, root.right.val, level+1, map);
         }
     }
 
 
 
-    //方法3：DFS 相比方法1，不保存所有各层节点值，而只累加指定层的节点值
-    public static int levelSum3(TreeNode root, int level) {
-        if(root==null || level<=0) {
-            return sum;
-        }
-        helper3(root, 1, level);   //根节点为第1层
-        return sum;
-    }
 
-    //DFS遍历到二叉树的每个结点
-    private static void helper3(TreeNode root, int currentlevel, int level) {
-        if(currentlevel == level) {
-            sum = sum + root.val;
-        }
-        if(root.left != null) {
-            helper3(root.left, currentlevel+1, level);
-        }
-        if(root.right != null) {
-            helper3(root.right, currentlevel+1, level);
-        }
-    }
 }
