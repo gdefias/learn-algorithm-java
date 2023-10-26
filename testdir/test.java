@@ -1,0 +1,3 @@
+class testdemo() {
+    pass;
+}
