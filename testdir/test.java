@@ -1,3 +1,4 @@
 class testdemo() {
-    pass;
+    sssss;
+    sssss;
 }
