@@ -1,4 +1,3 @@
 class testdemo() {
-    sssss;
-    sssss;
+    xxxx;
 }
