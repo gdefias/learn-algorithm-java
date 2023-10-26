@@ -17,7 +17,7 @@ public class Test5 {
     }
 
     public int solution(int[] A) {
-
+        int[] B = A;
         return 0;
     }
 }
