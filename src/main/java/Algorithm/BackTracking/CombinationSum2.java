@@ -67,7 +67,7 @@ public class CombinationSum2 {
                 break;
             }
 
-            //去重：要对同一树层使用过的元素进行跳过
+            //剪枝 去重：要对同一树层使用过的元素进行跳过
             if(i>0 && candidates[i]==candidates[i-1] && !visited[i-1]) {
                 continue;
             }

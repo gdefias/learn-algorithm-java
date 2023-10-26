@@ -47,9 +47,10 @@ public class KthLargest {
     int limit;
 
     public static void main(String[] args) {
-        int[] A = {4, 5, 2, 8};
+        int[] A = {2, 5, 4, 8};
         int k = 3;
         KthLargest O = new KthLargest(k, A);
+        System.out.println(O.limit);
         System.out.println(O.q.peek());
         System.out.println(O.add(3));
         System.out.println(O.add(5));
@@ -65,7 +66,7 @@ public class KthLargest {
 
     public KthLargest(int k, int[] a) {
         this.limit = k;
-        q = new PriorityQueue<Integer>(k);  //PriorityQueue默认升序排列
+        q = new PriorityQueue<Integer>(k);  //PriorityQueue默认升序排列  默认是一个小顶堆
         for (int n : a) {
             add(n);
         }

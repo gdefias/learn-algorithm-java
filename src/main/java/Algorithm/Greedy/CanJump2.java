@@ -47,6 +47,8 @@ public class CanJump2 {
                 }
             }
 
+
+
             p = next;
         }
 

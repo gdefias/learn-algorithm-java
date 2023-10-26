@@ -11,7 +11,7 @@ package Algorithm.Greedy;
     数组中的每个元素代表你在该位置可以跳跃的最大长度。
     判断你是否能够到达最后一个下标。
 
-    输入：nums = [2,3,1,1,4]
+    输入：nums = [2,3,1,2,0,4]
     输出：true
     解释：可以先跳 1 步，从下标 0 到达下标 1, 然后再从下标 1 跳 3 步到达最后一个下标。
 
@@ -33,7 +33,7 @@ public class CanJump {
         int maxsize = 0;  //依次遍历数组中的每一个位置，并实时维护最远可以到达的位置
         int target = nums.length-1;  //目标终点
         for(int i=0; i<nums.length; i++) {
-            if(i>maxsize) {  //当前位置i如果不在之前已经可以到达的最远位置范围内 则不可能到达终点
+            if(i > maxsize) {  //当前位置i如果不在之前已经可以到达的最远位置范围内 则不可能到达终点
                 return false;
             }
 

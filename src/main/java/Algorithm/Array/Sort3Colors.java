@@ -30,7 +30,7 @@ public class Sort3Colors {
 
     public static void main(String[] args) {
         int[] nums = new int[] {2,0,2,1,1,0};
-        sortColors2(nums);
+        sortColors(nums);
         System.out.println(Arrays.stream(nums).boxed().collect(Collectors.toList()));
     }
 
@@ -41,35 +41,28 @@ public class Sort3Colors {
         int p = -1;  //红球的右边界
         int q = len;  //白球的左边界
 
-        for(int i=0; i<q; i++) {
+//        for(int i=0; i<q; i++) {
+//            if(nums[i] == 0) {
+//                p++;
+//                swap(nums, p, i);
+//            } else if(nums[i] == 2) {
+//                q--;
+//                swap(nums, q, i);
+//                i--;
+//            }
+//        }
+
+        int i = 0;
+        while(i < q) {
             if(nums[i] == 0) {
                 p++;
                 swap(nums, p, i);
+                i++;
             } else if(nums[i] == 2) {
                 q--;
                 swap(nums, q, i);
-                i--;
-            }
-        }
-    }
-
-    //双指针
-    public static void sortColors_(int[] nums) {
-        int len = nums.length;
-        int p = 0; //红球的右外边界
-        int q = 0;  //黄球的右外边界
-
-        for (int i=0; i<len; i++) {
-            if (nums[i] == 1) {  //黄球
-                swap(nums, i, q);
-                q++;
-            } else if(nums[i] == 0) {  //红球
-                swap(nums, i, p);
-                if (p < q) {  //必然把排好的黄球换走了
-                    swap(nums, i, q);  //把黄球换回来
-                }
-                p++;
-                q++;
+            } else {
+                i++;
             }
         }
     }

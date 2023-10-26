@@ -26,8 +26,8 @@ import java.util.HashSet;
 public class FindLength {
     public static void main(String[] args) {
         FindLength O = new FindLength();
-        int[] nums1 = new int[] {1,2,3,2,1};
-        int[] nums2 = new int[] {3,2,1,4,7};
+        int[] nums1 = new int[] {1,2,3,2,1,8,5};
+        int[] nums2 = new int[] {3,2,1,4,7,5};
 
         System.out.println(O.findLength2(nums1, nums2));
     }

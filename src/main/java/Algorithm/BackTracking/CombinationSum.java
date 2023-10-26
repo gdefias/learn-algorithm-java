@@ -73,7 +73,7 @@ public class CombinationSum {
             sum += candidates[i];
             path.add(candidates[i]);
 
-            backstrace(candidates, target, i, sum, path, res);  // 关键点:不用i+1了，表示可以重复读取当前的数
+            backstrace(candidates, target, i, sum, path, res);  // 关键点:不用i+1了而是用i，表示可以重复读取当前的数
 
             sum -= candidates[i];
             path.remove(path.size()-1);

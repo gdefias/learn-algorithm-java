@@ -49,7 +49,7 @@ public class LRUCache {
 
 
     public static void main(String[] args) {
-        LRUCache2 cache = new LRUCache2( 2);
+        LRUCache3 cache = new LRUCache3( 2);
         cache.put(1, 1);
         cache.put(2, 2);
         System.out.println(cache.get(1));       // 返回  1
@@ -68,6 +68,22 @@ public class LRUCache {
         this.dlinklist = new DLinkedList();
     }
 
+    public void put(int key, int value) {
+        DListNode node;
+        if((node = cache.get(key)) == null) {  //新增
+            DListNode newnode = new DListNode(key, value);
+            if(cache.size() >= capacity) {
+                DListNode delnode = dlinklist.deleteTailNode();  //删除双向链表尾结点
+                cache.remove(delnode.key);  //同时从hashmap中删除对应的key
+            }
+            cache.put(key, newnode);   //hashmap中加入新结点
+            dlinklist.addHeadNode(newnode);  //同时链表中链表头也添加新结点
+        } else {  //更新
+            node.val = value;            //更新值
+            dlinklist.moveNodeToHand(node);   //移到链表头
+        }
+    }
+
     public int get(int key) {
         DListNode node;
         if((node = cache.get(key)) == null) {
@@ -76,21 +92,5 @@ public class LRUCache {
         dlinklist.moveNodeToHand(node);
         return node.val;
 
-    }
-
-    public void put(int key, int value) {
-        DListNode node;
-        if((node = cache.get(key)) != null) {
-            node.val = value;            //更新值
-            dlinklist.moveNodeToHand(node);   //移到链表头
-        } else {
-            DListNode newnode = new DListNode(key, value);
-            if(cache.size() >= capacity) {
-                DListNode delnode = dlinklist.deleteTailNode();  //删除双向链表尾结点
-                cache.remove(delnode.key);  //同时从hashmap中删除对应的key
-            }
-            cache.put(key, newnode);   //hashmap中加入新结点
-            dlinklist.addHeadNode(newnode);  //同时链表中链表头也添加新结点
-        }
     }
 }

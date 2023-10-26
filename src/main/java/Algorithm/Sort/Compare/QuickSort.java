@@ -42,15 +42,15 @@ public class QuickSort {
         }
 
         int mid = partition(A, left, right);  //切分
-//        int pv = partition2(A, left, right);
+//        int mid = partition2(A, left, right);
 
         quickSort(A, left, mid-1);   //递归
         quickSort(A, mid+1, right);
     }
 
     public static int partition(int[] A, int left, int right) {
-        int pv = A[left];
-        int lt = left;
+        int pv = A[left];  //基准元素一直不变
+        int lt = left;  //lt作为边界，lt及其左边的元素都小于或等于lt所在的元素，lt右边的元素都大于lt所在的元素
 
         for (int i=left+1; i<=right; i++) {
             if (A[i] <= pv) {

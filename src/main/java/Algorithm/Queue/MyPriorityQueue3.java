@@ -6,47 +6,42 @@ import java.util.NoSuchElementException;
  * Description:  优先队列    ---小顶堆实现  二叉堆
  *
  */
-public class MyPriorityQueue3<Key extends Comparable<Key>> implements Iterable<Integer> {
+public class MyPriorityQueue3<T extends Comparable<T>> implements Iterable<Integer> {
     private int maxN;        // PQ最大元素数量
     private int n;           // 当前PQ中的元素数量
     private int[] pq;        // binary heap using 1-based indexing
     private int[] qp;        // inverse of pq - qp[pq[i]] = pq[qp[i]] = i
-    private Key[] keys;      // key
+    private T[] keys;      // key
 
     public static void main(String[] args) {
-        String[] strings = { "it", "was", "the", "best", "of", "times", "it", "was", "the", "worst" };
+        String[] A = { "it", "was", "the", "best", "of", "times", "it", "was", "the", "worst" };
 
-        MyPriorityQueue3<String> pq = new MyPriorityQueue3<String>(strings.length);
-        for (int i = 0; i < strings.length; i++) {
-            pq.insert(i, strings[i]);
-        }
-
-        while (!pq.isEmpty()) {
-            int i = pq.delMin();
-            System.out.println(i + " " + strings[i]);
-        }
-       System.out.println();
-
-        for (int i = 0; i < strings.length; i++) {
-            pq.insert(i, strings[i]);
+        MyPriorityQueue3<String> pq = new MyPriorityQueue3<String>(A.length);
+        for (int i = 0; i < A.length; i++) {
+            pq.insert(i, A[i]);
         }
 
         //使用迭代器打印
         for (int i : pq) {
-            System.out.println(i + " " + strings[i]);
+            System.out.println(i + " " + A[i]);
         }
+        System.out.println();
+
+        //delMin
         while (!pq.isEmpty()) {
-            pq.delMin();
+            int i = pq.delMin();
+            System.out.println(i + " " + A[i]);
         }
+
 
     }
 
-    public MyPriorityQueue3(int maxN) {
+    public MyPriorityQueue3(int maxN) { 
         if (maxN < 0)
             throw new IllegalArgumentException();
         this.maxN = maxN;
         n = 0;
-        keys = (Key[]) new Comparable[maxN + 1];
+        keys = (T[]) new Comparable[maxN + 1];
         pq   = new int[maxN + 1];
         qp   = new int[maxN + 1];
         for (int i = 0; i <= maxN; i++)
@@ -73,7 +68,7 @@ public class MyPriorityQueue3<Key extends Comparable<Key>> implements Iterable<I
     }
 
     //指定索引和key进行插入
-    public void insert(int i, Key key) {
+    public void insert(int i, T key) {
         if (i < 0 || i >= maxN)
             throw new IndexOutOfBoundsException();
         if (contains(i))
@@ -94,7 +89,7 @@ public class MyPriorityQueue3<Key extends Comparable<Key>> implements Iterable<I
 
 
     //获取最小key
-    public Key minKey() {
+    public T minKey() {
         if (n == 0)
             throw new NoSuchElementException("Priority queue underflow");
         return keys[pq[1]];
@@ -116,14 +111,14 @@ public class MyPriorityQueue3<Key extends Comparable<Key>> implements Iterable<I
     }
 
     //Returns the key associated with index {@code i}.
-    public Key keyOf(int i) {
+    public T keyOf(int i) {
         if (i < 0 || i >= maxN) throw new IndexOutOfBoundsException();
         if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
         else return keys[i];
     }
 
     //Change the key associated with index {@code i} to the specified value.
-    public void changeKey(int i, Key key) {
+    public void changeKey(int i, T key) {
         if (i < 0 || i >= maxN) throw new IndexOutOfBoundsException();
         if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
         keys[i] = key;
@@ -134,13 +129,13 @@ public class MyPriorityQueue3<Key extends Comparable<Key>> implements Iterable<I
 
     //Change the key associated with index {@code i} to the specified value
     @Deprecated
-    public void change(int i, Key key) {
+    public void change(int i, T key) {
         changeKey(i, key);
     }
 
 
     //Decrease the key associated with index {@code i} to the specified value
-    public void decreaseKey(int i, Key key) {
+    public void decreaseKey(int i, T key) {
         if (i < 0 || i >= maxN) throw new IndexOutOfBoundsException();
         if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
         if (keys[i].compareTo(key) <= 0)
@@ -151,7 +146,7 @@ public class MyPriorityQueue3<Key extends Comparable<Key>> implements Iterable<I
 
 
     //Increase the key associated with index {@code i} to the specified value
-    public void increaseKey(int i, Key key) {
+    public void increaseKey(int i, T key) {
         if (i < 0 || i >= maxN) throw new IndexOutOfBoundsException();
         if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
         if (keys[i].compareTo(key) >= 0)
@@ -219,12 +214,12 @@ public class MyPriorityQueue3<Key extends Comparable<Key>> implements Iterable<I
 
     private class HeapIterator implements Iterator<Integer> {
         // create a new pq
-        private MyPriorityQueue3<Key> copy;
+        private MyPriorityQueue3<T> copy;
 
         // add all elements to copy of heap
         // takes linear time since already in heap order so no keys move
         public HeapIterator() {
-            copy = new MyPriorityQueue3<Key>(pq.length - 1);
+            copy = new MyPriorityQueue3<T>(pq.length - 1);
             for (int i = 1; i <= n; i++)
                 copy.insert(pq[i], keys[pq[i]]);
         }

@@ -56,9 +56,11 @@ public class MaxDepth {
         if(root==null) {
             return;
         }
+
         if(creDepth > depth) {
             depth = creDepth;
         }
+
         helper2(root.left, creDepth+1);
         helper2(root.right, creDepth+1);
     }
@@ -125,11 +127,15 @@ public class MaxDepth {
 
     //方法5： BFS、层序遍历  写法2
     public static int TreeHightGetter3(TreeNode root) {
-        if(root == null)
+        if(root == null) {
             return 0;
+        }
+
+        //双括号初始化语法 (Double Brace Initialization)
         List<TreeNode> queue = new LinkedList<TreeNode>() {{
             add(root);
         }};
+
         int res = 0;
 
         while(!queue.isEmpty()) {

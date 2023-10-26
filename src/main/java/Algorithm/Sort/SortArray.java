@@ -35,8 +35,8 @@ public class SortArray {
     private static void insertionSort(int[] A) {
         for (int i = 1; i < A.length; ++i) {
             int j = i;
-            while (j > 0 && A[j - 1] > A[j]) {
-                swap(A, j - 1, j);
+            while (j > 0 && A[j] < A[j-1]) {
+                swap(A, j, j-1);
                 j--;
             }
         }

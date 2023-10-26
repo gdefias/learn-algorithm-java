@@ -18,6 +18,8 @@ import java.util.*;
 
  思路
  https://leetcode-cn.com/problems/permutations-ii/solution/47-quan-pai-lie-iiche-di-li-jie-pai-lie-zhong-de-q/
+
+ 在遍历的过程中，一边遍历一遍检测，在一定会产生重复结果集的地方剪枝
  */
 
 public class Permute2 {
@@ -42,6 +44,7 @@ public class Permute2 {
     public static void backstrace(int[] nums, List<List<Integer>> res, boolean[] visited, List<Integer> path) {
         if(path.size()==nums.length) {
             res.add(new ArrayList<>(path));
+            return;
         }
 
         for(int i=0; i<nums.length; i++) {
@@ -61,7 +64,7 @@ public class Permute2 {
             用这两个数放在数组中的同一个位置上，这就是我们要去重的情况
             * */
             if(i>0 && nums[i]==nums[i-1] && !visited[i-1]) {
-                System.out.println("i: " + i);
+//                System.out.println("i: " + i);
                 continue;
             }
 
@@ -75,7 +78,5 @@ public class Permute2 {
             visited[i] = false;
 //            System.out.println("递归之后 => " + path);
         }
-
     }
-
 }

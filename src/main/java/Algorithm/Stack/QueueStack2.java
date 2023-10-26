@@ -18,7 +18,7 @@ public class QueueStack2 {
     public static void main(String[] args) {
         QueueStack2 stack = new QueueStack2();
         stack.push(1);
-        stack.pop();
+//        stack.pop();
         stack.push(2);
         stack.push(3);
         System.out.println(stack.empty());
@@ -35,9 +35,10 @@ public class QueueStack2 {
 
     public void push(int x) {
         int size = queue.size();
-        queue.offer(x);
-        for(int i=0; i<size; i++) {
-            queue.offer(queue.poll());
+        queue.offer(x);  //添加元素后size增加1
+        for(int i=0; i<size; i++) {   //除最后新增的元素外其余元素依次移出再移入
+            int tmp = queue.poll();
+            queue.offer(tmp);
         }
     }
 

@@ -15,6 +15,7 @@ public class SortNColors {
         Util.printArray(colornums);
     }
 
+    //每次排好左右两端的两种颜色，直到所有颜色都排完
     public static void sortColors(int[] colors, int k) {
         int count = 0;
         int start = 0;

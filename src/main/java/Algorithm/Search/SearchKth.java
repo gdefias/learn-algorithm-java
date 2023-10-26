@@ -4,6 +4,7 @@ import Algorithm.Sort.Compare.HeapSort;
 import static Lib.Base.printArray;
 
 import Algorithm.Sort.Compare.HeapSort2;
+import Algorithm.Sort.Compare.QuickSort;
 import Algorithm.Sort.Compare.QuickSort3;
 /**
  * Created by Defias on 2020/06.
@@ -21,7 +22,7 @@ import Algorithm.Sort.Compare.QuickSort3;
 public class SearchKth {
     public static void main(String[] args) {
 //        int[] A = {1, 23, 34, 9, 32, 59, 1, 2, 3, 64, 5, 6, 6, 10, 0, 0, 26, 26, 85, 9, 31, 1, 64};
-        int[] A = {3,5,3,1,2,5,5,5,6};
+        int[] A = {3,4,3,1,2,4,5,5,6};
         printArray(A);
         System.out.println(kthLargestElement3(A, 4));
         printArray(A);
@@ -40,7 +41,7 @@ public class SearchKth {
         if (left == right) {
             return nums[left];
         }
-        int privot = QuickSort3.partition(nums, left, right);
+        int privot = QuickSort.partition(nums, left, right);
         if (privot == k) {
             return nums[privot];
         } else if (privot < k) {
@@ -49,6 +50,8 @@ public class SearchKth {
             return quickselect(nums, left, privot-1, k);
         }
     }
+
+
 
     //方法2：建立含K个元素的小顶堆并不断调整  时间复杂度O(NlogK)   空间复杂度O(k)
     public static int kthLargestElement2(int[] nums, int k) {

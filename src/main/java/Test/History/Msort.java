@@ -1,4 +1,4 @@
-package Test;
+package Test.History;
 
 public class Msort {
     public static void main(String[] args) {
@@ -19,19 +19,18 @@ public class Msort {
         int right = A.length-1;
         int[] tmp = new int[A.length];
 
-        helper(A, tmp, left, right);
+        msort(A, tmp, left, right);
     }
 
-    public static void helper(int[] A, int[] tmp, int left, int right) {
-        if(left>=right) {
-            return;
-        }
+    public static void msort(int[] A, int[] tmp, int left, int right) {
+       if(left >= right) {
+           return;
+       }
 
-        int mid = left + (right-left)/2;
-        helper(A, tmp, left, mid);
-        helper(A, tmp, mid+1, right);
-
-        merge(A, tmp, left, mid, right);
+       int mid = left + (right - left)/2;
+       msort(A, tmp, left, mid);
+       msort(A, tmp, mid+1, right);
+       merge(A, tmp, left, mid, right);
     }
 
     public static void merge(int[] A, int[] tmp, int left, int mid, int right) {
@@ -39,7 +38,7 @@ public class Msort {
         int j = mid+1;
 
         for(int k=left; k<=right; k++) {
-            if(i<=mid && (j>right || A[i]<A[j])) {
+            if(i<=mid && (j>right || A[i] < A[j])) {
                 tmp[k] = A[i];
                 i++;
             } else {

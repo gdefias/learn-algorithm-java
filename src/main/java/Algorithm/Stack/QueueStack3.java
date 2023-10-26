@@ -7,7 +7,7 @@ import java.util.Queue;
  * @date: 2022/12/28
  * @description: 用队列实现栈    --- 两个队列实现
  *
- * 当有元素时总是确保一个队列为空，一个队列装元素，除非两个队列多为空
+ * 当有元素时总是确保一个队列为空，一个队列装元素，除非两个队列都为空
  */
 public class QueueStack3 {
     public Queue<Integer> queue1;

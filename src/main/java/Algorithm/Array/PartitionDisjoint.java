@@ -15,7 +15,7 @@ package Algorithm.Array;
  *
  * 用例可以保证存在这样的划分方法。
  *
- * 输入：nums = [5,0,3,8,6]
+ * 输入：nums = [5,0,3,8,6]     minR：[0,0,3,6,6]
  * 输出：3
  * 解释：left = [5,0,3]，right = [8,6]
  *
@@ -39,7 +39,7 @@ public class PartitionDisjoint {
         int[] minR = new int[len];
         int res = 0;
 
-        minR[len-1] = nums[len-1];  //记录各小标右侧最小值
+        minR[len-1] = nums[len-1];  //记录各下标右侧最小值
         for(int i=len-2; i>=0; i--) {
             if(nums[i] <= minR[i+1]) {
                 minR[i] = nums[i];

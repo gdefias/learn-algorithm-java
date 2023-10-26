@@ -35,7 +35,7 @@ public class MinDistance {
     }
 
     //DP
-    //dp[i][j]: 长度为i的单词word1转换为长度为j的单词word2所使用的最少操作数
+    //dp[i][j]: 单词word1前i个字母转换为单词word2的前j个字母所使用的最少操作数
     public int minDistance(String word1, String word2) {
         if(word1==null || word2==null || word1.length()==0 || word2.length()==0 || (word1 == word2)) {
             return 0;

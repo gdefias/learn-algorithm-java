@@ -99,6 +99,27 @@ public class TraversalBinaryTree {
 
     //前序遍历-非递归（借助栈)
     public static void PreOrderTraversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        s.push(root);
+        while (!s.isEmpty()) {
+            TreeNode temp = s.pop();
+            System.out.println(temp.val);
+
+            //先向栈中存放右子树，再存放左子树
+            if (temp.right != null) {
+                s.push(temp.right);
+            }
+            if (temp.left != null) {
+                s.push(temp.left);
+            }
+        }
+    }
+
+    //前序遍历-非递归（借助栈) 写法2
+    public static void PreOrderTraversal2(TreeNode root) {
         if(root==null) {
             return;
         }
@@ -118,26 +139,6 @@ public class TraversalBinaryTree {
     }
 
 
-    //前序遍历-非递归（借助栈) 写法2
-    public static void PreOrderTraversal2(TreeNode root) {
-        if (root == null) {
-            return;
-        }
-        Stack<TreeNode> s = new Stack<TreeNode>();
-        s.push(root);
-        while (!s.isEmpty()) {
-            TreeNode temp = s.pop();
-            System.out.println(temp.val);
-
-            //先向栈中存放右子树，再存放左子树
-            if (temp.right != null) {
-                s.push(temp.right);
-            }
-            if (temp.left != null) {
-                s.push(temp.left);
-            }
-        }
-    }
 
     //前序遍历-非递归（借助栈) 写法3
     public static void PreOrderTraversal3(TreeNode root) {

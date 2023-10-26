@@ -8,13 +8,12 @@ import static  Lib.Base.*;
  */
 
 //单链表类
-public class LinkedList {
+public class MyLinkedList {
 
     private ListNode head;
 
-
     public static void main(String[] args) {
-        LinkedList linkedList = mockLinkedList();
+        MyLinkedList linkedList = mockLinkedList();
         linkedList.print();
         System.out.println("\n------");
 
@@ -29,8 +28,8 @@ public class LinkedList {
 
 
     //制造一颗单链表  2 - 1 - 3 - 4 - 10
-    public static LinkedList mockLinkedList() {
-        LinkedList linkedList = new LinkedList();
+    public static MyLinkedList mockLinkedList() {
+        MyLinkedList linkedList = new MyLinkedList();
         linkedList.add(0, 10);
         linkedList.add(0, 1);
         linkedList.add(0, 2);

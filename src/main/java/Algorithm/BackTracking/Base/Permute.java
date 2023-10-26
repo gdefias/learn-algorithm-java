@@ -28,6 +28,7 @@ public class Permute {
 
     public static void main(String[] args) {
         int[] array={1,2,3,4};
+
         List<List<Integer>> res = permute(array);
         System.out.println(res);
     }
@@ -49,12 +50,14 @@ public class Permute {
     public static void backstrace(int[] nums, List<List<Integer>> res, boolean[] visited,  Deque<Integer> path) {
         if(path.size()==nums.length) {
             res.add(new ArrayList<>(path));
+            return;
         }
 
         for(int i=0; i<nums.length; i++) {
             if(visited[i]) {
                 continue;
             }
+
 
             visited[i] = true;
 //            path.add(nums[i]);

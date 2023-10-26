@@ -23,8 +23,8 @@ import java.util.LinkedList;
  */
 
 public class MaxQueue {
-    Queue<Integer> queue;
-    Deque<Integer> deque;
+    Queue<Integer> queue;  //使用一个队列存push和pop的原始数据
+    Deque<Integer> deque;  //使用一个双端队列维护queue的最大值  从大到小的单调队列
 
     public MaxQueue() {
         this.queue = new LinkedList<>();

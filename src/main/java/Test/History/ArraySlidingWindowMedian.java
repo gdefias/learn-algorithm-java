@@ -1,4 +1,4 @@
-package Test;
+package Test.History;
 import java.util.Collections;
 import java.util.PriorityQueue;
 /**
@@ -6,13 +6,12 @@ import java.util.PriorityQueue;
  *
  * Sliding Window Median
  * 滑动窗口中位数
- *
  * Given nums = [1,3,-1,-3,5,3,6,7], and k = 5.
  * -3 -1 1  5 3     3 6 7
  * maxheap  minheap
  *
- * https://leetcode.com/problems/sliding-window-median/description/
  *
+ * https://leetcode.com/problems/sliding-window-median/description/
  */
 
 

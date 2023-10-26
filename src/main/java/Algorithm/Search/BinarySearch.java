@@ -18,8 +18,8 @@ package Algorithm.Search;
 
 public class BinarySearch {
     public static void main(String[] args) {
-        int[] nums = new int[]{1, 3, 5, 20, 22, 23, 234};
-        System.out.println(binarySearch(nums, 0));
+        int[] nums = new int[]{1, 3, 5, 5, 20, 22, 23, 234};
+        System.out.println(binarySearch(nums, 5));
     }
 
     //方法1: 迭代版本

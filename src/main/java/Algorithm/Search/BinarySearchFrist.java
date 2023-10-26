@@ -14,8 +14,8 @@ package Algorithm.Search;
 public class BinarySearchFrist {
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1, 3, 5, 22, 22, 22, 234};
-        System.out.println(binarySearch(nums, 22));
+        int[] nums = new int[]{1, 5, 5, 5, 22, 22, 22, 234};
+        System.out.println(binarySearch(nums, 5));
     }
 
     //方法1： while条件严格比较
@@ -111,9 +111,11 @@ public class BinarySearchFrist {
             }
         }
 
+        //有可能没有找到
         if(start>=nums.length || nums[start]!=target) {
             return -1;
         }
+
         return start;
     }
 

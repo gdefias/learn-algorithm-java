@@ -2,7 +2,7 @@ package Algorithm.DFSAndBFS;
 
 /**
  * Created with IntelliJ IDEA.
- * Description: 1～n整数中1出现的次数
+ * Description: 1～n整数中1出现的次数   [hard]
  * User: Defias
  * Date: 2018-10
 

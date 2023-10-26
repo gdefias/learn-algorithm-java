@@ -38,7 +38,7 @@ public class CountSort {
 
 
     public static void helper(int[] A, int[] B, int min, int max) {
-        int[] C = new int[max-min+1];
+        int[] C = new int [max-min+1];
         //for(int i=0; i<max-min+1; i++) {
         //    C[i] = 0;
         //}
@@ -52,8 +52,9 @@ public class CountSort {
         }
 
         for(int j=A.length-1; j>=0; j--) {
-            B[C[A[j]-min]-1] = A[j];  //注意：B从0开始存，此处需要减1
-            C[A[j]-min] = C[A[j]-min] - 1;
+            int av = A[j] - min;
+            B[C[av]-1] = A[j];  //注意：B从0开始存，此处需要减1
+            C[av] = C[av] - 1;
         }
     }
 }

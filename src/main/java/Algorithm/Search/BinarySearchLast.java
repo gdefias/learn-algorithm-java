@@ -110,9 +110,11 @@ public class BinarySearchLast {
             }
         }
 
+        //有可能没有找到
         if(end<0 || A[end]!=target) {
             return -1;
         }
+
         return end;
     }
 }

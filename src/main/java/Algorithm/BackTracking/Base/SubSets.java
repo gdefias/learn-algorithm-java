@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
   []
  ]
 
- 在树形结构中子集问题是要收集所有节点的结果，而组合问题是收集叶子节点的结果
+ 在树形结构中子集问题是要收集所有节点的结果，而k个数的组合问题是收集叶子节点的结果
 
  其实子集也是一种组合问题，因为它的集合是无序的，子集{1,2} 和 子集{2,1}是一样的。那么既然是无序，取过的元素不会重复取，写回溯算法的时候
  ，for就要从start开始，而不是从0开始！
@@ -36,6 +36,7 @@ public class SubSets {
         int[] array = {1,2,3};
 
         List<List<Integer>> res = subsets(array);
+//        List<List<Integer>> res = Combine3.combine(array);  //组合
 
         System.out.println(res);
         //输出：[[], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3]]
@@ -44,8 +45,9 @@ public class SubSets {
     //方法1：回溯
     public static List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        if (nums.length == 0)
+        if (nums.length == 0) {
             return result;
+        }
 
         List<Integer> path = new ArrayList<>();
         int start = 0;
@@ -57,9 +59,9 @@ public class SubSets {
 
     public static void dfs(int[] nums, List<List<Integer>> result, List<Integer> path, int start) {
         result.add(new ArrayList<>(path));  //无需条件判断，直接添加结果（收集所有节点的结果）
-        //if(start == nums.length) {     //终止条件可以不加，因为下一层不满足for的循环条件还是退出了
-        //    return;
-        //}
+//        if(start == nums.length) {     //终止条件可以不加，因为下一层不满足for的循环条件还是退出了
+//            return;
+//        }
 
         for (int i=start; i<nums.length; i++) {
             path.add(nums[i]);

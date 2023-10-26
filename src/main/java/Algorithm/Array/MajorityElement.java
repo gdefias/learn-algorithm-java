@@ -22,6 +22,10 @@ public class MajorityElement {
     public static void main(String[] args) {
         int[] A = {1, 5, 4, 2, 1, 3, 7, 8, 10 ,9, 1, 1, 1, 1, 1, 1, 1};
         System.out.println(majorityElement(A));
+
+
+        String s1 = "ssdd";
+        s1.toCharArray();
     }
 
     //方法1：摩尔投票法

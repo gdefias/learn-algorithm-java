@@ -26,27 +26,27 @@ public class N_Queens2 {
     //方法1： DFS
     //时间复杂度：大于O(N!)  需要O(N)的时间复杂度来判断某个位置是否可以放置皇后
     public static int totalNQueens(int n) {
-        int[] A = new int[n];
+        int[] A = new int[n];  //索引为行，值为列
         dfs(A, 0, n);
         return sum;
     }
 
     public static void dfs(int[] A, int row, int N) {
-        if(row == N) {
+        if(row == N) {  //row：第row行
             sum++;
             return;
         }
 
-        for(int i=0; i<N; i++) {
-            A[row] = i;
-            if(isValidate(A, row, i)) {
+        for(int j=0; j<N; j++) {  //j：第0列到第最后一列
+            A[row] = j;
+            if(isValidate(A, row, j)) {
                 dfs(A, row+1, N);
             }
         }
     }
 
     public static boolean isValidate(int[] A, int row, int col) {
-        for(int i=0; i<row; i++) {
+        for(int i=0; i<row; i++) {  //row之前的行
             int j = A[i];
             if(j==col || (Math.abs(i-row) == Math.abs(j-col))) {
                 return false;

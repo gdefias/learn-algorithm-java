@@ -48,6 +48,93 @@ public class IsBST {
         System.out.println(isValidBST4(root));
     }
 
+
+    //方法4: 递归 类似方法3 使用ResultType
+    public static boolean isValidBST4(TreeNode root) {
+        return helper(root).is_bst;
+    }
+
+    private static ResultType helper(TreeNode root) {
+        if (root == null) {
+            return new ResultType(true, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        }
+
+        ResultType left = helper(root.left);
+        ResultType right = helper(root.right);
+
+        if (!left.is_bst || !right.is_bst) {
+            //false的时候，范围随便给，不会被用到
+            return new ResultType(false, 0, 0);
+        }
+
+        if ((root.left != null && left.maxValue >= root.val) || (root.right != null && right.minValue <= root.val)) {
+            return new ResultType(false, 0, 0);
+        }
+
+        return new ResultType(true, Math.max(root.val, right.maxValue), Math.min(root.val, left.minValue));
+    }
+
+
+    static class ResultType {
+        boolean is_bst;   //是否是BST
+        int maxValue, minValue;  //子树结点值的范围
+
+        ResultType(boolean is_bst, int maxValue, int minValue) {
+            this.is_bst = is_bst;
+            this.maxValue = maxValue;
+            this.minValue = minValue;
+        }
+    }
+
+
+    //方法3：递归 时间复杂度 : O(n)  空间复杂度 : O(1)
+    public static boolean isValidBST3(TreeNode root) {
+        return isValidBST3(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    //递归函数：以root为根的子树中所有节点的值是否都在 (minVal, maxVal) 的范围内（开区间）
+    public static boolean isValidBST3(TreeNode root, int minVal, int maxVal) {
+        if (root == null)
+            return true;
+
+        if (root.val >= maxVal || root.val <= minVal)
+            return false;
+
+        //递归调用左子树时需要把上界maxVal设为root.val
+        //递归调用右子树时需要把下界minVal设为root.val
+        return isValidBST3(root.left, minVal, root.val) && isValidBST3(root.right, root.val, maxVal);
+    }
+
+
+    //方法2：递归  中序遍历 DFS  prev指针  时间复杂度 : O(n)  空间复杂度 : O(1)
+    public static boolean isValidBST2(TreeNode root) {
+        if(root == null) {
+            return true;
+        }
+
+        if(!isValidBST2(root.left)) {
+            return false;
+        }
+
+        if(prev == null) {
+            prev = root;
+        } else {
+            if(prev.val>=root.val) {
+                return false;
+            } else {
+                prev = root;
+            }
+        }
+
+        if(!isValidBST2(root.right)) {
+            return false;
+        }
+
+        return true;
+    }
+
+
+
     /*
    方法1：中序遍历 非递归 栈 prev指针 (若是BST则会得到一个递增序列)
    时间复杂度 : O(n)  空间复杂度 : O(n)
@@ -86,92 +173,5 @@ public class IsBST {
 
         }
         return true;
-    }
-
-
-    //方法2：递归  中序遍历 DFS  prev指针  时间复杂度 : O(n)  空间复杂度 : O(1)
-    public static boolean isValidBST2(TreeNode root) {
-        if(root == null) {
-            return true;
-        }
-
-        if(!isValidBST2(root.left)) {
-            return false;
-        }
-
-        if(prev == null) {
-            prev = root;
-        } else {
-            if(prev.val>=root.val) {
-                return false;
-            } else {
-                prev = root;
-            }
-        }
-
-        if(!isValidBST2(root.right)) {
-            return false;
-        }
-
-        return true;
-    }
-
-
-    //方法3：递归 时间复杂度 : O(n)  空间复杂度 : O(1)
-    public static boolean isValidBST3(TreeNode root) {
-        return isValidBST3(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
-    }
-
-    //递归函数：以root为根的子树中所有节点的值是否都在 (minVal, maxVal) 的范围内（开区间）
-    public static boolean isValidBST3(TreeNode root, int minVal, int maxVal) {
-        if (root == null)
-            return true;
-
-        if (root.val >= maxVal || root.val <= minVal)
-            return false;
-
-        //递归调用左子树时需要把上界maxVal设为root.val
-        //递归调用右子树时需要把下界minVal设为root.val
-        return isValidBST3(root.left, minVal, root.val) && isValidBST3(root.right, root.val, maxVal);
-    }
-
-
-
-
-    //方法4: 递归 类似方法3 使用ResultType
-    public static boolean isValidBST4(TreeNode root) {
-        return helper(root).is_bst;
-    }
-
-    private static ResultType helper(TreeNode root) {
-        if (root == null) {
-            return new ResultType(true, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        }
-
-        ResultType left = helper(root.left);
-        ResultType right = helper(root.right);
-
-        if (!left.is_bst || !right.is_bst) {
-            //false的时候，范围随便给，不会被用到
-            return new ResultType(false, 0, 0);
-        }
-
-        if ((root.left != null && left.maxValue >= root.val) || (root.right != null && right.minValue <= root.val)) {
-            return new ResultType(false, 0, 0);
-        }
-
-        return new ResultType(true, Math.max(root.val, right.maxValue), Math.min(root.val, left.minValue));
-    }
-
-
-    static class ResultType {
-        boolean is_bst;   //是否是BST
-        int maxValue, minValue;  //子树结点值的范围
-
-        ResultType(boolean is_bst, int maxValue, int minValue) {
-            this.is_bst = is_bst;
-            this.maxValue = maxValue;
-            this.minValue = minValue;
-        }
     }
 }

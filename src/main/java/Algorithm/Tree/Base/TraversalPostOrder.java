@@ -5,6 +5,7 @@ import Lib.Util;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author: Defias
@@ -40,39 +41,31 @@ public class TraversalPostOrder {
         result.add(root.val);
     }
 
+
     //方法2：迭代  非递归
     public static List<Integer> postorderTraversal2(TreeNode root) {
         List<Integer> result = new ArrayList<Integer>();
-        recur2(root, result);
+
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode lastVisit = null;
+        TreeNode p = root;
+
+        while(p!=null || !stack.isEmpty()) {
+            while(p!=null) {
+                stack.push(p);
+                p = p.left;
+            }
+
+            p = stack.pop();
+            if(p.right==null || p.right==lastVisit) {
+                result.add(p.val);
+                lastVisit = p;
+                p = null;
+            } else {
+                stack.push(p);
+                p = p.right;
+            }
+        }
         return result;
     }
-
-    public static void recur2(TreeNode root, List<Integer> result) {
-        if(root==null) {
-            return;
-        }
-
-        LinkedList<TreeNode> stack = new LinkedList<>();
-        TreeNode node = root;
-        TreeNode visited = null;  //标示节点的右子节点是否已经访问过了
-
-        while(node!=null || !stack.isEmpty()) {
-            while(node!=null) {
-                stack.push(node);
-                node = node.left;
-            }
-
-            node = stack.peek();
-            if(node.right==null || node.right==visited) {
-                stack.pop();
-                visited = node;
-                result.add(node.val);
-                node = null;
-            } else {
-                node = node.right;
-            }
-        }
-    }
-
-
 }

@@ -119,8 +119,11 @@ public class MyPriorityQueue {
 
             if (A[k] >= A[p])
                 break;       //无需调整
+
             swap(A, k, p);   //需要调整
-            leftchild = 2*p;   //新的左孩子
+
+            leftchild = getChild(p)[0]; //新的左孩子
+//            leftchild = 2*p;   //新的左孩子
         }
     }
 
@@ -132,11 +135,11 @@ public class MyPriorityQueue {
     private void resize(int times) {
         assert times > 1;
         int  capacity  = times * n;
-        int[] temp = new int[capacity];
+        int[] newpq = new int[capacity];
         for (int i=0; i<n; i++) {
-            temp[i] = pq[i];
+            newpq[i] = pq[i];
         }
-        pq = temp;
+        pq = newpq;
     }
 
 

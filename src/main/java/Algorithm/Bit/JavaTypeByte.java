@@ -7,7 +7,12 @@ public class JavaTypeByte {
 
     public static void main(String[] args) {
 
-        testByteValue();
+//        testByteValue();
+
+        long MAX_SEQUENCE = 1L << 12;
+        long MAX_SEQUENCE2 = ~(-1L << 12);
+        System.out.println(MAX_SEQUENCE);
+        System.out.println(MAX_SEQUENCE2);
     }
 
     public static void testByteValue(){
